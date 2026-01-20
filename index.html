@@ -61,7 +61,7 @@
       gap: 16px;
     }
 
-    /* Top floating mini-nav (optional) */
+    /* Top floating mini-nav */
     .topbar{
       position: fixed;
       z-index: 50;
@@ -132,13 +132,13 @@
       color:#fff;
       padding-top: 70px; /* space for fixed topbar */
     }
-    /* Use your existing file name: hero-couch.png */
+
+    /* IMPORTANT: uses your file name hero-couch.png (in same folder as index.html) */
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background:
-        url("hero-couch.png") center / cover no-repeat;
+      background: url("hero-couch.png") center / cover no-repeat;
       transform: scale(1.02);
       filter: saturate(1.02) contrast(1.02);
     }
@@ -217,7 +217,7 @@
       background: rgba(255,255,255,.18);
     }
 
-    /* Cards / sections style */
+    /* Sections */
     .section{
       background: radial-gradient(1000px 700px at 70% 0%, rgba(183,165,122,.18), rgba(255,255,255,0));
       padding-top: 72px; /* for topbar spacing */
@@ -313,7 +313,7 @@
       color: rgba(0,0,0,.70);
     }
 
-    /* Quote / form */
+    /* Form */
     form{
       display:grid;
       gap: 10px;
@@ -347,16 +347,26 @@
       line-height: 1.4;
     }
 
-    /* Bottom sticky CTA for mobile */
+    /* Bottom sticky CTA for mobile
+       FIX: hidden by default and shows only after hero */
     .sticky{
       position: fixed;
       z-index: 60;
       left: 50%;
-      transform: translateX(-50%);
       bottom: calc(12px + env(safe-area-inset-bottom));
       width: min(var(--max), calc(100% - 18px));
       pointer-events:none;
+
+      /* hidden by default */
+      opacity: 0;
+      transform: translateX(-50%) translateY(18px);
+      transition: opacity .25s ease, transform .25s ease;
     }
+    .sticky.is-visible{
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+
     .sticky .dock{
       pointer-events:auto;
       display:flex;
@@ -397,7 +407,7 @@
       transform: translateY(0);
     }
 
-    /* Desktop/tablet layout improvements */
+    /* Desktop */
     @media (min-width: 860px){
       .grid.two{ grid-template-columns: 1fr 1fr; }
       .hero .wrap{ padding-bottom: 36px; }
@@ -412,12 +422,13 @@
       .snap{ scroll-behavior:auto; }
       .reveal{ transition:none; opacity:1; transform:none; }
       .btn, .chip{ transition:none; }
+      .sticky{ transition:none; }
     }
   </style>
 </head>
 
 <body>
-  <!-- Floating mini-nav (looks clean, not “nalapisto”) -->
+  <!-- Floating mini-nav -->
   <div class="topbar" aria-hidden="false">
     <div class="bar">
       <div class="brand">
@@ -432,8 +443,8 @@
     </div>
   </div>
 
-  <!-- Sticky CTA for mobile -->
-  <div class="sticky">
+  <!-- Sticky CTA for mobile (hidden on hero, visible after) -->
+  <div class="sticky" id="stickyCta">
     <div class="dock">
       <a class="primary" href="#quote">Free Quote</a>
       <a href="sms:+12081234567">Text</a>
@@ -442,7 +453,7 @@
   </div>
 
   <main class="snap" id="top">
-    <!-- HERO: full screen with couch -->
+    <!-- HERO -->
     <section class="screen hero" id="hero">
       <div class="wrap">
         <div class="pillrow reveal">
@@ -464,7 +475,7 @@
       </div>
     </section>
 
-    <!-- BENEFITS / SERVICES: full screen -->
+    <!-- BENEFITS -->
     <section class="screen section" id="benefits">
       <div class="wrap">
         <div class="reveal">
@@ -513,7 +524,7 @@
       </div>
     </section>
 
-    <!-- REVIEWS: full screen -->
+    <!-- REVIEWS -->
     <section class="screen section" id="reviews">
       <div class="wrap">
         <div class="reveal">
@@ -538,7 +549,7 @@
       </div>
     </section>
 
-    <!-- QUOTE / CONTACT: full screen -->
+    <!-- QUOTE -->
     <section class="screen section" id="quote">
       <div class="wrap">
         <div class="reveal">
@@ -548,7 +559,6 @@
         </div>
 
         <div class="card reveal">
-          <!-- Option 1: mailto (works everywhere, no backend needed) -->
           <form id="quoteForm">
             <div>
               <label for="name">Name</label>
@@ -582,7 +592,7 @@
   </main>
 
   <script>
-    // 1) Reveal animation on scroll (lightweight)
+    // 1) Reveal animation
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
         if (e.isIntersecting) e.target.classList.add('on');
@@ -592,7 +602,6 @@
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
     // 2) Form: mailto fallback (no backend)
-    // Replace email below with your real email
     const TO_EMAIL = "bstuashurov@gmail.com";
     document.getElementById("quoteForm").addEventListener("submit", (ev) => {
       ev.preventDefault();
@@ -604,12 +613,24 @@
       const body = encodeURIComponent(
         `Name: ${name}\nPhone: ${phone}\nService: ${service}\n\nMessage:\n${msg}\n\n— Sent from landing page`
       );
-
-      // Opens email app
       window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
     });
 
-    // 3) Optional: snap-scroll "next screen" with keyboard (desktop)
+    // 3) Sticky CTA: hide on hero, show after hero
+    const sticky = document.getElementById('stickyCta');
+    const hero = document.getElementById('hero');
+
+    if (sticky && hero) {
+      const heroObs = new IntersectionObserver((entries) => {
+        const entry = entries[0];
+        if (entry.isIntersecting) sticky.classList.remove('is-visible');
+        else sticky.classList.add('is-visible');
+      }, { threshold: 0.25 });
+
+      heroObs.observe(hero);
+    }
+
+    // 4) Optional: snap-scroll "next screen" with keyboard (desktop)
     document.addEventListener("keydown", (e) => {
       if (e.key !== "ArrowDown" && e.key !== "PageDown") return;
       const scroller = document.querySelector(".snap");
