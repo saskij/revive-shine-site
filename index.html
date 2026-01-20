@@ -748,10 +748,15 @@
   transition: transform .22s ease, opacity .35s ease, box-shadow .22s ease, filter .22s ease;
   will-change: transform;
 }
+    /* показываем карточки, когда блок reveal стал on */
+.reveal.on .price-card{
+  transform: translateY(0);
+  opacity: 1;
+}
 
 /* hover эффект только там, где реально есть hover (Mac/PC) */
 @media (hover:hover){
-  .price-card:hover{
+  .reveal.on .price-card:hover{
     transform: translateY(-2px) scale(1.02);
     box-shadow: 0 18px 55px rgba(0,0,0,.14);
     filter: brightness(1.02);
