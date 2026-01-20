@@ -414,6 +414,24 @@
       display:block;
       transform: scale(1.01);
     }
+
+    /* Smooth zoom on hover for before/after images */
+.shot img{
+  transition: transform .25s ease;
+  will-change: transform;
+}
+
+/* Desktop hover */
+@media (hover:hover){
+  .shot:hover img{
+    transform: scale(1.08);
+  }
+}
+
+/* Mobile tap feedback */
+.shot:active img{
+  transform: scale(1.04);
+}
     .badge{
       position:absolute;
       left: 10px;
