@@ -787,6 +787,27 @@
   background: rgba(255,255,255,.55);
   line-height: 1.45;
 }
+
+    /* ===== Fix visited/active link color in top menu ===== */
+.nav a,
+.nav a:link,
+.nav a:visited,
+.nav a:active,
+.nav a:focus {
+  color: var(--ink);
+  text-decoration: none;
+  outline: none;
+}
+
+/* Optional hover style */
+.nav a:hover {
+  opacity: .85;
+}
+
+/* Remove Safari blue tap highlight */
+.nav a {
+  -webkit-tap-highlight-color: transparent;
+}
     
   </style>
 </head>
