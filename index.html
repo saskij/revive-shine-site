@@ -742,13 +742,25 @@
   box-shadow: 0 14px 40px rgba(0,0,0,.10);
   text-decoration: none;
   color: inherit;
+
   transform: translateY(10px);
   opacity: 0;
-  transition: transform .35s ease, opacity .35s ease;
+  transition: transform .22s ease, opacity .35s ease, box-shadow .22s ease, filter .22s ease;
+  will-change: transform;
 }
-.reveal.on .price-card{
-  transform: translateY(0);
-  opacity: 1;
+
+/* hover эффект только там, где реально есть hover (Mac/PC) */
+@media (hover:hover){
+  .price-card:hover{
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 18px 55px rgba(0,0,0,.14);
+    filter: brightness(1.02);
+  }
+}
+
+/* tap feedback на телефоне */
+.price-card:active{
+  transform: scale(.99);
 }
 
 .price-card img{
@@ -977,37 +989,70 @@
       </p>
     </div>
 
-    <div class="price-grid reveal">
-      <a class="price-card" href="#quote" data-open-quote="Price guide — Chairs">
-        <img src="price-chairs.png" alt="Chair cleaning price guide" loading="lazy">
-        <div class="price-cap">
-          <div class="price-h">Chairs</div>
-          <div class="price-d">Tap to request a quote</div>
-        </div>
-      </a>
+<div class="price-grid reveal">
+  <!-- 1) Couches -->
+  <a class="price-card" href="#quote" data-open-quote="Price guide — Couch">
+    <img src="price-couch.png" alt="Couch cleaning price guide" loading="lazy">
+    <div class="price-cap">
+      <div class="price-h">Couches</div>
+      <div class="price-d">Tap to request a quote</div>
+    </div>
+  </a>
 
-      <a class="price-card" href="#quote" data-open-quote="Price guide — Couch">
-        <img src="price-couch.png" alt="Couch cleaning price guide" loading="lazy">
-        <div class="price-cap">
-          <div class="price-h">Couches</div>
-          <div class="price-d">Tap to request a quote</div>
-        </div>
-      </a>
+  <!-- 2) Mattresses -->
+  <a class="price-card" href="#quote" data-open-quote="Price guide — Mattress">
+    <img src="price-mattress.png" alt="Mattress and bed cleaning price guide" loading="lazy">
+    <div class="price-cap">
+      <div class="price-h">Mattresses & beds</div>
+      <div class="price-d">Tap to request a quote</div>
+    </div>
+  </a>
 
-      <a class="price-card" href="#quote" data-open-quote="Price guide — Mattress">
-        <img src="price-mattress.png" alt="Mattress and bed cleaning price guide" loading="lazy">
-        <div class="price-cap">
-          <div class="price-h">Mattresses & beds</div>
-          <div class="price-d">Tap to request a quote</div>
-        </div>
-      </a>
+  <!-- 3) Chairs -->
+  <a class="price-card" href="#quote" data-open-quote="Price guide — Chairs">
+    <img src="price-chairs.png" alt="Chair cleaning price guide" loading="lazy">
+    <div class="price-cap">
+      <div class="price-h">Chairs</div>
+      <div class="price-d">Tap to request a quote</div>
+    </div>
+  </a>
 
-      <a class="price-card" href="#quote" data-open-quote="Price guide — Discounts">
-        <img src="price-discounts.png" alt="Discounts price guide" loading="lazy">
-        <div class="price-cap">
-          <div class="price-h">Discounts</div>
-          <div class="price-d">Ask to apply it</div>
-        </div>
+  <!-- 4) Carpet -->
+  <a class="price-card" href="#quote" data-open-quote="Price guide — Carpet">
+    <img src="price-carpet.png" alt="Carpet and rug cleaning price guide" loading="lazy">
+    <div class="price-cap">
+      <div class="price-h">Carpets & rugs</div>
+      <div class="price-d">Rooms, stairs, per sq ft</div>
+    </div>
+  </a>
+
+  <!-- 5) Detailing / Car interior -->
+  <a class="price-card" href="#quote" data-open-quote="Price guide — Car interior">
+    <img src="price-car.png" alt="Car interior cleaning price guide" loading="lazy">
+    <div class="price-cap">
+      <div class="price-h">Car interiors</div>
+      <div class="price-d">Seats, carpets, panels</div>
+    </div>
+  </a>
+
+  <!-- 6) Add-ons -->
+  <a class="price-card" href="#quote" data-open-quote="Price guide — Add-ons">
+    <img src="price-addons.png" alt="Add-ons price guide" loading="lazy">
+    <div class="price-cap">
+      <div class="price-h">Add-ons</div>
+      <div class="price-d">Pet hair, odors, fast drying</div>
+    </div>
+  </a>
+
+  <!-- 7) Discounts (last) -->
+  <a class="price-card" href="#quote" data-open-quote="Price guide — Discounts">
+    <img src="price-discounts.png" alt="Discounts price guide" loading="lazy">
+    <div class="price-cap">
+      <div class="price-h">Discounts</div>
+      <div class="price-d">Ask to apply it</div>
+    </div>
+  </a>
+</div>
       </a>
 
       <a class="price-card" href="#quote" data-open-quote="Price guide — Add-ons">
