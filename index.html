@@ -3,687 +3,715 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Revive & Shine — Upholstery & Auto Cleaning</title>
-  <meta name="description" content="Mobile upholstery & auto interior cleaning in Boise area. Free quote — send a photo." />
   <meta name="theme-color" content="#f7f4f0" />
-  <script>document.documentElement.classList.add('js');</script>
-
+  <title>Revive & Shine — Upholstery & Auto Interior Cleaning (Boise)</title>
+  <meta name="description" content="Mobile upholstery & auto interior cleaning in Boise, Meridian, Nampa & Caldwell. Free quote — send a photo for the most accurate estimate." />
   <style>
     :root{
       --bg:#f7f4f0;
-      --ink:#1d1d1d;
-      --muted:#6b6b6b;
-      --muted2:#8b8b8b;
-      --line:#e8e1d9;
-
-      --accent:#2f3a4a;
-      --gold:#b7a57a;
-
-      --paper: rgba(255,255,255,.78);
-      --paperSolid: rgba(255,255,255,.90);
-
-      --shadow: 0 22px 60px rgba(18,18,18,.10);
-      --shadow2: 0 10px 28px rgba(18,18,18,.08);
-
-      --radius: 22px;
-      --max: 1180px;
-
-      --sans: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial;
-      --serif: ui-serif, "New York", Georgia, "Times New Roman", Times, serif;
-
-      --tap: 54px;
+      --ink:#141414;
+      --muted:#6e6a62;
+      --line:rgba(20,20,20,.10);
+      --glass:rgba(255,255,255,.52);
+      --shadow: 0 18px 55px rgba(25,18,8,.18);
+      --shadow2: 0 10px 28px rgba(25,18,8,.12);
+      --radius:22px;
+      --radius2:16px;
+      --gold1:#b79f6b;
+      --gold2:#9b844f;
+      --max:1120px;
+      --serif: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino, Georgia, serif;
+      --sans: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
     }
 
     *{box-sizing:border-box}
     html,body{height:100%}
-    html{scroll-behavior:smooth}
     body{
       margin:0;
-      color:var(--ink);
       font-family: var(--sans);
+      color:var(--ink);
       background:
-        radial-gradient(1200px 700px at 15% 0%, rgba(47,58,74,.09), transparent 55%),
-        radial-gradient(900px 650px at 90% 15%, rgba(183,165,122,.18), transparent 58%),
-        radial-gradient(900px 700px at 40% 85%, rgba(232,225,217,.60), transparent 60%),
-        linear-gradient(180deg, var(--bg), #fbfaf8 42%, var(--bg));
-      overflow-x:hidden;
+        radial-gradient(1200px 700px at 18% 8%, rgba(183,159,107,.18), transparent 65%),
+        radial-gradient(900px 600px at 86% 22%, rgba(183,159,107,.10), transparent 60%),
+        linear-gradient(180deg, #fbf9f6, var(--bg));
     }
+
     a{color:inherit; text-decoration:none}
-    img{max-width:100%; display:block}
+    .wrap{max-width:var(--max); margin:0 auto; padding:18px 18px 110px}
+    @media (min-width: 980px){ .wrap{padding:22px 24px 88px} }
 
-    .wrap{max-width:var(--max); margin:0 auto; padding:14px 14px 110px}
-
-    /* Topbar */
+    /* Header */
     .topbar{
-      display:flex; align-items:center; justify-content:space-between; gap:10px;
-      padding:10px 12px;
-      background:rgba(255,255,255,.70);
-      border:1px solid var(--line);
-      border-radius:999px;
+      position: sticky; top: 12px; z-index: 50;
+      margin: 0 auto 18px;
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      background: var(--glass);
+      border:1px solid rgba(20,20,20,.08);
+      border-radius: 999px;
       box-shadow: var(--shadow2);
-      backdrop-filter: blur(10px);
-      position:sticky; top:10px; z-index:20;
+      display:flex; align-items:center; justify-content:space-between;
+      padding: 10px 12px;
     }
-    @media (max-width: 980px){ .topbar{position:relative; top:0} }
 
-    .brand{display:flex; gap:10px; align-items:center; min-width:0}
+    .brand{display:flex; align-items:center; gap:10px; padding-left:4px}
     .logo{
-      width:42px; height:42px; border-radius:14px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.85);
+      width:44px; height:44px; border-radius:16px;
       display:grid; place-items:center;
-      box-shadow: 0 10px 24px rgba(18,18,18,.08);
-      flex:0 0 auto;
+      background: rgba(255,255,255,.65);
+      border:1px solid rgba(20,20,20,.08);
     }
-    .logo svg{width:30px; height:30px}
-    .logo path{stroke:var(--accent); stroke-width:2.3; fill:none; stroke-linecap:round; stroke-linejoin:round}
+    .brand h1{font-size:16px; line-height:1.05; margin:0; font-weight:700}
+    .brand small{display:block; font-size:12px; color:var(--muted); font-weight:600; margin-top:2px; max-width:180px; white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
 
-    .brandtxt{min-width:0}
-    .brandname{font-family:var(--serif); font-weight:900; letter-spacing:.2px; line-height:1.05}
-    .brandsub{font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
-
-    .nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    .nav{display:flex; align-items:center; gap:10px}
     .pill{
-      font-size:13px;
-      padding:9px 12px;
+      display:inline-flex; align-items:center; gap:8px;
+      padding:10px 14px;
       border-radius:999px;
-      border:1px solid var(--line);
-      background:rgba(255,255,255,.65);
-      white-space:nowrap;
-      transition: transform .15s ease, background .15s ease;
+      border:1px solid rgba(20,20,20,.10);
+      background: rgba(255,255,255,.55);
+      font-weight:700;
+      font-size:14px;
     }
-    .pill:hover{transform: translateY(-1px); background:rgba(255,255,255,.92)}
-
-    .ctaTop{
-      font-size:13px;
-      padding:9px 13px;
+    .pill:hover{background: rgba(255,255,255,.75)}
+    .cta{
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:10px 16px;
       border-radius:999px;
-      border:1px solid rgba(47,58,74,.18);
-      background: linear-gradient(180deg, rgba(183,165,122,.95), rgba(167,150,105,.95));
-      color:#fff;
-      font-weight:900;
-      box-shadow: 0 14px 30px rgba(47,58,74,.10);
+      border:1px solid rgba(20,20,20,.12);
+      background: linear-gradient(180deg, rgba(183,159,107,.95), rgba(155,132,79,.95));
+      color:#fff; font-weight:800;
+      box-shadow: 0 12px 28px rgba(155,132,79,.24);
+    }
+    .cta:active{transform: translateY(1px)}
+    .burger{
+      width:44px; height:44px; border-radius:16px;
+      border:1px solid rgba(20,20,20,.10);
+      background: rgba(255,255,255,.55);
+      display:grid; place-items:center;
+    }
+    .burger svg{opacity:.8}
+    @media (min-width: 720px){
+      .burger{display:none}
+    }
+    @media (max-width: 719px){
+      .nav .pill{display:none}
     }
 
-    /* Mobile sticky bar */
-    .mobileBar{
-      position:fixed; left:12px; right:12px; bottom:12px;
-      z-index:50;
-      display:none; gap:10px;
-      padding:10px;
+    /* Mobile menu */
+    .sheet{
+      position: fixed; inset: 0; z-index: 100;
+      background: rgba(15,12,8,.35);
+      backdrop-filter: blur(6px);
+      -webkit-backdrop-filter: blur(6px);
+      display:none;
+      padding: 18px;
+    }
+    .sheet.open{display:block}
+    .sheetCard{
+      max-width: 520px;
+      margin: 0 auto;
       background: rgba(255,255,255,.78);
-      border:1px solid var(--line);
-      border-radius: 18px;
+      border:1px solid rgba(20,20,20,.10);
+      border-radius: 26px;
       box-shadow: var(--shadow);
-      backdrop-filter: blur(10px);
+      padding: 14px;
     }
-    .mobileBar a{
-      flex:1;
-      height:var(--tap);
-      display:flex; align-items:center; justify-content:center;
-      border-radius: 16px;
-      font-weight:900;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.90);
-      transition: transform .15s ease;
+    .sheetHead{display:flex; align-items:center; justify-content:space-between; padding: 6px 6px 10px}
+    .xbtn{
+      width:44px; height:44px; border-radius:16px;
+      border:1px solid rgba(20,20,20,.10);
+      background: rgba(255,255,255,.7);
+      display:grid; place-items:center;
     }
-    .mobileBar a:active{transform: translateY(1px)}
-    .mobileBar a.primary{
-      background: linear-gradient(180deg, rgba(183,165,122,.95), rgba(167,150,105,.95));
-      color:#fff;
-      border-color: rgba(47,58,74,.12);
-    }
-    @media (max-width: 860px){ .mobileBar{display:flex} }
+    .sheetLinks{display:grid; gap:10px; padding: 4px 6px 10px}
+    .sheetLinks a{padding:14px 14px; border-radius:18px; border:1px solid rgba(20,20,20,.10); background: rgba(255,255,255,.65); font-weight:800}
+    .sheetLinks a:active{transform: translateY(1px)}
+    .sheetLinks .cta{width:100%}
 
-    /* Render-like HERO */
+    /* Hero */
     .hero{
-      margin-top:14px;
-      min-height: 640px;
-      border-radius: 28px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.60);
-      box-shadow: var(--shadow);
-      overflow:hidden;
       position:relative;
+      border-radius: 34px;
+      overflow:hidden;
+      border: 1px solid rgba(20,20,20,.10);
+      box-shadow: var(--shadow);
+      background: #eee;
+      min-height: 620px;
     }
 
-    /* couch background layer */
-    .heroBg{
-      position:absolute; inset:0;
-      z-index:0;
-      pointer-events:none;
-    }
+    .heroBg{position:absolute; inset:0; background:#e9e6e2}
     .heroBg img{
       width:100%; height:100%;
       object-fit: cover;
       object-position: 50% 62%;
-      filter: saturate(1.02) contrast(1.02);
-      transform: scale(1.00);
+      filter: saturate(.98) contrast(1.02);
     }
-    /* subtle "before" darkening (left) like your request */
-    .heroBg .beforeShade{
-      position:absolute; inset:0;
-      background: linear-gradient(90deg,
-        rgba(29,29,29,.24) 0%,
-        rgba(29,29,29,.14) 26%,
-        rgba(29,29,29,.06) 42%,
-        rgba(29,29,29,0) 58%);
-      mix-blend-mode:multiply;
-    }
-    /* soft haze to match render */
-    .heroBg .haze{
-      position:absolute; inset:0;
+    .heroGlow{
+      position:absolute; inset:-20%;
       background:
-        radial-gradient(900px 380px at 18% 20%, rgba(255,255,255,.70), transparent 58%),
-        radial-gradient(900px 380px at 78% 18%, rgba(255,255,255,.40), transparent 62%),
-        linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,.05));
+        radial-gradient(900px 540px at 18% 30%, rgba(255,255,255,.92), rgba(255,255,255,.0) 60%),
+        radial-gradient(1100px 700px at 72% 30%, rgba(255,255,255,.72), rgba(255,255,255,.0) 62%),
+        linear-gradient(180deg, rgba(247,244,240,.65), rgba(247,244,240,.28) 42%, rgba(247,244,240,.40));
+      pointer-events:none;
+    }
+    .beforeDim{
+      position:absolute; inset:0;
+      background: linear-gradient(90deg, rgba(28,22,12,.14), rgba(28,22,12,.05) 30%, rgba(28,22,12,0) 60%);
+      mix-blend-mode:multiply;
+      pointer-events:none;
+    }
+    .vignette{
+      position:absolute; inset:0;
+      background: radial-gradient(1200px 800px at 50% 10%, rgba(255,255,255,0), rgba(20,20,20,.10) 110%);
+      opacity:.35;
+      pointer-events:none;
     }
 
     .heroInner{
       position:relative;
-      z-index:1;
-      padding:20px;
+      height:100%;
+      padding: 22px;
       display:grid;
-      grid-template-columns: 1.05fr .95fr;
-      gap:14px;
-      align-items:start;
+      grid-template-columns: 1.1fr .9fr;
+      gap: 18px;
+      align-items: start;
     }
     @media (max-width: 980px){
-      .heroInner{grid-template-columns:1fr; padding:16px}
+      .hero{min-height: 700px}
+      .heroInner{grid-template-columns: 1fr; padding: 18px}
     }
 
-    .heroText{
-      padding:8px 6px 0;
+    .chips{display:flex; flex-wrap:wrap; gap:10px; margin-top: 6px}
+    .chip{
+      display:inline-flex; align-items:center; gap:10px;
+      padding: 10px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.62);
+      border:1px solid rgba(20,20,20,.10);
+      font-weight:800;
+      color: rgba(20,20,20,.82);
+      box-shadow: 0 10px 22px rgba(25,18,8,.08);
     }
 
-    .kicker{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 10px}
-    .tag{
-      font-size:12px;
-      padding:7px 10px;
-      border-radius:999px;
-      border:1px solid rgba(232,225,217,.95);
-      background: rgba(255,255,255,.74);
-      color: var(--muted);
-      backdrop-filter: blur(10px);
-    }
-
-    h1{
-      margin:8px 0 10px;
+    .headline{
+      margin: 14px 0 8px;
       font-family: var(--serif);
-      font-weight:900;
-      font-size:52px;
-      line-height:1.02;
-      letter-spacing:-.9px;
-      color:#202020;
-      text-shadow: 0 10px 26px rgba(18,18,18,.08);
+      font-weight: 800;
+      font-size: 66px;
+      line-height: .92;
+      letter-spacing: -0.02em;
+      text-wrap: balance;
     }
-    @media (max-width: 520px){ h1{font-size:36px} }
+    @media (max-width: 980px){ .headline{font-size: 54px} }
+    @media (max-width: 420px){ .headline{font-size: 46px} }
 
     .lead{
-      margin:0 0 12px;
-      color: var(--muted);
-      font-size:16px;
-      line-height:1.65;
-      max-width: 62ch;
-      background: rgba(255,255,255,.45);
-      border:1px solid rgba(232,225,217,.75);
+      max-width: 560px;
+      margin: 0;
+      color: rgba(20,20,20,.78);
+      font-size: 16px;
+      line-height: 1.5;
+      background: rgba(255,255,255,.55);
+      border:1px solid rgba(20,20,20,.10);
       border-radius: 18px;
-      padding:12px 12px;
+      padding: 14px 14px;
       backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
     }
 
-    .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .heroActions{display:flex; flex-wrap:wrap; gap:10px; margin-top: 14px}
     .btn{
-      height:48px;
       display:inline-flex; align-items:center; justify-content:center;
-      padding:0 16px;
-      border-radius: 16px;
-      border:1px solid rgba(232,225,217,.95);
-      background: rgba(255,255,255,.78);
-      font-weight:900;
-      transition: transform .15s ease, background .15s ease;
-      backdrop-filter: blur(10px);
+      padding: 14px 16px;
+      border-radius: 18px;
+      border:1px solid rgba(20,20,20,.12);
+      background: rgba(255,255,255,.62);
+      font-weight: 900;
+      min-width: 154px;
+      box-shadow: 0 10px 22px rgba(25,18,8,.10);
     }
-    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.94)}
+    .btn.primary{
+      background: linear-gradient(180deg, rgba(183,159,107,.98), rgba(155,132,79,.98));
+      color:#fff;
+      border-color: rgba(20,20,20,.08);
+      box-shadow: 0 18px 40px rgba(155,132,79,.22);
+    }
     .btn:active{transform: translateY(1px)}
-    .btnPrimary{
-      border:1px solid rgba(47,58,74,.10);
-      background: linear-gradient(180deg, rgba(183,165,122,.95), rgba(167,150,105,.95));
-      color:#fff;
-      box-shadow: 0 16px 34px rgba(47,58,74,.10);
-    }
 
-    /* Feature strip centered like render */
-    .featureStrip{
-      margin-top:16px;
-      padding:12px;
-      border-radius: 20px;
-      border:1px solid rgba(232,225,217,.95);
-      background: rgba(255,255,255,.70);
-      display:grid;
-      grid-template-columns: repeat(4, 1fr);
-      gap:10px;
-      backdrop-filter: blur(10px);
-    }
-    @media (max-width: 980px){ .featureStrip{grid-template-columns:1fr 1fr} }
-
-    .feat{
-      display:flex; gap:10px; align-items:center;
-      padding:10px;
-      border-radius: 16px;
-      border:1px solid rgba(232,225,217,.9);
-      background: rgba(255,255,255,.76);
-    }
-    .feat img{
-      width:44px; height:44px;
-      border-radius: 12px;
-      object-fit: cover;
-      object-position: 50% 62%;
-      border:1px solid #e6dfd6;
-      flex:0 0 auto;
-      filter:saturate(1.02) contrast(1.02);
-    }
-    .feat b{display:block; font-size:13px}
-    .feat span{display:block; font-size:12px; color:var(--muted2); margin-top:2px}
-
-    /* Form card overlay vibe */
-    .formCard{
-      border-radius: 24px;
-      border:1px solid rgba(232,225,217,.95);
-      background: rgba(255,255,255,.80);
-      box-shadow: 0 18px 50px rgba(18,18,18,.12);
+    .featureList{
+      margin-top: 14px;
+      border-radius: 22px;
+      padding: 10px;
+      background: rgba(255,255,255,.45);
+      border:1px solid rgba(20,20,20,.10);
       backdrop-filter: blur(12px);
-      padding:16px;
+      -webkit-backdrop-filter: blur(12px);
+      box-shadow: 0 14px 36px rgba(25,18,8,.12);
+      max-width: 520px;
     }
-    .formTitle{
-      margin:2px 0 6px;
-      font-family: var(--serif);
-      font-weight:900;
-      font-size:22px;
-      letter-spacing:-.2px;
+    .fRow{
+      display:flex; align-items:center; gap:12px;
+      padding: 12px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.55);
+      border:1px solid rgba(20,20,20,.08);
+      margin: 10px 0;
     }
-    .formSub{margin:0 0 12px; color:var(--muted); font-size:13px; line-height:1.5}
+    .fThumb{
+      width:44px; height:44px; border-radius: 14px;
+      overflow:hidden;
+      border:1px solid rgba(20,20,20,.10);
+      background:#fff;
+      flex: 0 0 auto;
+    }
+    .fThumb img{width:100%; height:100%; object-fit:cover}
+    .fTxt{flex: 1 1 auto}
+    .fTxt strong{display:block; font-size:15px; letter-spacing:-.01em}
+    .fTxt span{display:block; font-size:12px; color:var(--muted); margin-top:2px}
+    .chev{opacity:.55}
+    .tapHint{font-size:12px; color:rgba(20,20,20,.55); padding: 2px 6px 6px}
 
-    label{display:block; font-size:12px; color:var(--muted); margin:0 0 6px}
-    input, textarea, select{
+    .quoteCard{
+      margin-top: 8px;
+      border-radius: 26px;
+      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(20,20,20,.10);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
+      padding: 16px;
+      position: sticky;
+      top: 92px;
+      align-self: start;
+    }
+    @media (max-width: 980px){
+      .quoteCard{position: static; margin-top: 10px}
+    }
+
+    .quoteTitle{
+      font-family: var(--serif);
+      font-weight: 800;
+      font-size: 28px;
+      margin: 0 0 8px;
+      letter-spacing: -0.02em;
+    }
+    .stars{display:flex; gap:4px; margin: 6px 0 10px}
+    .star{width:18px; height:18px; opacity:.85}
+    .miniReviews{display:grid; gap:10px; margin-bottom: 12px}
+    .mini{
+      padding: 12px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.55);
+      border:1px solid rgba(20,20,20,.08);
+      box-shadow: 0 10px 22px rgba(25,18,8,.08);
+      color: rgba(20,20,20,.80);
+      font-size: 13px;
+      line-height: 1.4;
+    }
+    .mini em{display:block; margin-top:8px; color:rgba(20,20,20,.55); font-style:normal; font-weight:800}
+
+    form{display:grid; gap:10px; margin-top: 10px}
+    input, textarea{
       width:100%;
-      padding:12px 12px;
+      padding: 12px 12px;
       border-radius: 14px;
-      border:1px solid rgba(232,225,217,.95);
-      background: rgba(255,255,255,.92);
-      color: var(--ink);
+      border:1px solid rgba(20,20,20,.12);
+      background: rgba(255,255,255,.70);
+      font: inherit;
       outline:none;
-      font-family: var(--sans);
     }
-    input:focus, textarea:focus, select:focus{
-      border-color: rgba(47,58,74,.30);
-      box-shadow: 0 0 0 4px rgba(47,58,74,.08);
-    }
-    textarea{min-height:92px; resize:vertical}
-    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
-    @media (max-width: 420px){ .grid2{grid-template-columns:1fr} }
-    .row{margin-bottom:10px}
+    textarea{min-height: 86px; resize: vertical}
+    input:focus, textarea:focus{box-shadow: 0 0 0 4px rgba(183,159,107,.18)}
+    .formRow{display:grid; grid-template-columns: 1fr 1fr; gap:10px}
+    @media (max-width: 420px){ .formRow{grid-template-columns: 1fr} }
+    .formNote{font-size: 12px; color: rgba(20,20,20,.60); margin: 8px 0 0}
     .submit{
-      height:54px;
-      width:100%;
-      border:0;
+      margin-top: 2px;
+      padding: 14px 16px;
       border-radius: 16px;
-      cursor:pointer;
-      font-weight:900;
-      background: linear-gradient(180deg, rgba(183,165,122,.95), rgba(167,150,105,.95));
+      border:1px solid rgba(20,20,20,.12);
+      background: linear-gradient(180deg, rgba(183,159,107,.98), rgba(155,132,79,.98));
       color:#fff;
-      box-shadow: 0 16px 34px rgba(47,58,74,.10);
-      transition: transform .15s ease, filter .15s ease;
+      font-weight: 900;
+      cursor:pointer;
+      box-shadow: 0 18px 40px rgba(155,132,79,.22);
     }
-    .submit:hover{filter:brightness(1.03)}
     .submit:active{transform: translateY(1px)}
 
-    .trust{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; font-size:12px; color:var(--muted2)}
-    .chip{padding:8px 10px; border-radius:999px; border:1px solid rgba(232,225,217,.95); background: rgba(255,255,255,.82)}
-
-    /* Reviews like render (two cards below features) */
-    .reviewsRow{
-      margin-top:14px;
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap:12px;
-    }
-    @media (max-width: 760px){ .reviewsRow{grid-template-columns:1fr} }
-
-    .review{
-      padding:14px;
-      border-radius: 20px;
-      border:1px solid rgba(232,225,217,.95);
-      background: rgba(255,255,255,.74);
-      box-shadow: var(--shadow2);
-      backdrop-filter: blur(10px);
-    }
-    .stars{letter-spacing:1px; color: var(--gold); font-weight:900}
-    .review p{margin:8px 0 0; color:var(--muted); line-height:1.55}
-    .who{margin-top:10px; font-size:12px; color:var(--muted2)}
-
-    /* Sections below hero */
-    section{margin-top:16px}
-    .sectionTitle{
-      margin:0 0 10px;
+    .section{margin-top: 22px}
+    .section h2{
+      margin: 0 0 10px;
       font-family: var(--serif);
-      font-weight:900;
-      font-size:26px;
-      letter-spacing:-.2px;
+      font-size: 34px;
+      letter-spacing: -0.02em;
     }
-    .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
-    @media (max-width: 980px){ .grid3{grid-template-columns:1fr} }
-    .mini{
-      padding:14px;
-      border-radius: var(--radius);
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.72);
+    .grid2{display:grid; grid-template-columns: 1fr 1fr; gap:14px}
+    @media (max-width: 980px){ .grid2{grid-template-columns: 1fr} }
+    .card{
+      border-radius: 24px;
+      background: rgba(255,255,255,.62);
+      border:1px solid rgba(20,20,20,.10);
       box-shadow: var(--shadow2);
+      padding: 16px;
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
     }
-    .mini h3{margin:0 0 6px; font-size:15px; font-weight:900}
-    .mini p{margin:0; color:var(--muted); line-height:1.55}
-
-    details{
-      border-radius: 20px;
-      border:1px solid var(--line);
-      background: rgba(255,255,255,.72);
-      box-shadow: var(--shadow2);
-      padding:12px;
+    .faq details{
+      border-radius: 18px;
+      border:1px solid rgba(20,20,20,.10);
+      background: rgba(255,255,255,.55);
+      padding: 12px 12px;
+      margin: 10px 0;
     }
-    summary{cursor:pointer; font-weight:900; list-style:none}
-    summary::-webkit-details-marker{display:none}
-    details p{margin:8px 0 0; color:var(--muted); line-height:1.55}
+    .faq summary{cursor:pointer; font-weight:900}
+    .faq p{color: rgba(20,20,20,.72); margin: 8px 0 0; line-height: 1.5}
 
-    footer{
-      margin-top:18px;
-      padding-top:14px;
-      border-top:1px solid var(--line);
-      color:var(--muted2);
-      font-size:12px;
-      display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between;
+    .bottomBar{
+      position: fixed; left: 50%; transform: translateX(-50%);
+      bottom: 14px;
+      width: min(760px, calc(100% - 28px));
+      z-index: 60;
+      display:grid;
+      grid-template-columns: 1.4fr 1fr;
+      gap: 12px;
+      padding: 12px;
+      border-radius: 24px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(20,20,20,.10);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: var(--shadow);
     }
+    @media (min-width: 980px){ .bottomBar{display:none} }
 
-    /* Animations (safe if JS blocked: visible by default) */
+    /* Animation */
+    .reveal{opacity:1; transform:none}
     @media (prefers-reduced-motion:no-preference){
-      .reveal{opacity:1; transform:none; transition: opacity .6s ease, transform .6s ease}
-      html.js .reveal{opacity:0; transform: translateY(10px)}
+      .floaty{animation: floaty 7s ease-in-out infinite}
+      @keyframes floaty{0%,100%{transform: translateY(0)} 50%{transform: translateY(-5px)}}
+
+      html.js .reveal{opacity:0; transform: translateY(10px); transition: opacity .55s ease, transform .55s ease}
       html.js .reveal.in{opacity:1; transform: translateY(0)}
-      .floaty{animation: floaty 6s ease-in-out infinite}
-      @keyframes floaty{ 0%,100%{transform: translateY(0)} 50%{transform: translateY(-4px)} }
+      html.js .stagger > *{opacity:0; transform: translateY(10px)}
+      html.js .stagger.in > *{opacity:1; transform: translateY(0)}
+      html.js .stagger.in > *{transition: opacity .55s ease, transform .55s ease}
+      html.js .stagger.in > *:nth-child(1){transition-delay: .00s}
+      html.js .stagger.in > *:nth-child(2){transition-delay: .06s}
+      html.js .stagger.in > *:nth-child(3){transition-delay: .12s}
+    }
+    @media (hover:hover){
+      .fRow:hover{transform: translateY(-1px); transition: transform .18s ease}
+      .btn:hover, .pill:hover, .burger:hover{transform: translateY(-1px); transition: transform .18s ease}
     }
   </style>
+  <script>document.documentElement.classList.add('js');</script>
 </head>
-
 <body>
-  <div class="wrap">
+  <div class="sheet" id="sheet" aria-hidden="true">
+    <div class="sheetCard">
+      <div class="sheetHead">
+        <div class="brand" style="padding-left:0">
+          <div class="logo" aria-hidden="true">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+              <path d="M3 11.5 12 4l9 7.5" stroke="rgba(20,20,20,.75)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M6.5 10.8V20h11V10.8" stroke="rgba(20,20,20,.75)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M10 20v-6h4v6" stroke="rgba(20,20,20,.75)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+          </div>
+          <div>
+            <h1 style="margin:0">Revive &amp; Shine</h1>
+            <small>Upholstery &amp; Auto Cleaning</small>
+          </div>
+        </div>
+        <button class="xbtn" id="closeSheet" aria-label="Close menu">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+            <path d="M6 6l12 12M18 6 6 18" stroke="rgba(20,20,20,.75)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div class="sheetLinks">
+        <a href="#services" data-close>Services</a>
+        <a href="#reviews" data-close>Reviews</a>
+        <a href="#faq" data-close>FAQ</a>
+        <a class="cta" href="#quote" data-close>Get a Free Quote</a>
+      </div>
+    </div>
+  </div>
 
-    <div class="topbar reveal">
-      <a class="brand" href="#top">
+  <div class="wrap">
+    <header class="topbar reveal">
+      <div class="brand">
         <div class="logo" aria-hidden="true">
-          <svg viewBox="0 0 48 48" aria-hidden="true">
-            <path d="M10 22 L24 10 L38 22"></path>
-            <path d="M14 20 V38 H34 V20"></path>
-            <path d="M21 38 V28 H27 V38"></path>
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M3 11.5 12 4l9 7.5" stroke="rgba(20,20,20,.75)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M6.5 10.8V20h11V10.8" stroke="rgba(20,20,20,.75)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M10 20v-6h4v6" stroke="rgba(20,20,20,.75)" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"/>
           </svg>
         </div>
-        <div class="brandtxt">
-          <div class="brandname">Revive &amp; Shine</div>
-          <div class="brandsub">Upholstery &amp; Auto Cleaning • Boise, Idaho</div>
+        <div>
+          <h1>Revive &amp; Shine</h1>
+          <small>Upholstery &amp; Auto Cleaning • Boise</small>
         </div>
-      </a>
-
-      <div class="nav">
+      </div>
+      <nav class="nav" aria-label="Primary">
         <a class="pill" href="#services">Services</a>
         <a class="pill" href="#reviews">Reviews</a>
         <a class="pill" href="#faq">FAQ</a>
-        <a class="ctaTop js-scroll" href="#estimate">Get a Free Quote</a>
-      </div>
-    </div>
+        <a class="cta" href="#quote">Get a Free Quote</a>
+        <button class="burger" id="openSheet" aria-label="Open menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none">
+            <path d="M6 7h12M6 12h12M6 17h12" stroke="rgba(20,20,20,.75)" stroke-width="2" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </nav>
+    </header>
 
-    <!-- HERO (render-like) -->
-    <div id="top" class="hero reveal">
-      <div class="heroBg" aria-hidden="true">
-        <!-- Put your render PNG here -->
-        <img src="images/hero-couch.png" alt="">
-        <div class="beforeShade"></div>
-        <div class="haze"></div>
+    <section class="hero reveal" id="home">
+      <div class="heroBg floaty" aria-hidden="true">
+        <img src="hero-couch.png" alt="" />
       </div>
+      <div class="heroGlow" aria-hidden="true"></div>
+      <div class="beforeDim" aria-hidden="true"></div>
+      <div class="vignette" aria-hidden="true"></div>
 
       <div class="heroInner">
-        <div class="heroText">
-          <div class="kicker">
-            <span class="tag">Mobile service — we come to you</span>
-            <span class="tag">Sofas • Mattresses • Car seats</span>
-            <span class="tag">Boise • Meridian • Nampa • Caldwell</span>
+        <div>
+          <div class="chips stagger reveal" id="chips">
+            <span class="chip">Mobile service — we come to you</span>
+            <span class="chip">Sofas • Mattresses • Car seats</span>
+            <span class="chip">Boise • Meridian • Nampa • Caldwell</span>
           </div>
 
-          <h1>Make it look like new again</h1>
+          <h2 class="headline reveal" style="margin-top:18px;">Make it look<br/>like new again</h2>
 
-          <p class="lead">
+          <p class="lead reveal">
             Deep extraction cleaning for upholstery and auto interiors. Remove embedded dirt, odors, and most stains.
             For the most accurate quote, send a photo.
           </p>
 
-          <div class="actions">
-            <a class="btn btnPrimary js-scroll" href="#estimate">Get a Free Quote</a>
-            <a class="btn" href="sms:+15043279193?&body=Hi%20Revive%20%26%20Shine!%20I%20want%20a%20free%20quote.%20City:%20____.%20Service:%20____.%20I%20can%20send%20a%20photo.%20">Text us</a>
-            <a class="btn" href="tel:+15043279193">Call</a>
+          <div class="heroActions reveal">
+            <a class="btn primary" href="#quote">Get a Free Quote</a>
+            <a class="btn" href="sms:+12081234567">Text us</a>
+            <a class="btn" href="tel:+12081234567">Call</a>
           </div>
 
-          <div class="featureStrip floaty">
-            <div class="feat">
-              <img src="images/clean-finish.png" alt="">
-              <div><b>Clean & cozy finish</b><span>Premium look for your home</span></div>
-            </div>
-            <div class="feat">
-              <img src="images/fast-scheduling.png" alt="">
-              <div><b>Fast scheduling</b><span>Same-week availability</span></div>
-            </div>
-            <div class="feat">
-              <img src="images/real-extraction.png" alt="">
-              <div><b>Real extraction</b><span>You see the dirt removed</span></div>
-            </div>
-            <div class="feat">
-              <img src="images/odor-solutions.png" alt="">
-              <div><b>Odor solutions</b><span>Pet & organic odors</span></div>
-            </div>
-          </div>
+          <div class="featureList reveal" aria-label="Highlights">
+            <div class="tapHint">Tap any item — we’ll guide you to the right service.</div>
 
-          <div id="reviews" class="reviewsRow">
-            <div class="review">
-              <div class="stars">★★★★★</div>
-              <p>“The sofa looks brand new. Great results and super professional service.”</p>
-              <div class="who">— Boise client</div>
-            </div>
-            <div class="review">
-              <div class="stars">★★★★★</div>
-              <p>“Excellent service — my car seats look amazing now. Thank you!”</p>
-              <div class="who">— Meridian client</div>
-            </div>
+            <a class="fRow" href="#services">
+              <div class="fThumb"><img src="clean-finish.png" alt="Clean finish"/></div>
+              <div class="fTxt"><strong>Clean &amp; cozy finish</strong><span>Premium look for your home</span></div>
+              <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke="rgba(20,20,20,.70)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <a class="fRow" href="#services">
+              <div class="fThumb"><img src="fast-scheduling.png" alt="Scheduling"/></div>
+              <div class="fTxt"><strong>Fast scheduling</strong><span>Same‑week availability</span></div>
+              <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke="rgba(20,20,20,.70)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <a class="fRow" href="#services">
+              <div class="fThumb"><img src="real-extraction.png" alt="Extraction"/></div>
+              <div class="fTxt"><strong>Real extraction</strong><span>See the dirty water removed</span></div>
+              <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke="rgba(20,20,20,.70)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
+
+            <a class="fRow" href="#services">
+              <div class="fThumb"><img src="odor-solutions.png" alt="Odor"/></div>
+              <div class="fTxt"><strong>Odor solutions</strong><span>Pets, smoke, food smells</span></div>
+              <svg class="chev" width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M9 6l6 6-6 6" stroke="rgba(20,20,20,.70)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+            </a>
           </div>
         </div>
 
-        <div class="formCard" id="estimate">
-          <h2 class="formTitle">Get a free quote today</h2>
-          <p class="formSub">Fill this out — it opens an email to us with your details (no backend needed).</p>
+        <aside class="quoteCard reveal" id="quote" aria-label="Quote form">
+          <div class="quoteTitle">Get a free quote today</div>
 
-          <form id="leadForm">
-            <div class="grid2">
-              <div class="row">
-                <label for="name">Name</label>
-                <input id="name" name="name" placeholder="Your name" required />
-              </div>
-              <div class="row">
-                <label for="phone">Phone</label>
-                <input id="phone" name="phone" placeholder="(208) 555-1234" required />
-              </div>
+          <div class="stars" aria-hidden="true">
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+          </div>
+
+          <div class="miniReviews">
+            <div class="mini">“The sofa looks brand new! I’m very impressed with the results.” <em>— Jessica M.</em></div>
+            <div class="mini">“Excellent service, my car seats look amazing now. Thank you!” <em>— Daniel R.</em></div>
+          </div>
+
+          <form id="quoteForm">
+            <div class="formRow">
+              <input name="name" autocomplete="name" placeholder="Name" required />
+              <input name="phone" autocomplete="tel" placeholder="Phone" />
             </div>
-
-            <div class="row">
-              <label for="email">Email (optional)</label>
-              <input id="email" name="email" placeholder="you@email.com" />
-            </div>
-
-            <div class="grid2">
-              <div class="row">
-                <label for="city">City</label>
-                <select id="city" name="city" required>
-                  <option value="" selected disabled>Select</option>
-                  <option>Boise</option>
-                  <option>Meridian</option>
-                  <option>Nampa</option>
-                  <option>Caldwell</option>
-                  <option>Eagle</option>
-                  <option>Other</option>
-                </select>
-              </div>
-              <div class="row">
-                <label for="service">Service</label>
-                <select id="service" name="service" required>
-                  <option value="" selected disabled>Select</option>
-                  <option>Upholstery (sofa/sectional)</option>
-                  <option>Mattress cleaning</option>
-                  <option>Auto interior cleaning</option>
-                  <option>Spot / stain treatment</option>
-                  <option>Odor / pet treatment</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="row">
-              <label for="details">Message (optional)</label>
-              <textarea id="details" name="details" placeholder="Size, stains, pets, fabric type…"></textarea>
-            </div>
-
+            <input name="email" autocomplete="email" placeholder="Email (optional)" />
+            <textarea name="message" placeholder="What do you need cleaned? Sofa / Mattress / Car seats…"></textarea>
             <button class="submit" type="submit">Get a Free Quote</button>
-
-            <div class="trust">
-              <span class="chip">Free quote</span>
-              <span class="chip">Send a photo</span>
-              <span class="chip">Boise area</span>
-            </div>
+            <div class="formNote">Tip: for the most accurate quote, send a photo via text.</div>
           </form>
-
-          <div class="trust" style="margin-top:12px">
-            <span class="chip"><a href="tel:+15043279193">Call: +1 (504) 327-9193</a></span>
-            <span class="chip"><a href="sms:+15043279193?&body=Hi%20Revive%20%26%20Shine!%20I%20want%20a%20free%20quote.%20City:%20____.%20Service:%20____.%20I%20can%20send%20a%20photo.%20">Text us</a></span>
-          </div>
-        </div>
+        </aside>
       </div>
-    </div>
+    </section>
 
-    <section id="services" class="reveal">
-      <h2 class="sectionTitle">Services</h2>
-      <div class="grid3">
-        <div class="mini">
-          <h3>Upholstery</h3>
-          <p>Sofas, sectionals, chairs — deep extraction + spot treatment.</p>
+    <section class="section reveal" id="services">
+      <h2>Services</h2>
+      <div class="grid2">
+        <div class="card">
+          <strong style="font-size:16px">Upholstery cleaning</strong>
+          <p style="margin:8px 0 0; color:rgba(20,20,20,.72); line-height:1.5">
+            Sofas, sectionals, chairs, and mattresses. Deep extraction removes embedded dirt and odors.
+          </p>
         </div>
-        <div class="mini">
-          <h3>Mattresses</h3>
-          <p>Refresh feel, remove odors, and treat spots.</p>
-        </div>
-        <div class="mini">
-          <h3>Auto Interiors</h3>
-          <p>Seats, carpets, mats — deep clean and odor solutions.</p>
+        <div class="card">
+          <strong style="font-size:16px">Auto interior cleaning</strong>
+          <p style="margin:8px 0 0; color:rgba(20,20,20,.72); line-height:1.5">
+            Car seats and interior fabric. Great for spills, stains, and “used car smell”.
+          </p>
         </div>
       </div>
     </section>
 
-    <section id="faq" class="reveal">
-      <h2 class="sectionTitle">FAQ</h2>
-      <div style="display:grid; gap:10px;">
+    <section class="section reveal" id="reviews">
+      <h2>Reviews</h2>
+      <div class="grid2">
+        <div class="card">
+          <div class="stars" aria-hidden="true" style="margin-top:0">
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+          </div>
+          <p style="margin:8px 0 0; color:rgba(20,20,20,.78); line-height:1.55">
+            “Super professional service. Arrived on time and the couch looks amazing.”
+          </p>
+          <p style="margin:10px 0 0; color:rgba(20,20,20,.55); font-weight:800">— Kate A.</p>
+        </div>
+
+        <div class="card">
+          <div class="stars" aria-hidden="true" style="margin-top:0">
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+            <svg class="star" viewBox="0 0 24 24" fill="rgba(183,159,107,.95)"><path d="M12 17.3 18.2 21l-1.6-7 5.4-4.7-7.1-.6L12 2 9.1 8.7 2 9.3l5.4 4.7L5.8 21z"/></svg>
+          </div>
+          <p style="margin:8px 0 0; color:rgba(20,20,20,.78); line-height:1.55">
+            “Got rid of the pet odor. Fast scheduling and great communication.”
+          </p>
+          <p style="margin:10px 0 0; color:rgba(20,20,20,.55); font-weight:800">— Daniel R.</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="section reveal" id="faq">
+      <h2>FAQ</h2>
+      <div class="card faq">
         <details>
-          <summary>How long does it take?</summary>
-          <p>Usually 1–3 hours depending on size, fabric, and stain severity.</p>
-        </details>
-        <details>
-          <summary>How fast does it dry?</summary>
-          <p>Dry time varies by fabric and airflow. We recommend fans + ventilation for faster drying.</p>
+          <summary>How long does it take to dry?</summary>
+          <p>Most items are touch-dry within a few hours. Full drying time depends on fabric and airflow.</p>
         </details>
         <details>
           <summary>Do you remove all stains?</summary>
-          <p>Many improve significantly, but some may be permanent depending on age/type. We set expectations upfront.</p>
+          <p>We remove most stains, but some may be permanent (e.g., dye transfer). Send a photo for honest expectations.</p>
         </details>
         <details>
-          <summary>Where do you serve?</summary>
-          <p>Boise, Meridian, Nampa, Caldwell, Eagle, and nearby areas.</p>
+          <summary>What areas do you serve?</summary>
+          <p>Boise, Meridian, Nampa, Caldwell and nearby areas. If you're unsure, just text your ZIP code.</p>
         </details>
       </div>
     </section>
-
-    <footer class="reveal">
-      <div>© <span id="year"></span> Revive &amp; Shine • Boise, Idaho</div>
-      <div>
-        <a class="js-scroll" href="#estimate">Free Quote</a> •
-        <a href="tel:+15043279193">Call</a> •
-        <a href="sms:+15043279193?&body=Hi%20Revive%20%26%20Shine!%20I%20want%20a%20free%20quote.%20City:%20____.%20Service:%20____.%20I%20can%20send%20a%20photo.%20">Text</a>
-      </div>
-    </footer>
-
   </div>
 
-  <div class="mobileBar" aria-label="Quick actions">
-    <a class="primary js-scroll" href="#estimate">Free Quote</a>
-    <a href="sms:+15043279193?&body=Hi%20Revive%20%26%20Shine!%20I%20want%20a%20free%20quote.%20City:%20____.%20Service:%20____.%20I%20can%20send%20a%20photo.%20">Text</a>
+  <div class="bottomBar reveal" role="navigation" aria-label="Quick actions">
+    <a class="btn primary" href="#quote" style="border-radius:18px">Free Quote</a>
+    <a class="btn" href="sms:+12081234567" style="border-radius:18px">Text</a>
   </div>
 
   <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
+    (function(){
+      const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-    // Auto-scroll + focus
-    document.querySelectorAll('.js-scroll').forEach(el=>{
-      el.addEventListener('click', (e)=>{
-        const href = el.getAttribute('href') || '';
-        if(!href.startsWith('#')) return;
-        const target = document.querySelector(href);
-        if(!target) return;
-        e.preventDefault();
-        target.scrollIntoView({behavior:'smooth', block:'start'});
-        setTimeout(()=>{ const first = target.querySelector('input,select,textarea'); if(first) first.focus(); }, 520);
+      function smoothTo(el){
+        if(!el) return;
+        const y = el.getBoundingClientRect().top + window.scrollY - 90;
+        window.scrollTo({ top: y, behavior: prefersReduced ? 'auto' : 'smooth' });
+      }
+
+      document.addEventListener('click', (e)=>{
+        const a = e.target.closest('a[href^="#"]');
+        if(!a) return;
+        const id = a.getAttribute('href').slice(1);
+        const target = document.getElementById(id);
+        if(target){
+          e.preventDefault();
+          smoothTo(target);
+        }
       });
-    });
 
-    // Form -> mailto (no backend)
-    document.getElementById('leadForm').addEventListener('submit', function(e){
-      e.preventDefault();
-      const name = document.getElementById('name').value.trim();
-      const phone = document.getElementById('phone').value.trim();
-      const email = document.getElementById('email').value.trim();
-      const city = document.getElementById('city').value;
-      const service = document.getElementById('service').value;
-      const details = document.getElementById('details').value.trim();
+      const sheet = document.getElementById('sheet');
+      const open = document.getElementById('openSheet');
+      const close = document.getElementById('closeSheet');
 
-      const to = "bstuashurov@gmail.com";
-      const subject = encodeURIComponent(`Free Quote — ${city}`);
-      const body = encodeURIComponent(
-`Hi Revive & Shine,
+      function openSheet(){ sheet.classList.add('open'); sheet.setAttribute('aria-hidden','false'); }
+      function closeSheet(){ sheet.classList.remove('open'); sheet.setAttribute('aria-hidden','true'); }
 
-I would like a free quote.
+      open && open.addEventListener('click', openSheet);
+      close && close.addEventListener('click', closeSheet);
+      sheet && sheet.addEventListener('click', (e)=>{ if(e.target === sheet) closeSheet(); });
+      sheet && sheet.querySelectorAll('[data-close]').forEach(x => x.addEventListener('click', closeSheet));
 
-Name: ${name}
-Phone: ${phone}
-Email: ${email || "(not provided)"}
-City: ${city}
-Service: ${service}
+      const nodes = Array.from(document.querySelectorAll('.reveal'));
+      const stagger = document.getElementById('chips');
 
-Message:
-${details || "(no additional details)"}
+      if(!prefersReduced && 'IntersectionObserver' in window){
+        const io = new IntersectionObserver((entries)=>{
+          for(const en of entries){
+            if(en.isIntersecting){
+              en.target.classList.add('in');
+              io.unobserve(en.target);
+            }
+          }
+        }, { threshold: 0.12 });
 
-I can send photos if needed.
+        nodes.forEach(n => io.observe(n));
+        if(stagger) stagger.classList.add('in');
+      }else{
+        nodes.forEach(n => n.classList.add('in'));
+        if(stagger) stagger.classList.add('in');
+      }
 
-Thank you!`
-      );
-      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
-    });
-
-    // Reveal animations
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(en=>{
-        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
-      });
-    }, {threshold: 0.12});
-    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+      const form = document.getElementById('quoteForm');
+      if(form){
+        form.addEventListener('submit', (e)=>{
+          e.preventDefault();
+          const fd = new FormData(form);
+          const name = (fd.get('name')||'').toString().trim();
+          const phone = (fd.get('phone')||'').toString().trim();
+          const email = (fd.get('email')||'').toString().trim();
+          const msg = (fd.get('message')||'').toString().trim();
+          const body =
+            `Hi! I'd like a free quote.%0A` +
+            (name ? `Name: ${encodeURIComponent(name)}%0A` : '') +
+            (phone ? `Phone: ${encodeURIComponent(phone)}%0A` : '') +
+            (email ? `Email: ${encodeURIComponent(email)}%0A` : '') +
+            (msg ? `Details: ${encodeURIComponent(msg)}%0A` : '') +
+            `I can send a photo.`;
+          window.location.href = `sms:+12081234567&body=${body}`;
+        });
+      }
+    })();
   </script>
 </body>
 </html>
