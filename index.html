@@ -540,6 +540,11 @@
   gap:10px;
   cursor:pointer;
   white-space: nowrap;
+  position: relative;
+  transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+  will-change: transform;
+
+  animation: fabNudge 7s ease-in-out infinite;
 }
 
 .fab-menu{
@@ -901,6 +906,13 @@
 @media (prefers-reduced-motion: reduce){
   .fab-main::after{ animation: none; }
 }    
+    @keyframes fabNudge {
+  0%   { transform: translateY(0); }
+  85%  { transform: translateY(0); }
+  90%  { transform: translateY(-3px); }
+  95%  { transform: translateY(0); }
+  100% { transform: translateY(0); }
+}
   </style>
 </head>
 
