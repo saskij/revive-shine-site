@@ -35,13 +35,13 @@
       overflow-x:hidden;
     }
 
-    /* ----- Layout (no snap scrolling, to avoid "sticky/lock" on iOS) ----- */
+    /* Layout (NO scroll-snap to avoid iOS "stuck") */
     main{ position:relative; }
     section{
       position: relative;
       display:flex;
       justify-content:center;
-      padding: calc(78px + env(safe-area-inset-top)) env(safe-area-inset-right) 56px env(safe-area-inset-left);
+      padding: calc(78px + env(safe-area-inset-top)) env(safe-area-inset-right) 64px env(safe-area-inset-left);
     }
     .wrap{
       width: min(var(--max), 100%);
@@ -51,7 +51,7 @@
       gap: 16px;
     }
 
-    /* ----- Top bar ----- */
+    /* Top bar */
     .topbar{
       position: fixed;
       z-index: 50;
@@ -75,7 +75,7 @@
     }
     .brand{
       display:flex; align-items:center; gap:10px; min-width: 0;
-      font-weight: 800;
+      font-weight: 900;
       letter-spacing: .2px;
     }
     .brand .mark{
@@ -96,7 +96,7 @@
       -webkit-backdrop-filter: blur(10px);
       border-radius: 999px;
       padding: 9px 12px;
-      font-weight: 750;
+      font-weight: 850;
       font-size: 13px;
       color: var(--ink);
       text-decoration:none;
@@ -109,13 +109,14 @@
       border-color: rgba(0,0,0,.06);
     }
 
-    /* ----- Hero (full-ish screen) ----- */
+    /* Hero */
     .hero{
-      min-height: 100svh; /* better on iOS than 100vh */
+      min-height: 100svh;
       color:#fff;
       padding-top: calc(78px + env(safe-area-inset-top));
       padding-bottom: 22px;
       align-items:flex-end;
+      background:#0b0b0b;
     }
     .hero::before{
       content:"";
@@ -130,14 +131,10 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(1000px 600px at 70% 30%, rgba(0,0,0,.08), rgba(0,0,0,.35)),
-        linear-gradient(to bottom, rgba(0,0,0,.40), rgba(0,0,0,.10), rgba(0,0,0,.55));
+        radial-gradient(1000px 600px at 70% 30%, rgba(0,0,0,.06), rgba(0,0,0,.35)),
+        linear-gradient(to bottom, rgba(0,0,0,.40), rgba(0,0,0,.12), rgba(0,0,0,.60));
     }
-    .hero .wrap{
-      position: relative;
-      z-index: 2;
-      padding-bottom: 16px;
-    }
+    .hero .wrap{ position: relative; z-index: 2; padding-bottom: 16px; }
     .pillrow{ display:flex; flex-wrap:wrap; gap:10px; }
     .pill{
       border: 1px solid rgba(255,255,255,.18);
@@ -146,12 +143,12 @@
       -webkit-backdrop-filter: blur(10px);
       padding: 9px 12px;
       border-radius: 999px;
-      font-weight: 700;
+      font-weight: 750;
       font-size: 13px;
     }
     .hero h1{
       font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
-      font-size: clamp(38px, 9vw, 58px);
+      font-size: clamp(38px, 9vw, 60px);
       line-height: 1.02;
       margin: 10px 0 0;
       letter-spacing: -.7px;
@@ -175,7 +172,7 @@
       align-items:center;
       justify-content:center;
       text-decoration:none;
-      font-weight: 850;
+      font-weight: 950;
       border-radius: 999px;
       padding: 14px 18px;
       border: 1px solid rgba(255,255,255,.16);
@@ -193,21 +190,21 @@
     }
     .btn.light{ background: rgba(255,255,255,.18); }
 
-    /* ----- Generic section styling ----- */
+    /* Generic sections */
     .section{
       background: radial-gradient(1000px 700px at 70% 0%, rgba(183,165,122,.18), rgba(255,255,255,0));
       padding-top: calc(78px + env(safe-area-inset-top));
       padding-bottom: 70px;
     }
     .kicker{
-      font-weight: 900;
+      font-weight: 950;
       text-transform: uppercase;
       letter-spacing: .16em;
       font-size: 12px;
       color: rgba(0,0,0,.55);
     }
     .title{
-      font-size: clamp(28px, 6.2vw, 42px);
+      font-size: clamp(28px, 6.2vw, 44px);
       line-height: 1.06;
       margin: 6px 0 0;
       font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
@@ -233,7 +230,7 @@
       position:relative;
     }
 
-    /* --- Interactive benefit rows --- */
+    /* Interactive benefits (accordion) */
     .benefit{
       width:100%;
       border: 1px solid var(--stroke);
@@ -267,9 +264,9 @@
     }
     .iconbox img{ width:100%; height:100%; object-fit: cover; }
     .btxt{ min-width:0; }
-    .btxt .h{ font-weight: 900; margin:0; }
+    .btxt .h{ font-weight: 950; margin:0; }
     .btxt .d{ margin: 2px 0 0; color: var(--muted); font-size: 13px; }
-    .chev{ margin-left:auto; opacity:.55; font-weight: 900; transition: transform .18s ease; }
+    .chev{ margin-left:auto; opacity:.55; font-weight: 950; transition: transform .18s ease; }
     .benefit[aria-expanded="true"] .chev{ transform: rotate(90deg); }
 
     .benefit .panel{
@@ -284,20 +281,6 @@
       display:grid;
       gap: 10px;
     }
-    .mini{
-      display:flex;
-      gap: 10px;
-      flex-wrap:wrap;
-      align-items:center;
-    }
-    .mini img{
-      width: min(190px, 44vw);
-      aspect-ratio: 4/3;
-      object-fit: cover;
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,.10);
-      background:#fff;
-    }
     .panel p{ margin:0; color: rgba(0,0,0,.75); line-height: 1.45; }
     .panel .panel-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 4px; }
     .panel .panel-actions a{
@@ -307,7 +290,7 @@
       padding: 12px 14px;
       border-radius: 999px;
       text-decoration:none;
-      font-weight: 900;
+      font-weight: 950;
       border: 1px solid rgba(0,0,0,.10);
       color: var(--ink);
       background: rgba(255,255,255,.8);
@@ -318,31 +301,174 @@
       background: linear-gradient(180deg, var(--gold), var(--gold2));
     }
 
-    /* Reviews */
-    .stars{ letter-spacing: 2px; color: #b7a57a; font-size: 14px; }
-    blockquote{ margin: 8px 0 0; color: rgba(0,0,0,.78); line-height: 1.45; }
-    .who{ margin-top: 10px; font-weight: 850; color: rgba(0,0,0,.70); }
-
-    /* Gallery */
-    .gallery{
-      margin-top: 12px;
+    /* Before/After gallery */
+    .work-grid{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .case{
+      border: 1px solid var(--stroke);
+      background: var(--card);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 14px;
+      overflow:hidden;
+    }
+    .case-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      margin-bottom: 10px;
+    }
+    .case-title{
+      font-weight: 950;
+      margin:0;
+    }
+    .case-tag{
+      font-size:12px;
+      font-weight: 900;
+      color: rgba(0,0,0,.55);
+      text-transform: uppercase;
+      letter-spacing: .12em;
+    }
+    .ba{
       display:grid;
       grid-template-columns: 1fr 1fr;
       gap: 10px;
     }
-    .ph{
-      border-radius: 16px;
+    .shot{
+      position: relative;
+      border-radius: 18px;
+      overflow:hidden;
       border: 1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.75);
-      padding: 12px;
-      font-weight: 850;
-      text-align:center;
-      color: rgba(0,0,0,.55);
+      background:#fff;
+      aspect-ratio: 4/3;
+      cursor: pointer;
+    }
+    .shot img{
+      width:100%;
+      height:100%;
+      object-fit: cover;
+      display:block;
+      transform: scale(1.01);
+    }
+    .badge{
+      position:absolute;
+      left: 10px;
+      top: 10px;
+      background: rgba(0,0,0,.52);
+      color:#fff;
+      padding: 6px 10px;
+      border-radius: 999px;
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+    }
+    .case-desc{
+      margin: 10px 0 0;
+      color: rgba(0,0,0,.72);
+      line-height: 1.45;
+    }
+    .case-actions{
+      display:flex;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-top: 12px;
+    }
+    .case-actions a{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      border-radius: 999px;
+      text-decoration:none;
+      font-weight: 950;
+      border: 1px solid rgba(0,0,0,.10);
+      color: var(--ink);
+      background: rgba(255,255,255,.8);
+    }
+    .case-actions a.primary{
+      border:none;
+      color:#fff;
+      background: linear-gradient(180deg, var(--gold), var(--gold2));
+    }
+    .igcard{
+      margin-top: 12px;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding: 14px;
+      border-radius: var(--radius);
+      border: 1px solid var(--stroke);
+      background: rgba(255,255,255,.62);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      box-shadow: 0 14px 40px rgba(0,0,0,.10);
+    }
+    .igcard .left{
+      display:flex;
+      flex-direction:column;
+      gap: 2px;
+      min-width:0;
+    }
+    .igcard .left .t{ font-weight: 950; }
+    .igcard .left .s{ color: var(--muted); font-size: 13px; }
+    .igcard a{
+      white-space:nowrap;
+      text-decoration:none;
+      font-weight: 950;
+      padding: 12px 14px;
+      border-radius: 999px;
+      color:#fff;
+      background: linear-gradient(180deg, var(--gold), var(--gold2));
     }
 
-    /* Form */
+    /* Video block */
+    .vidgrid{
+      margin-top: 14px;
+      display:grid;
+      grid-template-columns: 1fr;
+      gap: 12px;
+    }
+    .vid{
+      border-radius: var(--radius);
+      overflow:hidden;
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.70);
+      box-shadow: var(--shadow);
+    }
+    .vid video{
+      width:100%;
+      height:auto;
+      display:block;
+      background:#000;
+    }
+    .vidcap{
+      padding: 12px 14px;
+      display:flex;
+      flex-direction:column;
+      gap: 4px;
+    }
+    .vidcap .h{ font-weight: 950; margin:0; }
+    .vidcap .d{ margin:0; color: var(--muted); font-size: 13px; line-height:1.35; }
+
+    /* Reviews */
+    .stars{ letter-spacing: 2px; color: #b7a57a; font-size: 14px; }
+    blockquote{ margin: 8px 0 0; color: rgba(0,0,0,.78); line-height: 1.45; }
+    .who{ margin-top: 10px; font-weight: 950; color: rgba(0,0,0,.70); }
+
+    /* Quote form */
     form{ display:grid; gap: 10px; margin-top: 12px; }
-    label{ font-weight: 850; font-size: 13px; color: rgba(0,0,0,.70); }
+    label{ font-weight: 950; font-size: 13px; color: rgba(0,0,0,.70); }
     input, textarea, select{
       width:100%;
       padding: 14px 14px;
@@ -357,7 +483,7 @@
       border: none;
       padding: 15px 18px;
       border-radius: 999px;
-      font-weight: 950;
+      font-weight: 980;
       background: linear-gradient(180deg, var(--gold), var(--gold2));
       color:#fff;
       cursor: pointer;
@@ -370,7 +496,7 @@
       line-height: 1.4;
     }
 
-    /* ----- Floating CTA (circle) ----- */
+    /* Floating CTA (circle) */
     .fab{
       position: fixed;
       z-index: 80;
@@ -390,14 +516,14 @@
       border: 1px solid rgba(0,0,0,.10);
       background: linear-gradient(180deg, var(--gold), var(--gold2));
       color:#fff;
-      font-weight: 950;
+      font-weight: 980;
       box-shadow: 0 18px 40px rgba(0,0,0,.18);
       display:grid;
       place-items:center;
       cursor:pointer;
     }
     .fab-menu{
-      width: min(340px, calc(100vw - 28px));
+      width: min(360px, calc(100vw - 28px));
       border-radius: 22px;
       border: 1px solid var(--stroke);
       background: rgba(255,255,255,.70);
@@ -427,7 +553,7 @@
       padding: 14px 12px;
       border-radius: 16px;
       text-decoration:none;
-      font-weight: 950;
+      font-weight: 980;
       border: 1px solid rgba(0,0,0,.10);
       color: var(--ink);
       background: rgba(255,255,255,.78);
@@ -444,10 +570,63 @@
       line-height: 1.35;
     }
 
-    /* Hide the iOS Safari bottom bar: you cannot force-hide it.
-       But you CAN avoid covering content by not using a full-width sticky dock. (We did.) */
+    /* Lightbox (for before/after) */
+    .lightbox{
+      position: fixed;
+      inset:0;
+      z-index: 120;
+      display:none;
+    }
+    .lightbox.open{ display:block; }
+    .lb-bg{
+      position:absolute; inset:0;
+      background: rgba(0,0,0,.62);
+    }
+    .lb-card{
+      position:absolute;
+      left:50%;
+      top:50%;
+      transform: translate(-50%,-50%);
+      width: min(980px, calc(100% - 18px));
+      background: rgba(255,255,255,.88);
+      border: 1px solid rgba(255,255,255,.35);
+      border-radius: 22px;
+      box-shadow: 0 26px 90px rgba(0,0,0,.35);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      overflow:hidden;
+    }
+    .lb-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:10px;
+      padding: 10px 12px;
+      border-bottom: 1px solid rgba(0,0,0,.06);
+    }
+    .lb-title{ font-weight: 950; }
+    .lb-x{
+      width:40px;height:40px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.7);
+      font-weight: 980;
+      cursor:pointer;
+    }
+    .lb-img{
+      width:100%;
+      height: auto;
+      display:block;
+      background:#000;
+    }
+    .lb-foot{
+      padding: 12px;
+      color: rgba(0,0,0,.70);
+      font-size: 13px;
+      line-height:1.35;
+    }
 
-    /* Reveal animation */
+    /* Reveal */
     .reveal{
       opacity: 0;
       transform: translateY(10px);
@@ -457,24 +636,22 @@
 
     @media (min-width: 860px){
       .grid.two{ grid-template-columns: 1fr 1fr; }
-      .gallery{ grid-template-columns: 1fr 1fr 1fr 1fr; }
+      .work-grid{ grid-template-columns: 1fr 1fr; }
+      .vidgrid{ grid-template-columns: 1fr 1fr; }
       .chip{ font-size: 14px; padding: 10px 14px; }
     }
-
     @media (prefers-reduced-motion: reduce){
       .reveal{ transition:none; opacity:1; transform:none; }
       .benefit .panel{ transition:none; }
       .chev{ transition:none; }
       .fab-menu{ transition:none; }
     }
-
-    /* Small helper so anchors don't hide behind topbar */
     :target{ scroll-margin-top: 92px; }
   </style>
 </head>
 
 <body>
-  <!-- Floating mini-nav -->
+  <!-- Floating top bar -->
   <div class="topbar">
     <div class="bar">
       <div class="brand">
@@ -482,14 +659,14 @@
         <div class="name">Revive & Shine</div>
       </div>
       <div class="navchips">
-        <a class="chip" href="#benefits">Services</a>
-        <a class="chip" href="#reviews">Reviews</a>
+        <a class="chip" href="#benefits">Value</a>
+        <a class="chip" href="#work">Work</a>
         <a class="chip primary" href="#quote" data-open-quote="General">Free Quote</a>
       </div>
     </div>
   </div>
 
-  <!-- Floating circle CTA (bottom-right). Expands on tap. -->
+  <!-- Floating circle CTA -->
   <div class="fab" id="fab">
     <div class="fab-menu" id="fabMenu" aria-hidden="true">
       <div class="row">
@@ -498,10 +675,23 @@
         <a href="tel:+12081234567">Call</a>
       </div>
       <div class="fab-hint">
-        Tip: tap “Free Quote” to jump to the form. Replace phone number in the code.
+        Tip: for the most accurate quote, text a photo after submitting.
       </div>
     </div>
     <button class="fab-main" id="fabBtn" aria-label="Open quick actions">≡</button>
+  </div>
+
+  <!-- Lightbox -->
+  <div class="lightbox" id="lightbox" aria-hidden="true">
+    <div class="lb-bg" data-lb-close="1"></div>
+    <div class="lb-card" role="dialog" aria-modal="true" aria-label="Photo preview">
+      <div class="lb-head">
+        <div class="lb-title" id="lbTitle">Preview</div>
+        <button class="lb-x" type="button" data-lb-close="1">✕</button>
+      </div>
+      <img class="lb-img" id="lbImg" alt="Preview">
+      <div class="lb-foot" id="lbFoot">Tap outside to close.</div>
+    </div>
   </div>
 
   <main id="top">
@@ -537,45 +727,40 @@
         </div>
 
         <div class="grid">
-
-          <!-- 1) Clean & cozy finish -->
+          <!-- 1 -->
           <div class="benefit reveal" id="b1" aria-expanded="false">
             <button type="button" class="head" data-acc="b1" aria-controls="p1" aria-expanded="false">
-              <div class="iconbox"><img alt="" src="clean-finish.png"></div>
+              <div class="iconbox"><img alt="" src="icon-clean-finish.png"></div>
               <div class="btxt">
                 <p class="h">Clean & cozy finish</p>
-                <p class="d">See after photos + request a sofa quote</p>
+                <p class="d">After look that feels comfortable again</p>
               </div>
               <div class="chev">›</div>
             </button>
             <div class="panel" id="p1" role="region" aria-label="Clean & cozy finish details">
               <div class="inner">
-                <div class="mini">
-                  <!-- If you don't have real after photos yet, keep these placeholders or swap later -->
-                  <img src="clean-finish.png" alt="After photo 1 (placeholder)">
-                  <img src="clean-finish.png" alt="After photo 2 (placeholder)">
-                </div>
                 <p>Your furniture looks refreshed, clean, and feels comfortable again.</p>
                 <div class="panel-actions">
                   <a class="primary" href="#quote" data-open-quote="Sofa quote">Get a quote for my sofa</a>
+                  <a href="#work">See real results</a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 2) Fast scheduling -->
+          <!-- 2 -->
           <div class="benefit reveal" id="b2" aria-expanded="false">
             <button type="button" class="head" data-acc="b2" aria-controls="p2" aria-expanded="false">
-              <div class="iconbox"><img alt="" src="fast-scheduling.png"></div>
+              <div class="iconbox"><img alt="" src="icon-fast-scheduling.png"></div>
               <div class="btxt">
                 <p class="h">Fast scheduling</p>
-                <p class="d">Same-week availability + time slots</p>
+                <p class="d">Same-week availability + respectful timing</p>
               </div>
               <div class="chev">›</div>
             </button>
             <div class="panel" id="p2" role="region" aria-label="Fast scheduling details">
               <div class="inner">
-                <p><strong>Same-week appointments</strong> available</p>
+                <p>Same-week appointments available</p>
                 <p>Evening & weekend slots</p>
                 <p>We respect your time</p>
                 <div class="panel-actions">
@@ -585,34 +770,31 @@
             </div>
           </div>
 
-          <!-- 3) Real extraction -->
+          <!-- 3 -->
           <div class="benefit reveal" id="b3" aria-expanded="false">
             <button type="button" class="head" data-acc="b3" aria-controls="p3" aria-expanded="false">
-              <div class="iconbox"><img alt="" src="real-extraction.png"></div>
+              <div class="iconbox"><img alt="" src="icon-real-extraction.png"></div>
               <div class="btxt">
                 <p class="h">Real extraction</p>
-                <p class="d">Dirty water proof — not surface cleaning</p>
+                <p class="d">Embedded dirt you can actually see</p>
               </div>
               <div class="chev">›</div>
             </button>
             <div class="panel" id="p3" role="region" aria-label="Real extraction details">
               <div class="inner">
-                <div class="mini">
-                  <img src="real-extraction.png" alt="Dirty water photo">
-                </div>
                 <p>We remove embedded dirt you can actually see — not just surface cleaning.</p>
                 <div class="panel-actions">
-                  <a href="#gallery">See before / after</a>
+                  <a href="#process">See the process</a>
                   <a class="primary" href="#quote" data-open-quote="Extraction cleaning">Get a quote</a>
                 </div>
               </div>
             </div>
           </div>
 
-          <!-- 4) Odor solutions -->
+          <!-- 4 -->
           <div class="benefit reveal" id="b4" aria-expanded="false">
             <button type="button" class="head" data-acc="b4" aria-controls="p4" aria-expanded="false">
-              <div class="iconbox"><img alt="" src="odor-solutions.png"></div>
+              <div class="iconbox"><img alt="" src="icon-odor-solutions.png"></div>
               <div class="btxt">
                 <p class="h">Odor solutions</p>
                 <p class="d">Pets, smoke, food smells</p>
@@ -621,34 +803,163 @@
             </button>
             <div class="panel" id="p4" role="region" aria-label="Odor solutions details">
               <div class="inner">
-                <p>• Pet odors</p>
-                <p>• Smoke</p>
-                <p>• Food smells</p>
+                <p>Pet odors • Smoke • Food smells</p>
                 <div class="panel-actions">
                   <a class="primary" href="#quote" data-open-quote="Odor treatment">Ask about odor treatment</a>
                 </div>
               </div>
             </div>
           </div>
-
         </div>
       </div>
     </section>
 
-    <!-- GALLERY (anchor for "See before/after") -->
-    <section class="section" id="gallery">
+    <!-- WORK (Before/After) -->
+    <section class="section" id="work">
       <div class="wrap">
         <div class="reveal">
-          <div class="kicker">Before / After</div>
-          <div class="title">Quick gallery</div>
-          <p class="sub">Drop your 4–6 best before/after images here later (or link to Instagram).</p>
+          <div class="kicker">Real results</div>
+          <div class="title">Before / After examples</div>
+          <p class="sub">Tap any photo to zoom. Add your best 3–6 cases here for maximum trust.</p>
         </div>
 
-        <div class="gallery reveal">
-          <div class="ph">Before 1</div>
-          <div class="ph">After 1</div>
-          <div class="ph">Before 2</div>
-          <div class="ph">After 2</div>
+        <div class="work-grid">
+          <!-- CASE 1 -->
+          <div class="case reveal">
+            <div class="case-head">
+              <p class="case-title">Sectional Sofa — stain removal</p>
+              <div class="case-tag">Sofa</div>
+            </div>
+            <div class="ba">
+              <div class="shot" data-lb-src="ba-sofa-01-before.jpg" data-lb-title="Sofa — BEFORE" data-lb-foot="Tap outside to close.">
+                <span class="badge">Before</span>
+                <img src="ba-sofa-01-before.jpg" alt="Sofa before">
+              </div>
+              <div class="shot" data-lb-src="ba-sofa-01-after.jpg" data-lb-title="Sofa — AFTER" data-lb-foot="Tap outside to close.">
+                <span class="badge">After</span>
+                <img src="ba-sofa-01-after.jpg" alt="Sofa after">
+              </div>
+            </div>
+            <p class="case-desc">Deep extraction + spot treatment. Fresh look and comfortable feel again.</p>
+            <div class="case-actions">
+              <a class="primary" href="#quote" data-open-quote="Sofa quote">Get a quote for my sofa</a>
+              <a href="#process">See the process</a>
+            </div>
+          </div>
+
+          <!-- CASE 2 -->
+          <div class="case reveal">
+            <div class="case-head">
+              <p class="case-title">Mattress — refresh & sanitize</p>
+              <div class="case-tag">Mattress</div>
+            </div>
+            <div class="ba">
+              <div class="shot" data-lb-src="ba-mattress-01-before.jpg" data-lb-title="Mattress — BEFORE" data-lb-foot="Tap outside to close.">
+                <span class="badge">Before</span>
+                <img src="ba-mattress-01-before.jpg" alt="Mattress before">
+              </div>
+              <div class="shot" data-lb-src="ba-mattress-01-after.jpg" data-lb-title="Mattress — AFTER" data-lb-foot="Tap outside to close.">
+                <span class="badge">After</span>
+                <img src="ba-mattress-01-after.jpg" alt="Mattress after">
+              </div>
+            </div>
+            <p class="case-desc">Odors + embedded dirt removal for a cleaner sleeping surface.</p>
+            <div class="case-actions">
+              <a class="primary" href="#quote" data-open-quote="General">Get a free quote</a>
+              <a href="#quote" data-open-quote="Odor treatment">Ask about odor treatment</a>
+            </div>
+          </div>
+
+          <!-- CASE 3 -->
+          <div class="case reveal">
+            <div class="case-head">
+              <p class="case-title">Car seats — interior deep clean</p>
+              <div class="case-tag">Auto</div>
+            </div>
+            <div class="ba">
+              <div class="shot" data-lb-src="ba-auto-01-before.jpg" data-lb-title="Car seats — BEFORE" data-lb-foot="Tap outside to close.">
+                <span class="badge">Before</span>
+                <img src="ba-auto-01-before.jpg" alt="Car seats before">
+              </div>
+              <div class="shot" data-lb-src="ba-auto-01-after.jpg" data-lb-title="Car seats — AFTER" data-lb-foot="Tap outside to close.">
+                <span class="badge">After</span>
+                <img src="ba-auto-01-after.jpg" alt="Car seats after">
+              </div>
+            </div>
+            <p class="case-desc">Extracted grime from fabric/leather, finished with a clean, even look.</p>
+            <div class="case-actions">
+              <a class="primary" href="#quote" data-open-quote="General">Get a quote for my car</a>
+              <a href="#process">Watch the process</a>
+            </div>
+          </div>
+
+          <!-- CASE 4 (optional extra) -->
+          <div class="case reveal">
+            <div class="case-head">
+              <p class="case-title">Dining chairs — refresh set</p>
+              <div class="case-tag">Upholstery</div>
+            </div>
+            <div class="ba">
+              <div class="shot" data-lb-src="ba-chairs-01-before.jpg" data-lb-title="Chairs — BEFORE" data-lb-foot="Tap outside to close.">
+                <span class="badge">Before</span>
+                <img src="ba-chairs-01-before.jpg" alt="Chairs before">
+              </div>
+              <div class="shot" data-lb-src="ba-chairs-01-after.jpg" data-lb-title="Chairs — AFTER" data-lb-foot="Tap outside to close.">
+                <span class="badge">After</span>
+                <img src="ba-chairs-01-after.jpg" alt="Chairs after">
+              </div>
+            </div>
+            <p class="case-desc">Quick turnaround, noticeable freshness, great for everyday use.</p>
+            <div class="case-actions">
+              <a class="primary" href="#quote" data-open-quote="General">Get a free quote</a>
+              <a href="#quote" data-open-quote="Scheduling">Check availability</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="igcard reveal">
+          <div class="left">
+            <div class="t">More results on Instagram</div>
+            <div class="s">@revive.shine.idaho — before/after reels & weekly jobs</div>
+          </div>
+          <a href="https://www.instagram.com/revive.shine.idaho?igsh=YWRhZjNtY292M3Vx&utm_source=qr" target="_blank" rel="noopener">Open Instagram</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- PROCESS (Video) -->
+    <section class="section" id="process">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="kicker">Process</div>
+          <div class="title">Proof it’s real work</div>
+          <p class="sub">Short clips perform very well: extraction pass, dirty water, final result. Videos are optional — add later.</p>
+        </div>
+
+        <div class="vidgrid">
+          <div class="vid reveal">
+            <video controls playsinline preload="metadata" poster="process-01-poster.jpg">
+              <source src="process-01.mp4" type="video/mp4">
+              <source src="process-01.webm" type="video/webm">
+              Your browser does not support the video tag.
+            </video>
+            <div class="vidcap">
+              <p class="h">Deep extraction pass</p>
+              <p class="d">Real removalsS™ results: removing embedded dirt from fabric.</p>
+            </div>
+          </div>
+
+          <div class="vid reveal">
+            <video controls playsinline preload="metadata" poster="process-02-poster.jpg">
+              <source src="process-02.mp4" type="video/mp4">
+              <source src="process-02.webm" type="video/webm">
+              Your browser does not support the video tag.
+            </video>
+            <div class="vidcap">
+              <p class="h">Dirty water proof</p>
+              <p class="d">This is what comes out — not surface cleaning.</p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
@@ -659,7 +970,7 @@
         <div class="reveal">
           <div class="kicker">Social proof</div>
           <div class="title">People love the results</div>
-          <p class="sub">Replace names later with your real reviews.</p>
+          <p class="sub">Replace these with your real reviews when you have them.</p>
         </div>
 
         <div class="grid two">
@@ -732,22 +1043,16 @@
   </main>
 
   <script>
-    // ===== 1) Reveal animation =====
+    // 1) Reveal on scroll
     const io = new IntersectionObserver((entries) => {
-      for (const e of entries) {
-        if (e.isIntersecting) e.target.classList.add('on');
-      }
+      for (const e of entries) if (e.isIntersecting) e.target.classList.add('on');
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // ===== 2) Benefits accordion =====
+    // 2) Benefits accordion
     function setPanelHeight(panel, open){
       if (!panel) return;
-      if (open) {
-        panel.style.maxHeight = panel.scrollHeight + "px";
-      } else {
-        panel.style.maxHeight = "0px";
-      }
+      panel.style.maxHeight = open ? (panel.scrollHeight + "px") : "0px";
     }
 
     document.querySelectorAll('[data-acc]').forEach(btn => {
@@ -757,7 +1062,7 @@
         const panel = wrap.querySelector('.panel');
         const isOpen = wrap.getAttribute('aria-expanded') === 'true';
 
-        // close others (clean UX)
+        // close others
         document.querySelectorAll('.benefit').forEach(b => {
           if (b.id !== id) {
             b.setAttribute('aria-expanded', 'false');
@@ -773,55 +1078,50 @@
       });
     });
 
-    // On resize: keep opened panel correct height
     window.addEventListener('resize', () => {
       document.querySelectorAll('.benefit[aria-expanded="true"]').forEach(b => {
         setPanelHeight(b.querySelector('.panel'), true);
       });
     });
 
-    // ===== 3) Floating CTA circle expand =====
+    // 3) Floating CTA circle
     const fab = document.getElementById('fab');
     const fabBtn = document.getElementById('fabBtn');
+    const fabMenu = document.getElementById('fabMenu');
+
     fabBtn.addEventListener('click', () => {
       const open = fab.classList.toggle('open');
-      document.getElementById('fabMenu').setAttribute('aria-hidden', String(!open));
+      fabMenu.setAttribute('aria-hidden', String(!open));
     });
 
-    // Close menu when tapping outside
     document.addEventListener('click', (e) => {
       if (!fab.contains(e.target)) {
         fab.classList.remove('open');
-        document.getElementById('fabMenu').setAttribute('aria-hidden', 'true');
+        fabMenu.setAttribute('aria-hidden', 'true');
       }
     });
 
-    // ===== 4) Prefill quote topic from any CTA =====
+    // 4) Prefill quote topic
     function openQuoteWithTopic(topic){
       const select = document.getElementById('topic');
       if (!select) return;
       const options = Array.from(select.options).map(o => o.text);
-      if (options.includes(topic)) select.value = topic;
-      else select.value = "General";
-      // jump to form
+      select.value = options.includes(topic) ? topic : "General";
       document.getElementById('quote').scrollIntoView({ behavior: "smooth", block: "start" });
-      // close fab
       fab.classList.remove('open');
-      document.getElementById('fabMenu').setAttribute('aria-hidden', 'true');
-      // focus name (small delay for iOS)
+      fabMenu.setAttribute('aria-hidden', 'true');
       setTimeout(() => document.getElementById('name')?.focus(), 450);
     }
 
     document.querySelectorAll('[data-open-quote]').forEach(a => {
-      a.addEventListener('click', (e) => {
+      a.addEventListener('click', () => {
         const topic = a.getAttribute('data-open-quote') || "General";
-        // let normal anchor work, then set topic
         setTimeout(() => openQuoteWithTopic(topic), 50);
       });
     });
 
-    // ===== 5) Form submit: mailto (no backend) =====
-    const TO_EMAIL = "bstuashurov@gmail.com"; // change if needed
+    // 5) Form submit via mailto
+    const TO_EMAIL = "bstuashurov@gmail.com";
     document.getElementById("quoteForm").addEventListener("submit", (ev) => {
       ev.preventDefault();
       const topic = document.getElementById("topic").value || "";
@@ -834,8 +1134,40 @@
       const body = encodeURIComponent(
         `Topic: ${topic}\nName: ${name}\nPhone: ${phone}\nService: ${service}\n\nMessage:\n${msg}\n\n— Sent from landing page`
       );
-
       window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
+    });
+
+    // 6) Lightbox for photos
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbFoot = document.getElementById('lbFoot');
+
+    function openLightbox(src, title, foot){
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      lbImg.src = src;
+      lbTitle.textContent = title || "Preview";
+      lbFoot.textContent = foot || "Tap outside to close.";
+    }
+    function closeLightbox(){
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      lbImg.src = "";
+    }
+
+    document.querySelectorAll('.shot[data-lb-src]').forEach(el => {
+      el.addEventListener('click', () => {
+        openLightbox(el.dataset.lbSrc, el.dataset.lbTitle, el.dataset.lbFoot);
+      });
+    });
+
+    lb.addEventListener('click', (e) => {
+      if (e.target && e.target.dataset && e.target.dataset.lbClose === "1") closeLightbox();
+    });
+
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape" && lb.classList.contains('open')) closeLightbox();
     });
   </script>
 </body>
