@@ -1098,67 +1098,68 @@
     </section>
   </main>
 
-  <script>
-
-    <script>
+<script>
+  // Fix: stop iOS/Safari from restoring scroll position to the middle on refresh
   if ('scrollRestoration' in history) {
     history.scrollRestoration = 'manual';
   }
-  window.addEventListener('load', () => {
-    if (location.hash) {
-      history.replaceState(null, document.title, location.pathname + location.search);
+
+  // Force top ONLY when opening page without a hash (so your menu anchors still work)
+  window.addEventListener('pageshow', () => {
+    if (!location.hash) {
+      setTimeout(() => window.scrollTo(0, 0), 0);
     }
-    window.scrollTo(0, 0);
   });
 
-  /* дальше твой JS */
-    
-    // 1) Reveal on scroll
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) if (e.isIntersecting) e.target.classList.add('on');
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+  // 1) Reveal on scroll
+  const io = new IntersectionObserver((entries) => {
+    for (const e of entries) if (e.isIntersecting) e.target.classList.add('on');
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // 2) Benefits accordion
-    function setPanelHeight(panel, open){
-      if (!panel) return;
-      panel.style.maxHeight = open ? (panel.scrollHeight + "px") : "0px";
-    }
+  // 2) Benefits accordion
+  function setPanelHeight(panel, open){
+    if (!panel) return;
+    panel.style.maxHeight = open ? (panel.scrollHeight + "px") : "0px";
+  }
 
-    document.querySelectorAll('[data-acc]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.getAttribute('data-acc');
-        const wrap = document.getElementById(id);
-        const panel = wrap.querySelector('.panel');
-        const isOpen = wrap.getAttribute('aria-expanded') === 'true';
+  document.querySelectorAll('[data-acc]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-acc');
+      const wrap = document.getElementById(id);
+      const panel = wrap ? wrap.querySelector('.panel') : null;
+      if (!wrap || !panel) return;
 
-        // close others
-        document.querySelectorAll('.benefit').forEach(b => {
-          if (b.id !== id) {
-            b.setAttribute('aria-expanded', 'false');
-            const bbtn = b.querySelector('button.head');
-            if (bbtn) bbtn.setAttribute('aria-expanded', 'false');
-            setPanelHeight(b.querySelector('.panel'), false);
-          }
-        });
+      const isOpen = wrap.getAttribute('aria-expanded') === 'true';
 
-        wrap.setAttribute('aria-expanded', String(!isOpen));
-        btn.setAttribute('aria-expanded', String(!isOpen));
-        setPanelHeight(panel, !isOpen);
+      // close others
+      document.querySelectorAll('.benefit').forEach(b => {
+        if (b.id !== id) {
+          b.setAttribute('aria-expanded', 'false');
+          const bbtn = b.querySelector('button.head');
+          if (bbtn) bbtn.setAttribute('aria-expanded', 'false');
+          setPanelHeight(b.querySelector('.panel'), false);
+        }
       });
+
+      wrap.setAttribute('aria-expanded', String(!isOpen));
+      btn.setAttribute('aria-expanded', String(!isOpen));
+      setPanelHeight(panel, !isOpen);
     });
+  });
 
-    window.addEventListener('resize', () => {
-      document.querySelectorAll('.benefit[aria-expanded="true"]').forEach(b => {
-        setPanelHeight(b.querySelector('.panel'), true);
-      });
+  window.addEventListener('resize', () => {
+    document.querySelectorAll('.benefit[aria-expanded="true"]').forEach(b => {
+      setPanelHeight(b.querySelector('.panel'), true);
     });
+  });
 
-    // 3) Floating CTA circle
-    const fab = document.getElementById('fab');
-    const fabBtn = document.getElementById('fabBtn');
-    const fabMenu = document.getElementById('fabMenu');
+  // 3) Floating CTA circle (guarded in case elements missing)
+  const fab = document.getElementById('fab');
+  const fabBtn = document.getElementById('fabBtn');
+  const fabMenu = document.getElementById('fabMenu');
 
+  if (fab && fabBtn && fabMenu){
     fabBtn.addEventListener('click', () => {
       const open = fab.classList.toggle('open');
       fabMenu.setAttribute('aria-hidden', String(!open));
@@ -1170,35 +1171,46 @@
         fabMenu.setAttribute('aria-hidden', 'true');
       }
     });
+  }
 
-    // 4) Prefill quote topic
-    function openQuoteWithTopic(topic){
-      const select = document.getElementById('topic');
-      if (!select) return;
-      const options = Array.from(select.options).map(o => o.text);
-      select.value = options.includes(topic) ? topic : "General";
-      document.getElementById('quote').scrollIntoView({ behavior: "smooth", block: "start" });
+  // 4) Prefill quote topic
+  function openQuoteWithTopic(topic){
+    const select = document.getElementById('topic');
+    if (!select) return;
+
+    const options = Array.from(select.options).map(o => o.text);
+    select.value = options.includes(topic) ? topic : "General";
+
+    const quote = document.getElementById('quote');
+    if (quote) quote.scrollIntoView({ behavior: "smooth", block: "start" });
+
+    if (fab && fabMenu){
       fab.classList.remove('open');
       fabMenu.setAttribute('aria-hidden', 'true');
-      setTimeout(() => document.getElementById('name')?.focus(), 450);
     }
 
-    document.querySelectorAll('[data-open-quote]').forEach(a => {
-      a.addEventListener('click', () => {
-        const topic = a.getAttribute('data-open-quote') || "General";
-        setTimeout(() => openQuoteWithTopic(topic), 50);
-      });
-    });
+    setTimeout(() => document.getElementById('name')?.focus(), 450);
+  }
 
-    // 5) Form submit via mailto
-    const TO_EMAIL = "bstuashurov@gmail.com";
-    document.getElementById("quoteForm").addEventListener("submit", (ev) => {
+  document.querySelectorAll('[data-open-quote]').forEach(a => {
+    a.addEventListener('click', () => {
+      const topic = a.getAttribute('data-open-quote') || "General";
+      setTimeout(() => openQuoteWithTopic(topic), 50);
+    });
+  });
+
+  // 5) Form submit via mailto (guarded)
+  const quoteForm = document.getElementById("quoteForm");
+  const TO_EMAIL = "bstuashurov@gmail.com";
+
+  if (quoteForm){
+    quoteForm.addEventListener("submit", (ev) => {
       ev.preventDefault();
-      const topic = document.getElementById("topic").value || "";
-      const name = document.getElementById("name").value || "";
-      const phone = document.getElementById("phone").value || "";
-      const service = document.getElementById("service").value || "";
-      const msg = document.getElementById("msg").value || "";
+      const topic = document.getElementById("topic")?.value || "";
+      const name = document.getElementById("name")?.value || "";
+      const phone = document.getElementById("phone")?.value || "";
+      const service = document.getElementById("service")?.value || "";
+      const msg = document.getElementById("msg")?.value || "";
 
       const subject = encodeURIComponent(`Free Quote — ${topic}`);
       const body = encodeURIComponent(
@@ -1206,39 +1218,45 @@
       );
       window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
     });
+  }
 
-    // 6) Lightbox for photos
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const lbTitle = document.getElementById('lbTitle');
-    const lbFoot = document.getElementById('lbFoot');
+  // 6) Lightbox for photos (guarded)
+  const lb = document.getElementById('lightbox');
+  const lbImg = document.getElementById('lbImg');
+  const lbTitle = document.getElementById('lbTitle');
+  const lbFoot = document.getElementById('lbFoot');
 
-    function openLightbox(src, title, foot){
-      lb.classList.add('open');
-      lb.setAttribute('aria-hidden', 'false');
-      lbImg.src = src;
-      lbTitle.textContent = title || "Preview";
-      lbFoot.textContent = foot || "Tap outside to close.";
-    }
-    function closeLightbox(){
-      lb.classList.remove('open');
-      lb.setAttribute('aria-hidden', 'true');
-      lbImg.src = "";
-    }
+  function openLightbox(src, title, foot){
+    if (!lb || !lbImg || !lbTitle || !lbFoot) return;
+    lb.classList.add('open');
+    lb.setAttribute('aria-hidden', 'false');
+    lbImg.src = src;
+    lbTitle.textContent = title || "Preview";
+    lbFoot.textContent = foot || "Tap outside to close.";
+  }
 
-    document.querySelectorAll('.shot[data-lb-src]').forEach(el => {
-      el.addEventListener('click', () => {
-        openLightbox(el.dataset.lbSrc, el.dataset.lbTitle, el.dataset.lbFoot);
-      });
+  function closeLightbox(){
+    if (!lb || !lbImg) return;
+    lb.classList.remove('open');
+    lb.setAttribute('aria-hidden', 'true');
+    lbImg.src = "";
+  }
+
+  document.querySelectorAll('.shot[data-lb-src]').forEach(el => {
+    el.addEventListener('click', () => {
+      openLightbox(el.dataset.lbSrc, el.dataset.lbTitle, el.dataset.lbFoot);
     });
+  });
 
+  if (lb){
     lb.addEventListener('click', (e) => {
       if (e.target && e.target.dataset && e.target.dataset.lbClose === "1") closeLightbox();
     });
+  }
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === "Escape" && lb.classList.contains('open')) closeLightbox();
-    });
-  </script>
+  document.addEventListener('keydown', (e) => {
+    if (e.key === "Escape" && lb && lb.classList.contains('open')) closeLightbox();
+  });
+</script>
 </body>
 </html>
