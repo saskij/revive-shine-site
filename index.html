@@ -718,6 +718,76 @@
   .brandtext .full{ display:none; }
   .brandtext .short{ display:inline; }
 }
+
+/* Value / Price guide */
+.price-grid{
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+@media (max-width: 980px){
+  .price-grid{ grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 560px){
+  .price-grid{ grid-template-columns: 1fr; }
+}
+
+.price-card{
+  position: relative;
+  border-radius: 22px;
+  overflow: hidden;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.55);
+  box-shadow: 0 14px 40px rgba(0,0,0,.10);
+  text-decoration: none;
+  color: inherit;
+  transform: translateY(10px);
+  opacity: 0;
+  transition: transform .35s ease, opacity .35s ease;
+}
+.reveal.on .price-card{
+  transform: translateY(0);
+  opacity: 1;
+}
+
+.price-card img{
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+.price-cap{
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 12px;
+  padding: 12px 12px;
+  border-radius: 18px;
+  background: rgba(255,255,255,.72);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(0,0,0,.08);
+}
+.price-h{
+  font-weight: 980;
+  letter-spacing: .2px;
+}
+.price-d{
+  font-size: 13px;
+  opacity: .78;
+  margin-top: 2px;
+}
+
+.price-note{
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid var(--stroke);
+  background: rgba(255,255,255,.55);
+  line-height: 1.45;
+}
+    
   </style>
 </head>
 
@@ -740,7 +810,7 @@
     </a>
 
     <div class="navchips">
-      <a class="chip" href="#value">Value</a>
+      <a class="pill" href="#value">Value</a>
       <a class="chip" href="#work">Work</a>
       <a class="chip primary" href="#quote" id="navFreeQuote">Free Quote</a>
     </div>
@@ -798,6 +868,83 @@
         </div>
       </div>
     </section>
+
+    
+    <section class="section" id="value">
+  <div class="wrap">
+    <div class="reveal">
+      <div class="kicker">Value</div>
+      <div class="title">Price guide</div>
+      <p class="sub">
+        Transparent starting ranges to help you ориентироваться. Final price depends on size, fabric, stains, and access.
+        For the most accurate quote — send a photo.
+      </p>
+    </div>
+
+    <div class="price-grid reveal">
+      <a class="price-card" href="#quote" data-open-quote="Price guide — Chairs">
+        <img src="price-chairs.png" alt="Chair cleaning price guide" loading="lazy">
+        <div class="price-cap">
+          <div class="price-h">Chairs</div>
+          <div class="price-d">Tap to request a quote</div>
+        </div>
+      </a>
+
+      <a class="price-card" href="#quote" data-open-quote="Price guide — Couch">
+        <img src="price-couch.png" alt="Couch cleaning price guide" loading="lazy">
+        <div class="price-cap">
+          <div class="price-h">Couches</div>
+          <div class="price-d">Tap to request a quote</div>
+        </div>
+      </a>
+
+      <a class="price-card" href="#quote" data-open-quote="Price guide — Mattress">
+        <img src="price-mattress.png" alt="Mattress and bed cleaning price guide" loading="lazy">
+        <div class="price-cap">
+          <div class="price-h">Mattresses & beds</div>
+          <div class="price-d">Tap to request a quote</div>
+        </div>
+      </a>
+
+      <a class="price-card" href="#quote" data-open-quote="Price guide — Discounts">
+        <img src="price-discounts.png" alt="Discounts price guide" loading="lazy">
+        <div class="price-cap">
+          <div class="price-h">Discounts</div>
+          <div class="price-d">Ask to apply it</div>
+        </div>
+      </a>
+
+      <a class="price-card" href="#quote" data-open-quote="Price guide — Add-ons">
+        <img src="price-addons.png" alt="Add-ons price guide" loading="lazy">
+        <div class="price-cap">
+          <div class="price-h">Add-ons</div>
+          <div class="price-d">Pet hair, odors, fast drying</div>
+        </div>
+      </a>
+
+      <a class="price-card" href="#quote" data-open-quote="Price guide — Car interior">
+        <img src="price-car.png" alt="Car interior cleaning price guide" loading="lazy">
+        <div class="price-cap">
+          <div class="price-h">Car interiors</div>
+          <div class="price-d">Seats, carpets, panels</div>
+        </div>
+      </a>
+
+      <a class="price-card" href="#quote" data-open-quote="Price guide — Carpet">
+        <img src="price-carpet.png" alt="Carpet and rug cleaning price guide" loading="lazy">
+        <div class="price-cap">
+          <div class="price-h">Carpets & rugs</div>
+          <div class="price-d">Rooms, stairs, per sq ft</div>
+        </div>
+      </a>
+    </div>
+
+    <div class="price-note reveal">
+      <strong>Note:</strong> These are typical ranges. Heavy stains, pet hair, strong odors, or large-sectionals may change the price.
+      We’ll confirm after a photo and a few questions.
+    </div>
+  </div>
+</section>
 
     <!-- WHAT YOU GET (interactive) -->
     <section class="section" id="benefits">
