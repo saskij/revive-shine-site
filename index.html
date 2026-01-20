@@ -8,19 +8,33 @@
 
   <style>
     :root{
+      /* Base */
       --bg:#f7f4f0;
-      --ink:#171717;
-      --muted:#6c6c6c;
-      --card:rgba(255,255,255,.72);
-      --stroke:rgba(0,0,0,.08);
-      --shadow: 0 22px 60px rgba(0,0,0,.14);
-      --radius: 22px;
+      --ink:#161616;
+      --muted:#555555;
+      --muted2:#6f6f6f;
+      --stroke:rgba(0,0,0,.10);
 
+      /* Surfaces */
+      --surface: rgba(255,255,255,.78);
+      --surface2: rgba(255,255,255,.62);
+
+      /* Brand */
       --gold:#b7a57a;
       --gold2:#9b8b64;
 
+      /* Effects */
+      --radius: 22px;
+      --shadow-soft: 0 10px 30px rgba(0,0,0,.10);
+      --shadow-card: 0 18px 46px rgba(0,0,0,.12);
+      --shadow-hero: 0 22px 60px rgba(0,0,0,.20);
+
+      /* Layout */
       --max: 1080px;
       --pad: 18px;
+
+      /* Type */
+      --lh: 1.55;
     }
 
     *{ box-sizing:border-box }
@@ -33,6 +47,15 @@
       -webkit-font-smoothing:antialiased;
       -moz-osx-font-smoothing:grayscale;
       overflow-x:hidden;
+
+      line-height: var(--lh);
+      text-rendering: optimizeLegibility;
+    }
+
+    /* Focus ring (quality + accessibility) */
+    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
+      outline: none;
+      box-shadow: 0 0 0 4px rgba(183,165,122,.32);
     }
 
     /* Layout (NO scroll-snap to avoid iOS "stuck") */
@@ -66,47 +89,80 @@
       justify-content:space-between;
       gap:10px;
       padding: 10px 12px;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.55);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
       border-radius: 999px;
-      box-shadow: 0 10px 30px rgba(0,0,0,.10);
+      box-shadow: var(--shadow-soft);
     }
-    .brand{
-      display:flex; align-items:center; gap:10px; min-width: 0;
-      font-weight: 900;
-      letter-spacing: .2px;
-    }
-    .brand .mark{
-      width: 34px; height: 34px; border-radius: 12px;
-      display:grid; place-items:center;
-      background: rgba(183,165,122,.18);
-      border: 1px solid rgba(183,165,122,.28);
-      flex: 0 0 auto;
-    }
-    .brand .name{
-      white-space:nowrap; overflow:hidden; text-overflow:ellipsis;
-    }
+
     .navchips{ display:flex; gap:8px; align-items:center; }
+
     .chip{
-      appearance:none; border:1px solid var(--stroke);
-      background: rgba(255,255,255,.55);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
+      appearance:none;
+      border:1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.70);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
       border-radius: 999px;
       padding: 9px 12px;
-      font-weight: 850;
+      font-weight: 800;
       font-size: 13px;
       color: var(--ink);
       text-decoration:none;
-      transition: transform .18s ease, background .18s ease;
+      transition: transform .18s ease, filter .18s ease;
+      -webkit-tap-highlight-color: transparent;
     }
     .chip:active{ transform: scale(.98); }
+
     .chip.primary{
       background: linear-gradient(180deg, var(--gold), var(--gold2));
       color:#fff;
       border-color: rgba(0,0,0,.06);
+    }
+
+    /* ===== Brand (logo + text) ===== */
+    .brandlink{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      text-decoration:none;
+      color: var(--ink);
+      font-weight: 900;
+      min-width:0;
+    }
+    .logo{
+      width: 54px;
+      height: 40px;
+      border-radius: 999px;
+      background: rgba(255,255,255,.70);
+      border: 1px solid rgba(0,0,0,.10);
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      flex: 0 0 auto;
+      box-shadow: 0 10px 24px rgba(0,0,0,.10);
+    }
+    .logo img{
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      transform: scale(2.2);
+      transform-origin: center;
+    }
+    .brandtext{
+      white-space:nowrap;
+      overflow:hidden;
+      text-overflow:ellipsis;
+      font-weight:900;
+      letter-spacing:.2px;
+    }
+    .brandtext .full{ display:inline; }
+    .brandtext .short{ display:none; }
+    @media (max-width:520px){
+      .brandtext .full{ display:none; }
+      .brandtext .short{ display:inline; }
     }
 
     /* Hero */
@@ -131,8 +187,8 @@
       position:absolute;
       inset:0;
       background:
-        radial-gradient(1000px 600px at 70% 30%, rgba(0,0,0,.06), rgba(0,0,0,.35)),
-        linear-gradient(to bottom, rgba(0,0,0,.40), rgba(0,0,0,.12), rgba(0,0,0,.60));
+        radial-gradient(900px 520px at 70% 30%, rgba(0,0,0,.08), rgba(0,0,0,.42)),
+        linear-gradient(to bottom, rgba(0,0,0,.44), rgba(0,0,0,.18), rgba(0,0,0,.68));
     }
     .hero .wrap{ position: relative; z-index: 2; padding-bottom: 16px; }
     .pillrow{ display:flex; flex-wrap:wrap; gap:10px; }
@@ -172,15 +228,15 @@
       align-items:center;
       justify-content:center;
       text-decoration:none;
-      font-weight: 950;
+      font-weight: 900;
       border-radius: 999px;
       padding: 14px 18px;
-      border: 1px solid rgba(255,255,255,.16);
+      border: 1px solid rgba(255,255,255,.18);
       color:#fff;
-      background: rgba(255,255,255,.12);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      transition: transform .18s ease, background .18s ease;
+      background: rgba(255,255,255,.10);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      transition: transform .18s ease, filter .18s ease;
     }
     .btn:active{ transform: scale(.985); }
     .btn.primary{
@@ -211,20 +267,21 @@
       letter-spacing: -.4px;
     }
     .sub{
-      margin: 8px 0 0;
+      margin: 10px 0 0;
       color: var(--muted);
-      max-width: 70ch;
+      max-width: 68ch;
+      font-size: 16px;
     }
 
     .grid{ margin-top: 18px; display:grid; gap: 12px; grid-template-columns: 1fr; }
 
     .card{
-      border: 1px solid var(--stroke);
-      background: var(--card);
+      border: 1px solid rgba(0,0,0,.10);
+      background: var(--surface);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-card);
       padding: 16px;
       overflow:hidden;
       position:relative;
@@ -233,12 +290,12 @@
     /* Interactive benefits (accordion) */
     .benefit{
       width:100%;
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.72);
+      border: 1px solid rgba(0,0,0,.10);
+      background: var(--surface);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-card);
       overflow:hidden;
     }
     .benefit button{
@@ -273,15 +330,15 @@
       max-height: 0;
       overflow:hidden;
       transition: max-height .28s ease;
-      border-top: 1px solid rgba(0,0,0,.06);
-      background: rgba(255,255,255,.55);
+      border-top: 1px solid rgba(0,0,0,.08);
+      background: var(--surface2);
     }
     .benefit .panel .inner{
       padding: 14px;
       display:grid;
       gap: 10px;
     }
-    .panel p{ margin:0; color: rgba(0,0,0,.75); line-height: 1.45; }
+    .panel p{ margin:0; color: rgba(0,0,0,.78); line-height: 1.45; }
     .panel .panel-actions{ display:flex; gap:10px; flex-wrap:wrap; margin-top: 4px; }
     .panel .panel-actions a{
       display:inline-flex;
@@ -293,7 +350,7 @@
       font-weight: 950;
       border: 1px solid rgba(0,0,0,.10);
       color: var(--ink);
-      background: rgba(255,255,255,.8);
+      background: rgba(255,255,255,.90);
     }
     .panel .panel-actions a.primary{
       border:none;
@@ -309,12 +366,12 @@
       gap: 12px;
     }
     .case{
-      border: 1px solid var(--stroke);
-      background: var(--card);
+      border: 1px solid rgba(0,0,0,.10);
+      background: var(--surface);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
       border-radius: var(--radius);
-      box-shadow: var(--shadow);
+      box-shadow: var(--shadow-card);
       padding: 14px;
       overflow:hidden;
     }
@@ -393,13 +450,14 @@
       font-weight: 950;
       border: 1px solid rgba(0,0,0,.10);
       color: var(--ink);
-      background: rgba(255,255,255,.8);
+      background: rgba(255,255,255,.90);
     }
     .case-actions a.primary{
       border:none;
       color:#fff;
       background: linear-gradient(180deg, var(--gold), var(--gold2));
     }
+
     .igcard{
       margin-top: 12px;
       display:flex;
@@ -408,11 +466,11 @@
       gap: 10px;
       padding: 14px;
       border-radius: var(--radius);
-      border: 1px solid var(--stroke);
-      background: rgba(255,255,255,.62);
+      border: 1px solid rgba(0,0,0,.10);
+      background: var(--surface2);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      box-shadow: 0 14px 40px rgba(0,0,0,.10);
+      box-shadow: var(--shadow-soft);
     }
     .igcard .left{
       display:flex;
@@ -443,8 +501,8 @@
       border-radius: var(--radius);
       overflow:hidden;
       border: 1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.70);
-      box-shadow: var(--shadow);
+      background: var(--surface2);
+      box-shadow: var(--shadow-card);
     }
     .vid video{
       width:100%;
@@ -473,11 +531,12 @@
       width:100%;
       padding: 14px 14px;
       border-radius: 14px;
-      border: 1px solid rgba(0,0,0,.12);
-      background: rgba(255,255,255,.92);
+      border: 1px solid rgba(0,0,0,.14);
+      background: rgba(255,255,255,.94);
       font: inherit;
       outline: none;
     }
+    input::placeholder, textarea::placeholder{ color: rgba(0,0,0,.40); }
     textarea{ min-height: 92px; resize: vertical; }
     .submit{
       border: none;
@@ -496,118 +555,243 @@
       line-height: 1.4;
     }
 
-  /* Floating CTA (circle) — UPDATED */
-.fab{
-  position: fixed;
-  z-index: 80;
-  right: calc(14px + env(safe-area-inset-right));
-  bottom: calc(14px + env(safe-area-inset-bottom));
-  display:flex;
-  flex-direction:column;
-  align-items:flex-end;
-  gap: 10px;
+    /* Value / Price guide */
+    .price-grid{
+      margin-top: 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+    }
+    @media (max-width: 980px){
+      .price-grid{ grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 560px){
+      .price-grid{ grid-template-columns: 1fr; }
+    }
 
-  /* IMPORTANT: allow clicks only when visible */
-  pointer-events:auto;
+    .price-card{
+      position: relative;
+      border-radius: 22px;
+      overflow: hidden;
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.55);
+      box-shadow: var(--shadow-soft);
+      text-decoration: none;
+      color: inherit;
 
-  /* smooth show/hide */
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity .18s ease, transform .18s ease;
-  
-  animation: fabNudge 7s ease-in-out infinite;
-}
-        @keyframes fabNudge {
-  0%   { transform: translateY(0); }
-  85%  { transform: translateY(0); }
-  90%  { transform: translateY(-3px); }
-  95%  { transform: translateY(0); }
-  100% { transform: translateY(0); }
-}
+      transform: translateY(10px);
+      opacity: 0;
+      transition: transform .22s ease, opacity .35s ease, box-shadow .22s ease, filter .22s ease;
+      will-change: transform;
+    }
+    .reveal.on .price-card{
+      transform: translateY(0);
+      opacity: 1;
+    }
+    @media (hover:hover){
+      .price-card:hover{
+        transform: translateY(-2px);
+        box-shadow: 0 22px 56px rgba(0,0,0,.14);
+      }
+    }
+    .price-card:active{ transform: scale(.99); }
 
-/* Hidden on hero / top */
-.fab.fab-hidden{
-  opacity: 0;
-  transform: translateY(14px);
-  pointer-events:none;
-}
+    .price-card img{
+      width: 100%;
+      height: auto;
+      display: block;
+    }
 
-.fab button, .fab a{ -webkit-tap-highlight-color: transparent; }
+    .price-cap{
+      position: absolute;
+      left: 12px;
+      right: 12px;
+      bottom: 12px;
+      padding: 12px 12px;
+      border-radius: 18px;
+      background: rgba(255,255,255,.72);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      border: 1px solid rgba(0,0,0,.08);
+    }
+    .price-h{
+      font-weight: 980;
+      letter-spacing: .2px;
+    }
+    .price-d{
+      font-size: 13px;
+      opacity: .78;
+      margin-top: 2px;
+    }
 
-.fab-main{
-  height: 56px;
-  padding: 0 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(0,0,0,.12);
-  background: linear-gradient(180deg, var(--gold), var(--gold2));
-  color:#fff;
-  font-weight: 900;
-  font-size: 15px;
-  box-shadow: 0 18px 40px rgba(0,0,0,.18);
-  display:flex;
-  align-items:center;
-  gap:10px;
-  cursor:pointer;
-  white-space: nowrap;
-  position: relative;
-  transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
-  will-change: transform;
+    .price-note{
+      margin-top: 16px;
+      padding: 14px 16px;
+      border-radius: 18px;
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.55);
+      line-height: 1.45;
+    }
 
-}
+    /* ===== Fix visited/active link color in top menu ===== */
+    .navchips a,
+    .navchips a:link,
+    .navchips a:visited,
+    .navchips a:active,
+    .navchips a:focus,
+    .navchips a:hover{
+      color: var(--ink);
+      text-decoration: none;
+      outline: none;
+    }
+    .navchips a.primary,
+    .navchips a.primary:link,
+    .navchips a.primary:visited,
+    .navchips a.primary:active,
+    .navchips a.primary:focus,
+    .navchips a.primary:hover{
+      color:#fff !important;
+      text-decoration:none;
+    }
 
-.fab-menu{
-  width: min(360px, calc(100vw - 28px));
-  border-radius: 22px;
-  border: 1px solid var(--stroke);
-  background: rgba(255,255,255,.70);
-  backdrop-filter: blur(16px);
-  -webkit-backdrop-filter: blur(16px);
-  box-shadow: 0 14px 40px rgba(0,0,0,.14);
-  overflow:hidden;
+    /* Floating CTA (FAB) */
+    .fab{
+      position: fixed;
+      z-index: 80;
+      right: calc(14px + env(safe-area-inset-right));
+      bottom: calc(14px + env(safe-area-inset-bottom));
+      display:flex;
+      flex-direction:column;
+      align-items:flex-end;
+      gap: 10px;
 
-  transform-origin: bottom right;
-  transform: scale(.96) translateY(6px);
-  opacity: 0;
-  pointer-events:none;
-  transition: opacity .18s ease, transform .18s ease;
-}
+      pointer-events:auto;
 
-.fab.open .fab-menu{
-  opacity:1;
-  transform: scale(1) translateY(0);
-  pointer-events:auto;
-}
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity .18s ease, transform .18s ease;
 
-.fab-menu .row{
-  display:flex;
-  gap:10px;
-  padding: 10px;
-}
+      animation: fabNudge 7s ease-in-out infinite;
+    }
+    @keyframes fabNudge {
+      0%   { transform: translateY(0); }
+      85%  { transform: translateY(0); }
+      90%  { transform: translateY(-3px); }
+      95%  { transform: translateY(0); }
+      100% { transform: translateY(0); }
+    }
 
-.fab-menu a{
-  flex:1 1 auto;
-  text-align:center;
-  padding: 14px 12px;
-  border-radius: 16px;
-  text-decoration:none;
-  font-weight: 980;
-  border: 1px solid rgba(0,0,0,.10);
-  color: var(--ink);
-  background: rgba(255,255,255,.78);
-}
+    .fab.fab-hidden{
+      opacity: 0;
+      transform: translateY(14px);
+      pointer-events:none;
+      animation: none; /* prevent transform fights */
+    }
 
-.fab-menu a.primary{
-  border:none;
-  color:#fff;
-  background: linear-gradient(180deg, var(--gold), var(--gold2));
-}
+    .fab button, .fab a{ -webkit-tap-highlight-color: transparent; }
 
-.fab-hint{
-  font-size: 12px;
-  color: rgba(0,0,0,.62);
-  padding: 0 12px 12px;
-  line-height: 1.35;
-}
+    .fab-main{
+      height: 56px;
+      padding: 0 18px;
+      border-radius: 999px;
+      border: 1px solid rgba(0,0,0,.12);
+      background: linear-gradient(180deg, var(--gold), var(--gold2));
+      color:#fff;
+      font-weight: 900;
+      font-size: 15px;
+      box-shadow: 0 18px 40px rgba(0,0,0,.18);
+      display:flex;
+      align-items:center;
+      gap:10px;
+      cursor:pointer;
+      white-space: nowrap;
+      position: relative;
+      transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
+      will-change: transform;
+    }
+
+    /* Hover (desktop) */
+    @media (hover:hover){
+      .fab-main:hover{
+        transform: translateY(-2px);
+        filter: brightness(1.04);
+        box-shadow: 0 22px 52px rgba(0,0,0,.22);
+      }
+    }
+    /* Tap feedback (mobile) */
+    .fab-main:active{ transform: scale(.98); }
+
+    /* Pulse ring (no transform conflict with parent) */
+    .fab-main::after{
+      content:"";
+      position:absolute;
+      inset:-6px;
+      border-radius:999px;
+      border: 2px solid rgba(255,255,255,.45);
+      opacity: 0;
+      transform: scale(1);
+      pointer-events:none;
+      animation: fabPulse 3.2s ease-out infinite;
+    }
+    @keyframes fabPulse{
+      0%   { opacity: 0; transform: scale(1); }
+      15%  { opacity: .55; }
+      60%  { opacity: 0; transform: scale(1.18); }
+      100% { opacity: 0; transform: scale(1.18); }
+    }
+    @media (prefers-reduced-motion: reduce){
+      .fab-main::after{ animation: none; }
+    }
+
+    .fab-menu{
+      width: min(360px, calc(100vw - 28px));
+      border-radius: 22px;
+      border: 1px solid rgba(0,0,0,.10);
+      background: rgba(255,255,255,.70);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      box-shadow: 0 14px 40px rgba(0,0,0,.14);
+      overflow:hidden;
+
+      transform-origin: bottom right;
+      transform: scale(.96) translateY(6px);
+      opacity: 0;
+      pointer-events:none;
+      transition: opacity .18s ease, transform .18s ease;
+    }
+    .fab.open .fab-menu{
+      opacity:1;
+      transform: scale(1) translateY(0);
+      pointer-events:auto;
+    }
+    .fab-menu .row{
+      display:flex;
+      gap:10px;
+      padding: 10px;
+    }
+    .fab-menu a{
+      flex:1 1 auto;
+      text-align:center;
+      padding: 14px 12px;
+      border-radius: 16px;
+      text-decoration:none;
+      font-weight: 980;
+      border: 1px solid rgba(0,0,0,.10);
+      color: var(--ink);
+      background: rgba(255,255,255,.78);
+    }
+    .fab-menu a.primary{
+      border:none;
+      color:#fff;
+      background: linear-gradient(180deg, var(--gold), var(--gold2));
+    }
+    .fab-hint{
+      font-size: 12px;
+      color: rgba(0,0,0,.62);
+      padding: 0 12px 12px;
+      line-height: 1.35;
+    }
+
     /* Lightbox (for before/after) */
     .lightbox{
       position: fixed;
@@ -683,274 +867,37 @@
       .benefit .panel{ transition:none; }
       .chev{ transition:none; }
       .fab-menu{ transition:none; }
+      .fab{ animation:none; }
     }
     :target{ scroll-margin-top: 92px; }
-
-    /* ===== Brand (logo + text) ===== */
-.brandlink{
-  display:flex;
-  align-items:center;
-  gap:10px;
-  text-decoration:none;
-  color: var(--ink);
-  font-weight: 900;
-}
-
-.logo{
-  width: 54px;
-  height: 40px;                 /* ⬅️ не квадрат, а овал */
-  border-radius: 999px;          /* ⬅️ овальная форма */
-  background: rgba(255,255,255,.70);
-  border: 1px solid rgba(0,0,0,.08);
-  display: grid;
-  place-items: center;
-  overflow: hidden;              /* ⬅️ прячем углы картинки */
-  flex: 0 0 auto;
-  box-shadow: 0 10px 24px rgba(0,0,0,.10);
-}
-
-.logo img{
-  width: 100%;
-  height: 100%;
-  object-fit: contain;           /* домик сохраняет пропорции */
-  transform: scale(2.2);         /* ⬅️ зум домика (попробуй 2.0–2.6) */
-  transform-origin: center;
-}
-
-.brandtext{
-  white-space:nowrap;
-  font-weight:900;
-  letter-spacing:.2px;
-}
-
-.brandtext .full{ display:inline; }
-.brandtext .short{ display:none; }
-
-/* Mobile: show R&S instead of full name */
-@media (max-width:520px){
-  .brandtext .full{ display:none; }
-  .brandtext .short{ display:inline; }
-}
-
-/* Value / Price guide */
-.price-grid{
-  margin-top: 18px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 14px;
-}
-@media (max-width: 980px){
-  .price-grid{ grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 560px){
-  .price-grid{ grid-template-columns: 1fr; }
-}
-
-.price-card{
-  position: relative;
-  border-radius: 22px;
-  overflow: hidden;
-  border: 1px solid var(--stroke);
-  background: rgba(255,255,255,.55);
-  box-shadow: 0 14px 40px rgba(0,0,0,.10);
-  text-decoration: none;
-  color: inherit;
-
-  transform: translateY(10px);
-  opacity: 0;
-  transition: transform .22s ease, opacity .35s ease, box-shadow .22s ease, filter .22s ease;
-  will-change: transform;
-}
-    /* показываем карточки, когда блок reveal стал on */
-.reveal.on .price-card{
-  transform: translateY(0);
-  opacity: 1;
-}
-
-/* hover эффект только там, где реально есть hover (Mac/PC) */
-@media (hover:hover){
-  .fab-main:hover{
-    transform: translateY(-2px) scale(1.05);
-    filter: brightness(1.04);
-    box-shadow: 0 22px 52px rgba(0,0,0,.22);
-  }
-}
-
-/* tap feedback на телефоне */
-.price-card:active{
-  transform: scale(.99);
-}
-
-.price-card img{
-  width: 100%;
-  height: auto;
-  display: block;
-}
-
-.price-cap{
-  position: absolute;
-  left: 12px;
-  right: 12px;
-  bottom: 12px;
-  padding: 12px 12px;
-  border-radius: 18px;
-  background: rgba(255,255,255,.72);
-  backdrop-filter: blur(10px);
-  -webkit-backdrop-filter: blur(10px);
-  border: 1px solid rgba(0,0,0,.08);
-}
-.price-h{
-  font-weight: 980;
-  letter-spacing: .2px;
-}
-.price-d{
-  font-size: 13px;
-  opacity: .78;
-  margin-top: 2px;
-}
-
-.price-note{
-  margin-top: 16px;
-  padding: 14px 16px;
-  border-radius: 18px;
-  border: 1px solid var(--stroke);
-  background: rgba(255,255,255,.55);
-  line-height: 1.45;
-}
-
-/* ===== Fix visited/active link color in top menu (navchips) ===== */
-.navchips a,
-.navchips a:link,
-.navchips a:visited,
-.navchips a:active,
-.navchips a:focus,
-.navchips a:hover{
-  color: var(--ink);
-  text-decoration: none;
-  outline: none;
-}
-
-/* Safari iOS tap highlight off */
-.navchips a{
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* IMPORTANT: make Value (pill) not purple/blue after click */
-.navchips a.pill,
-.navchips a.pill:link,
-.navchips a.pill:visited,
-.navchips a.pill:active,
-.navchips a.pill:focus,
-.navchips a.pill:hover{
-  color: var(--ink) !important;
-  text-decoration: none !important;
-}
-
-/* keep primary button white text */
-.navchips a.primary,
-.navchips a.primary:link,
-.navchips a.primary:visited,
-.navchips a.primary:active,
-.navchips a.primary:focus,
-.navchips a.primary:hover{
-  color:#fff !important;
-  text-decoration:none;
-}
-
-/* ===== FAB button hover + pulse (NO transform conflict) ===== */
-
-.fab-main{
-  position: relative;
-  transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
-  will-change: transform;
-}
-
-/* Hover (desktop) */
-@media (hover:hover){
-  .fab-main:hover{
-    transform: translateY(-2px) scale(1.05);
-    filter: brightness(1.04);
-    box-shadow: 0 22px 52px rgba(0,0,0,.22);
-  }
-}
-
-/* Tap feedback (mobile) */
-.fab-main:active{
-  transform: scale(.98);
-}
-
-/* Focus (keyboard) */
-.fab-main:focus-visible{
-  outline: none;
-  box-shadow: 0 0 0 4px rgba(183,165,122,.35), 0 22px 52px rgba(0,0,0,.22);
-}
-
-/* Pulse ring to attract attention (works on mobile + Safari) */
-.fab-main::after{
-  content:"";
-  position:absolute;
-  inset:-6px;
-  border-radius:999px;
-  border: 2px solid rgba(255,255,255,.45);
-  opacity: 0;
-  transform: scale(1);
-  pointer-events:none;
-}
-
-/* Pulse animation (does NOT use transform on the button itself) */
-@keyframes fabPulse{
-  0%   { opacity: 0; transform: scale(1); }
-  15%  { opacity: .55; }
-  60%  { opacity: 0; transform: scale(1.18); }
-  100% { opacity: 0; transform: scale(1.18); }
-}
-
-/* Run pulse periodically */
-.fab-main::after{
-  animation: fabPulse 3.2s ease-out infinite;
-}
-
-/* Respect reduced-motion */
-@media (prefers-reduced-motion: reduce){
-  .fab-main::after{ animation: none; }
-}    
-    @keyframes fabNudge {
-  0%   { transform: translateY(0); }
-  85%  { transform: translateY(0); }
-  90%  { transform: translateY(-3px); }
-  95%  { transform: translateY(0); }
-  100% { transform: translateY(0); }
-}
   </style>
 </head>
 
 <body>
-  <!-- Floating top bar -->
-<!-- TOPBAR -->
-<div class="topbar">
-  <div class="bar">
-    <!-- Brand: logo + R&S, always clickable to top -->
-    <a class="brandlink" href="#top" aria-label="Back to top">
-      <span class="logo">
-        <img src="logo.PNG" alt="Revive & Shine logo"
-             onerror="this.onerror=null; this.style.display='none'; this.parentElement.classList.add('noimg'); this.parentElement.textContent='R';">
-      </span>
+  <!-- TOPBAR -->
+  <div class="topbar">
+    <div class="bar">
+      <a class="brandlink" href="#top" aria-label="Back to top">
+        <span class="logo">
+          <img src="logo.PNG" alt="Revive & Shine logo"
+               onerror="this.onerror=null; this.style.display='none'; this.parentElement.classList.add('noimg'); this.parentElement.textContent='R';">
+        </span>
 
-      <span class="brandtext">
-        <span class="full">Revive &amp; Shine</span>
-        <span class="short">R&amp;S</span>
-      </span>
-    </a>
+        <span class="brandtext">
+          <span class="full">Revive &amp; Shine</span>
+          <span class="short">R&amp;S</span>
+        </span>
+      </a>
 
-    <div class="navchips">
-      <a class="chip" href="#value">Value</a>
-      <a class="chip" href="#work">Work</a>
-      <a class="chip primary" href="#quote" id="navFreeQuote">Free Quote</a>
+      <div class="navchips">
+        <a class="chip" href="#value">Value</a>
+        <a class="chip" href="#work">Work</a>
+        <a class="chip primary" href="#quote" id="navFreeQuote">Free Quote</a>
+      </div>
     </div>
   </div>
-</div>
 
-  <!-- Floating circle CTA -->
+  <!-- Floating CTA -->
   <div class="fab" id="fab">
     <div class="fab-menu" id="fabMenu" aria-hidden="true">
       <div class="row">
@@ -962,9 +909,8 @@
         Tip: for the most accurate quote, text a photo after submitting.
       </div>
     </div>
-<button id="fabBtn" class="fab-main" aria-label="Contact us">
-  💬 Contact us
-</button>  </div>
+    <button id="fabBtn" class="fab-main" aria-label="Contact us">💬 Contact us</button>
+  </div>
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
@@ -1002,91 +948,84 @@
       </div>
     </section>
 
-    
-<section class="section" id="value">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="kicker">Value</div>
-      <div class="title">Price guide</div>
-      <p class="sub">
-        Transparent starting ranges to help you ориентироваться. Final price depends on size, fabric, stains, and access.
-        For the most accurate quote — send a photo.
-      </p>
-    </div>
-
-    <div class="price-grid reveal">
-      <!-- 1) Couches -->
-      <a class="price-card" href="#quote" data-open-quote="Price guide — Couch">
-        <img src="price-couch.png" alt="Couch cleaning price guide" loading="lazy">
-        <div class="price-cap">
-          <div class="price-h">Couches</div>
-          <div class="price-d">Tap to request a quote</div>
+    <!-- VALUE -->
+    <section class="section" id="value">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="kicker">Value</div>
+          <div class="title">Price guide</div>
+          <p class="sub">
+            Transparent starting ranges to help you estimate. Final price depends on size, fabric, stains, and access.
+            For the most accurate quote — send a photo.
+          </p>
         </div>
-      </a>
 
-      <!-- 2) Mattresses -->
-      <a class="price-card" href="#quote" data-open-quote="Price guide — Mattress">
-        <img src="price-mattress.png" alt="Mattress and bed cleaning price guide" loading="lazy">
-        <div class="price-cap">
-          <div class="price-h">Mattresses &amp; beds</div>
-          <div class="price-d">Tap to request a quote</div>
+        <div class="price-grid reveal">
+          <a class="price-card" href="#quote" data-open-quote="Price guide — Couch">
+            <img src="price-couch.png" alt="Couch cleaning price guide" loading="lazy">
+            <div class="price-cap">
+              <div class="price-h">Couches</div>
+              <div class="price-d">Tap to request a quote</div>
+            </div>
+          </a>
+
+          <a class="price-card" href="#quote" data-open-quote="Price guide — Mattress">
+            <img src="price-mattress.png" alt="Mattress and bed cleaning price guide" loading="lazy">
+            <div class="price-cap">
+              <div class="price-h">Mattresses &amp; beds</div>
+              <div class="price-d">Tap to request a quote</div>
+            </div>
+          </a>
+
+          <a class="price-card" href="#quote" data-open-quote="Price guide — Chairs">
+            <img src="price-chairs.png" alt="Chair cleaning price guide" loading="lazy">
+            <div class="price-cap">
+              <div class="price-h">Chairs</div>
+              <div class="price-d">Tap to request a quote</div>
+            </div>
+          </a>
+
+          <a class="price-card" href="#quote" data-open-quote="Price guide — Carpet">
+            <img src="price-carpet.png" alt="Carpet and rug cleaning price guide" loading="lazy">
+            <div class="price-cap">
+              <div class="price-h">Carpets &amp; rugs</div>
+              <div class="price-d">Rooms, stairs, per sq ft</div>
+            </div>
+          </a>
+
+          <a class="price-card" href="#quote" data-open-quote="Price guide — Car interior">
+            <img src="price-car.png" alt="Car interior cleaning price guide" loading="lazy">
+            <div class="price-cap">
+              <div class="price-h">Car interiors</div>
+              <div class="price-d">Seats, carpets, panels</div>
+            </div>
+          </a>
+
+          <a class="price-card" href="#quote" data-open-quote="Price guide — Add-ons">
+            <img src="price-addons.png" alt="Add-ons price guide" loading="lazy">
+            <div class="price-cap">
+              <div class="price-h">Add-ons</div>
+              <div class="price-d">Pet hair, odors, fast drying</div>
+            </div>
+          </a>
+
+          <a class="price-card" href="#quote" data-open-quote="Price guide — Discounts">
+            <img src="price-discounts.png" alt="Discounts price guide" loading="lazy">
+            <div class="price-cap">
+              <div class="price-h">Discounts</div>
+              <div class="price-d">Ask to apply it</div>
+            </div>
+          </a>
         </div>
-      </a>
 
-      <!-- 3) Chairs -->
-      <a class="price-card" href="#quote" data-open-quote="Price guide — Chairs">
-        <img src="price-chairs.png" alt="Chair cleaning price guide" loading="lazy">
-        <div class="price-cap">
-          <div class="price-h">Chairs</div>
-          <div class="price-d">Tap to request a quote</div>
+        <div class="price-note reveal">
+          <strong>Note:</strong> These are typical ranges. Heavy stains, pet hair, strong odors, or large-sectionals may change the price.
+          We’ll confirm after a photo and a few questions.
         </div>
-      </a>
+      </div>
+    </section>
 
-      <!-- 4) Carpet -->
-      <a class="price-card" href="#quote" data-open-quote="Price guide — Carpet">
-        <img src="price-carpet.png" alt="Carpet and rug cleaning price guide" loading="lazy">
-        <div class="price-cap">
-          <div class="price-h">Carpets &amp; rugs</div>
-          <div class="price-d">Rooms, stairs, per sq ft</div>
-        </div>
-      </a>
-
-      <!-- 5) Detailing / Car interior -->
-      <a class="price-card" href="#quote" data-open-quote="Price guide — Car interior">
-        <img src="price-car.png" alt="Car interior cleaning price guide" loading="lazy">
-        <div class="price-cap">
-          <div class="price-h">Car interiors</div>
-          <div class="price-d">Seats, carpets, panels</div>
-        </div>
-      </a>
-
-      <!-- 6) Add-ons -->
-      <a class="price-card" href="#quote" data-open-quote="Price guide — Add-ons">
-        <img src="price-addons.png" alt="Add-ons price guide" loading="lazy">
-        <div class="price-cap">
-          <div class="price-h">Add-ons</div>
-          <div class="price-d">Pet hair, odors, fast drying</div>
-        </div>
-      </a>
-
-      <!-- 7) Discounts (last) -->
-      <a class="price-card" href="#quote" data-open-quote="Price guide — Discounts">
-        <img src="price-discounts.png" alt="Discounts price guide" loading="lazy">
-        <div class="price-cap">
-          <div class="price-h">Discounts</div>
-          <div class="price-d">Ask to apply it</div>
-        </div>
-      </a>
-    </div>
-
-    <div class="price-note reveal">
-      <strong>Note:</strong> These are typical ranges. Heavy stains, pet hair, strong odors, or large-sectionals may change the price.
-      We’ll confirm after a photo and a few questions.
-    </div>
-  </div>
-</section>
-
-    <!-- WHAT YOU GET (interactive) -->
+    <!-- BENEFITS -->
     <section class="section" id="benefits">
       <div class="wrap">
         <div class="reveal">
@@ -1096,13 +1035,12 @@
         </div>
 
         <div class="grid">
-          <!-- 1 -->
           <div class="benefit reveal" id="b1" aria-expanded="false">
             <button type="button" class="head" data-acc="b1" aria-controls="p1" aria-expanded="false">
-              <div class="iconbox"><img alt="Fast scheduling" src="fast-scheduling.png"></div>
+              <div class="iconbox"><img alt="Clean finish" src="fast-scheduling.png"></div>
               <div class="btxt">
-                <p class="h">Clean & cozy finish</p>
-                <p class="d">After look that feels comfortable again</p>
+                <p class="h">Clean &amp; cozy finish</p>
+                <p class="d">A refreshed look that feels comfortable again</p>
               </div>
               <div class="chev">›</div>
             </button>
@@ -1117,10 +1055,9 @@
             </div>
           </div>
 
-          <!-- 2 -->
           <div class="benefit reveal" id="b2" aria-expanded="false">
             <button type="button" class="head" data-acc="b2" aria-controls="p2" aria-expanded="false">
-              <div class="iconbox"><img alt="" src="fast-scheduling.png"></div>
+              <div class="iconbox"><img alt="Fast scheduling" src="fast-scheduling.png"></div>
               <div class="btxt">
                 <p class="h">Fast scheduling</p>
                 <p class="d">Same-week availability + respectful timing</p>
@@ -1129,9 +1066,9 @@
             </button>
             <div class="panel" id="p2" role="region" aria-label="Fast scheduling details">
               <div class="inner">
-                <p>Same-week appointments available</p>
-                <p>Evening & weekend slots</p>
-                <p>We respect your time</p>
+                <p>Same-week appointments available.</p>
+                <p>Evening &amp; weekend slots.</p>
+                <p>We respect your time.</p>
                 <div class="panel-actions">
                   <a class="primary" href="#quote" data-open-quote="Scheduling">Check availability</a>
                 </div>
@@ -1139,10 +1076,9 @@
             </div>
           </div>
 
-          <!-- 3 -->
           <div class="benefit reveal" id="b3" aria-expanded="false">
             <button type="button" class="head" data-acc="b3" aria-controls="p3" aria-expanded="false">
-              <div class="iconbox"><img alt="" src="real-extraction.png"></div>
+              <div class="iconbox"><img alt="Real extraction" src="real-extraction.png"></div>
               <div class="btxt">
                 <p class="h">Real extraction</p>
                 <p class="d">Embedded dirt you can actually see</p>
@@ -1160,10 +1096,9 @@
             </div>
           </div>
 
-          <!-- 4 -->
           <div class="benefit reveal" id="b4" aria-expanded="false">
             <button type="button" class="head" data-acc="b4" aria-controls="p4" aria-expanded="false">
-              <div class="iconbox"><img alt="" src="odor-solutions.png"></div>
+              <div class="iconbox"><img alt="Odor solutions" src="odor-solutions.png"></div>
               <div class="btxt">
                 <p class="h">Odor solutions</p>
                 <p class="d">Pets, smoke, food smells</p>
@@ -1183,7 +1118,7 @@
       </div>
     </section>
 
-    <!-- WORK (Before/After) -->
+    <!-- WORK -->
     <section class="section" id="work">
       <div class="wrap">
         <div class="reveal">
@@ -1193,7 +1128,6 @@
         </div>
 
         <div class="work-grid">
-          <!-- CASE 1 -->
           <div class="case reveal">
             <div class="case-head">
               <p class="case-title">Sectional Sofa — stain removal</p>
@@ -1216,10 +1150,9 @@
             </div>
           </div>
 
-          <!-- CASE 2 -->
           <div class="case reveal">
             <div class="case-head">
-              <p class="case-title">Mattress — refresh & sanitize</p>
+              <p class="case-title">Mattress — refresh &amp; sanitize</p>
               <div class="case-tag">Mattress</div>
             </div>
             <div class="ba">
@@ -1239,7 +1172,6 @@
             </div>
           </div>
 
-          <!-- CASE 3 -->
           <div class="case reveal">
             <div class="case-head">
               <p class="case-title">Car seats — interior deep clean</p>
@@ -1262,7 +1194,6 @@
             </div>
           </div>
 
-          <!-- CASE 4 (optional extra) -->
           <div class="case reveal">
             <div class="case-head">
               <p class="case-title">Dining chairs — refresh set</p>
@@ -1289,14 +1220,14 @@
         <div class="igcard reveal">
           <div class="left">
             <div class="t">More results on Instagram</div>
-            <div class="s">@revive.shine.idaho — before/after reels & weekly jobs</div>
+            <div class="s">@revive.shine.idaho — before/after reels &amp; weekly jobs</div>
           </div>
           <a href="https://www.instagram.com/revive.shine.idaho?igsh=YWRhZjNtY292M3Vx&utm_source=qr" target="_blank" rel="noopener">Open Instagram</a>
         </div>
       </div>
     </section>
 
-    <!-- PROCESS (Video) -->
+    <!-- PROCESS -->
     <section class="section" id="process">
       <div class="wrap">
         <div class="reveal">
@@ -1314,7 +1245,7 @@
             </video>
             <div class="vidcap">
               <p class="h">Deep extraction pass</p>
-              <p class="d">Real removalsS™ results: removing embedded dirt from fabric.</p>
+              <p class="d">Real results: removing embedded dirt from fabric.</p>
             </div>
           </div>
 
@@ -1339,7 +1270,7 @@
         <div class="reveal">
           <div class="kicker">Social proof</div>
           <div class="title">People love the results</div>
-          <p class="sub">Replace these with your real reviews when you have them.</p>
+          <p class="sub">New business — first reviews are coming soon. Meanwhile, see real before/after results above.</p>
         </div>
 
         <div class="grid two">
@@ -1411,187 +1342,182 @@
     </section>
   </main>
 
-<script>
-  // Fix: stop iOS/Safari from restoring scroll position to the middle on refresh
-  if ('scrollRestoration' in history) {
-    history.scrollRestoration = 'manual';
-  }
-
-  // Force top ONLY when opening page without a hash (so your menu anchors still work)
-  window.addEventListener('pageshow', () => {
-    if (!location.hash) {
-      setTimeout(() => window.scrollTo(0, 0), 0);
+  <script>
+    // Fix: stop iOS/Safari from restoring scroll position to the middle on refresh
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
     }
-  });
 
-  // 1) Reveal on scroll
-  const io = new IntersectionObserver((entries) => {
-    for (const e of entries) if (e.isIntersecting) e.target.classList.add('on');
-  }, { threshold: 0.12 });
-  document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    // Force top ONLY when opening page without a hash (so your menu anchors still work)
+    window.addEventListener('pageshow', () => {
+      if (!location.hash) {
+        setTimeout(() => window.scrollTo(0, 0), 0);
+      }
+    });
 
-  // 2) Benefits accordion
-  function setPanelHeight(panel, open){
-    if (!panel) return;
-    panel.style.maxHeight = open ? (panel.scrollHeight + "px") : "0px";
-  }
+    // 1) Reveal on scroll
+    const io = new IntersectionObserver((entries) => {
+      for (const e of entries) if (e.isIntersecting) e.target.classList.add('on');
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-  document.querySelectorAll('[data-acc]').forEach(btn => {
-    btn.addEventListener('click', () => {
-      const id = btn.getAttribute('data-acc');
-      const wrap = document.getElementById(id);
-      const panel = wrap ? wrap.querySelector('.panel') : null;
-      if (!wrap || !panel) return;
+    // 2) Benefits accordion
+    function setPanelHeight(panel, open){
+      if (!panel) return;
+      panel.style.maxHeight = open ? (panel.scrollHeight + "px") : "0px";
+    }
 
-      const isOpen = wrap.getAttribute('aria-expanded') === 'true';
+    document.querySelectorAll('[data-acc]').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const id = btn.getAttribute('data-acc');
+        const wrap = document.getElementById(id);
+        const panel = wrap ? wrap.querySelector('.panel') : null;
+        if (!wrap || !panel) return;
 
-      // close others
-      document.querySelectorAll('.benefit').forEach(b => {
-        if (b.id !== id) {
-          b.setAttribute('aria-expanded', 'false');
-          const bbtn = b.querySelector('button.head');
-          if (bbtn) bbtn.setAttribute('aria-expanded', 'false');
-          setPanelHeight(b.querySelector('.panel'), false);
+        const isOpen = wrap.getAttribute('aria-expanded') === 'true';
+
+        // close others
+        document.querySelectorAll('.benefit').forEach(b => {
+          if (b.id !== id) {
+            b.setAttribute('aria-expanded', 'false');
+            const bbtn = b.querySelector('button.head');
+            if (bbtn) bbtn.setAttribute('aria-expanded', 'false');
+            setPanelHeight(b.querySelector('.panel'), false);
+          }
+        });
+
+        wrap.setAttribute('aria-expanded', String(!isOpen));
+        btn.setAttribute('aria-expanded', String(!isOpen));
+        setPanelHeight(panel, !isOpen);
+      });
+    });
+
+    window.addEventListener('resize', () => {
+      document.querySelectorAll('.benefit[aria-expanded="true"]').forEach(b => {
+        setPanelHeight(b.querySelector('.panel'), true);
+      });
+    });
+
+    // 3) Floating CTA
+    const fab = document.getElementById('fab');
+    const fabBtn = document.getElementById('fabBtn');
+    const fabMenu = document.getElementById('fabMenu');
+
+    if (fab && fabBtn && fabMenu) {
+      fabBtn.addEventListener('click', (e) => {
+        e.stopPropagation();
+        const open = fab.classList.toggle('open');
+        fabMenu.setAttribute('aria-hidden', String(!open));
+      });
+
+      document.addEventListener('click', (e) => {
+        if (!fab.contains(e.target)) {
+          fab.classList.remove('open');
+          fabMenu.setAttribute('aria-hidden', 'true');
         }
       });
 
-      wrap.setAttribute('aria-expanded', String(!isOpen));
-      btn.setAttribute('aria-expanded', String(!isOpen));
-      setPanelHeight(panel, !isOpen);
-    });
-  });
+      function updateFabVisibility() {
+        const trigger = Math.max(200, window.innerHeight * 0.55);
+        const y = window.scrollY || document.documentElement.scrollTop || 0;
 
-  window.addEventListener('resize', () => {
-    document.querySelectorAll('.benefit[aria-expanded="true"]').forEach(b => {
-      setPanelHeight(b.querySelector('.panel'), true);
-    });
-  });
+        if (y > trigger) {
+          fab.classList.remove('fab-hidden');
+        } else {
+          fab.classList.add('fab-hidden');
+          fab.classList.remove('open');
+          fabMenu.setAttribute('aria-hidden', 'true');
+        }
+      }
 
-  // 3) Floating CTA circle (SAFE + CORRECT)
-  const fab = document.getElementById('fab');
-  const fabBtn = document.getElementById('fabBtn');
-  const fabMenu = document.getElementById('fabMenu');
+      updateFabVisibility();
+      window.addEventListener('scroll', updateFabVisibility, { passive: true });
+    }
 
-  if (fab && fabBtn && fabMenu) {
+    // 4) Prefill quote topic
+    function openQuoteWithTopic(topic){
+      const select = document.getElementById('topic');
+      if (!select) return;
 
-    // toggle menu on button
-    fabBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const open = fab.classList.toggle('open');
-      fabMenu.setAttribute('aria-hidden', String(!open));
-    });
+      const options = Array.from(select.options).map(o => o.text);
+      select.value = options.includes(topic) ? topic : "General";
 
-    // close when clicking outside
-    document.addEventListener('click', (e) => {
-      if (!fab.contains(e.target)) {
+      const quote = document.getElementById('quote');
+      if (quote) quote.scrollIntoView({ behavior: "smooth", block: "start" });
+
+      if (fab && fabMenu){
         fab.classList.remove('open');
         fabMenu.setAttribute('aria-hidden', 'true');
       }
-    });
 
-    // show FAB only after scrolling down
-    function updateFabVisibility() {
-      const trigger = Math.max(200, window.innerHeight * 0.55);
-      const y = window.scrollY || document.documentElement.scrollTop || 0;
-
-      if (y > trigger) {
-        fab.classList.remove('fab-hidden');
-      } else {
-        fab.classList.add('fab-hidden');
-        fab.classList.remove('open');
-        fabMenu.setAttribute('aria-hidden', 'true');
-      }
+      setTimeout(() => document.getElementById('name')?.focus(), 450);
     }
 
-    updateFabVisibility();
-    window.addEventListener('scroll', updateFabVisibility, { passive: true });
-  }
+    document.querySelectorAll('[data-open-quote]').forEach(a => {
+      a.addEventListener('click', () => {
+        const topic = a.getAttribute('data-open-quote') || "General";
+        setTimeout(() => openQuoteWithTopic(topic), 50);
+      });
+    });
 
+    // 5) Form submit via mailto
+    const quoteForm = document.getElementById("quoteForm");
+    const TO_EMAIL = "bstuashurov@gmail.com";
 
-  // 4) Prefill quote topic
-  function openQuoteWithTopic(topic){
-    const select = document.getElementById('topic');
-    if (!select) return;
+    if (quoteForm){
+      quoteForm.addEventListener("submit", (ev) => {
+        ev.preventDefault();
+        const topic = document.getElementById("topic")?.value || "";
+        const name = document.getElementById("name")?.value || "";
+        const phone = document.getElementById("phone")?.value || "";
+        const service = document.getElementById("service")?.value || "";
+        const msg = document.getElementById("msg")?.value || "";
 
-    const options = Array.from(select.options).map(o => o.text);
-    select.value = options.includes(topic) ? topic : "General";
-
-    const quote = document.getElementById('quote');
-    if (quote) quote.scrollIntoView({ behavior: "smooth", block: "start" });
-
-    if (fab && fabMenu){
-      fab.classList.remove('open');
-      fabMenu.setAttribute('aria-hidden', 'true');
+        const subject = encodeURIComponent(`Free Quote — ${topic}`);
+        const body = encodeURIComponent(
+          `Topic: ${topic}\nName: ${name}\nPhone: ${phone}\nService: ${service}\n\nMessage:\n${msg}\n\n— Sent from landing page`
+        );
+        window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
+      });
     }
 
-    setTimeout(() => document.getElementById('name')?.focus(), 450);
-  }
+    // 6) Lightbox
+    const lb = document.getElementById('lightbox');
+    const lbImg = document.getElementById('lbImg');
+    const lbTitle = document.getElementById('lbTitle');
+    const lbFoot = document.getElementById('lbFoot');
 
-  document.querySelectorAll('[data-open-quote]').forEach(a => {
-    a.addEventListener('click', () => {
-      const topic = a.getAttribute('data-open-quote') || "General";
-      setTimeout(() => openQuoteWithTopic(topic), 50);
+    function openLightbox(src, title, foot){
+      if (!lb || !lbImg || !lbTitle || !lbFoot) return;
+      lb.classList.add('open');
+      lb.setAttribute('aria-hidden', 'false');
+      lbImg.src = src;
+      lbTitle.textContent = title || "Preview";
+      lbFoot.textContent = foot || "Tap outside to close.";
+    }
+
+    function closeLightbox(){
+      if (!lb || !lbImg) return;
+      lb.classList.remove('open');
+      lb.setAttribute('aria-hidden', 'true');
+      lbImg.src = "";
+    }
+
+    document.querySelectorAll('.shot[data-lb-src]').forEach(el => {
+      el.addEventListener('click', () => {
+        openLightbox(el.dataset.lbSrc, el.dataset.lbTitle, el.dataset.lbFoot);
+      });
     });
-  });
 
-  // 5) Form submit via mailto (guarded)
-  const quoteForm = document.getElementById("quoteForm");
-  const TO_EMAIL = "bstuashurov@gmail.com";
+    if (lb){
+      lb.addEventListener('click', (e) => {
+        if (e.target && e.target.dataset && e.target.dataset.lbClose === "1") closeLightbox();
+      });
+    }
 
-  if (quoteForm){
-    quoteForm.addEventListener("submit", (ev) => {
-      ev.preventDefault();
-      const topic = document.getElementById("topic")?.value || "";
-      const name = document.getElementById("name")?.value || "";
-      const phone = document.getElementById("phone")?.value || "";
-      const service = document.getElementById("service")?.value || "";
-      const msg = document.getElementById("msg")?.value || "";
-
-      const subject = encodeURIComponent(`Free Quote — ${topic}`);
-      const body = encodeURIComponent(
-        `Topic: ${topic}\nName: ${name}\nPhone: ${phone}\nService: ${service}\n\nMessage:\n${msg}\n\n— Sent from landing page`
-      );
-      window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
+    document.addEventListener('keydown', (e) => {
+      if (e.key === "Escape" && lb && lb.classList.contains('open')) closeLightbox();
     });
-  }
-
-  // 6) Lightbox for photos (guarded)
-  const lb = document.getElementById('lightbox');
-  const lbImg = document.getElementById('lbImg');
-  const lbTitle = document.getElementById('lbTitle');
-  const lbFoot = document.getElementById('lbFoot');
-
-  function openLightbox(src, title, foot){
-    if (!lb || !lbImg || !lbTitle || !lbFoot) return;
-    lb.classList.add('open');
-    lb.setAttribute('aria-hidden', 'false');
-    lbImg.src = src;
-    lbTitle.textContent = title || "Preview";
-    lbFoot.textContent = foot || "Tap outside to close.";
-  }
-
-  function closeLightbox(){
-    if (!lb || !lbImg) return;
-    lb.classList.remove('open');
-    lb.setAttribute('aria-hidden', 'true');
-    lbImg.src = "";
-  }
-
-  document.querySelectorAll('.shot[data-lb-src]').forEach(el => {
-    el.addEventListener('click', () => {
-      openLightbox(el.dataset.lbSrc, el.dataset.lbTitle, el.dataset.lbFoot);
-    });
-  });
-
-  if (lb){
-    lb.addEventListener('click', (e) => {
-      if (e.target && e.target.dataset && e.target.dataset.lbClose === "1") closeLightbox();
-    });
-  }
-
-  document.addEventListener('keydown', (e) => {
-    if (e.key === "Escape" && lb && lb.classList.contains('open')) closeLightbox();
-  });
-</script>
+  </script>
 </body>
 </html>
