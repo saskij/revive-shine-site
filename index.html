@@ -1,0 +1,689 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Revive & Shine — Upholstery & Auto Cleaning</title>
+  <meta name="description" content="Mobile upholstery & auto interior cleaning in Boise area. Free quote — send a photo." />
+  <meta name="theme-color" content="#f7f4f0" />
+  <script>document.documentElement.classList.add('js');</script>
+
+  <style>
+    :root{
+      --bg:#f7f4f0;
+      --ink:#1d1d1d;
+      --muted:#6b6b6b;
+      --muted2:#8b8b8b;
+      --line:#e8e1d9;
+
+      --accent:#2f3a4a;
+      --gold:#b7a57a;
+
+      --paper: rgba(255,255,255,.78);
+      --paperSolid: rgba(255,255,255,.90);
+
+      --shadow: 0 22px 60px rgba(18,18,18,.10);
+      --shadow2: 0 10px 28px rgba(18,18,18,.08);
+
+      --radius: 22px;
+      --max: 1180px;
+
+      --sans: ui-sans-serif, -apple-system, system-ui, "Segoe UI", Roboto, Helvetica, Arial;
+      --serif: ui-serif, "New York", Georgia, "Times New Roman", Times, serif;
+
+      --tap: 54px;
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    html{scroll-behavior:smooth}
+    body{
+      margin:0;
+      color:var(--ink);
+      font-family: var(--sans);
+      background:
+        radial-gradient(1200px 700px at 15% 0%, rgba(47,58,74,.09), transparent 55%),
+        radial-gradient(900px 650px at 90% 15%, rgba(183,165,122,.18), transparent 58%),
+        radial-gradient(900px 700px at 40% 85%, rgba(232,225,217,.60), transparent 60%),
+        linear-gradient(180deg, var(--bg), #fbfaf8 42%, var(--bg));
+      overflow-x:hidden;
+    }
+    a{color:inherit; text-decoration:none}
+    img{max-width:100%; display:block}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:14px 14px 110px}
+
+    /* Topbar */
+    .topbar{
+      display:flex; align-items:center; justify-content:space-between; gap:10px;
+      padding:10px 12px;
+      background:rgba(255,255,255,.70);
+      border:1px solid var(--line);
+      border-radius:999px;
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(10px);
+      position:sticky; top:10px; z-index:20;
+    }
+    @media (max-width: 980px){ .topbar{position:relative; top:0} }
+
+    .brand{display:flex; gap:10px; align-items:center; min-width:0}
+    .logo{
+      width:42px; height:42px; border-radius:14px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.85);
+      display:grid; place-items:center;
+      box-shadow: 0 10px 24px rgba(18,18,18,.08);
+      flex:0 0 auto;
+    }
+    .logo svg{width:30px; height:30px}
+    .logo path{stroke:var(--accent); stroke-width:2.3; fill:none; stroke-linecap:round; stroke-linejoin:round}
+
+    .brandtxt{min-width:0}
+    .brandname{font-family:var(--serif); font-weight:900; letter-spacing:.2px; line-height:1.05}
+    .brandsub{font-size:12px; color:var(--muted); white-space:nowrap; overflow:hidden; text-overflow:ellipsis}
+
+    .nav{display:flex; gap:8px; flex-wrap:wrap; justify-content:flex-end}
+    .pill{
+      font-size:13px;
+      padding:9px 12px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.65);
+      white-space:nowrap;
+      transition: transform .15s ease, background .15s ease;
+    }
+    .pill:hover{transform: translateY(-1px); background:rgba(255,255,255,.92)}
+
+    .ctaTop{
+      font-size:13px;
+      padding:9px 13px;
+      border-radius:999px;
+      border:1px solid rgba(47,58,74,.18);
+      background: linear-gradient(180deg, rgba(183,165,122,.95), rgba(167,150,105,.95));
+      color:#fff;
+      font-weight:900;
+      box-shadow: 0 14px 30px rgba(47,58,74,.10);
+    }
+
+    /* Mobile sticky bar */
+    .mobileBar{
+      position:fixed; left:12px; right:12px; bottom:12px;
+      z-index:50;
+      display:none; gap:10px;
+      padding:10px;
+      background: rgba(255,255,255,.78);
+      border:1px solid var(--line);
+      border-radius: 18px;
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(10px);
+    }
+    .mobileBar a{
+      flex:1;
+      height:var(--tap);
+      display:flex; align-items:center; justify-content:center;
+      border-radius: 16px;
+      font-weight:900;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.90);
+      transition: transform .15s ease;
+    }
+    .mobileBar a:active{transform: translateY(1px)}
+    .mobileBar a.primary{
+      background: linear-gradient(180deg, rgba(183,165,122,.95), rgba(167,150,105,.95));
+      color:#fff;
+      border-color: rgba(47,58,74,.12);
+    }
+    @media (max-width: 860px){ .mobileBar{display:flex} }
+
+    /* Render-like HERO */
+    .hero{
+      margin-top:14px;
+      min-height: 640px;
+      border-radius: 28px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.60);
+      box-shadow: var(--shadow);
+      overflow:hidden;
+      position:relative;
+    }
+
+    /* couch background layer */
+    .heroBg{
+      position:absolute; inset:0;
+      z-index:0;
+      pointer-events:none;
+    }
+    .heroBg img{
+      width:100%; height:100%;
+      object-fit: cover;
+      object-position: 50% 62%;
+      filter: saturate(1.02) contrast(1.02);
+      transform: scale(1.00);
+    }
+    /* subtle "before" darkening (left) like your request */
+    .heroBg .beforeShade{
+      position:absolute; inset:0;
+      background: linear-gradient(90deg,
+        rgba(29,29,29,.24) 0%,
+        rgba(29,29,29,.14) 26%,
+        rgba(29,29,29,.06) 42%,
+        rgba(29,29,29,0) 58%);
+      mix-blend-mode:multiply;
+    }
+    /* soft haze to match render */
+    .heroBg .haze{
+      position:absolute; inset:0;
+      background:
+        radial-gradient(900px 380px at 18% 20%, rgba(255,255,255,.70), transparent 58%),
+        radial-gradient(900px 380px at 78% 18%, rgba(255,255,255,.40), transparent 62%),
+        linear-gradient(180deg, rgba(255,255,255,.30), rgba(255,255,255,.05));
+    }
+
+    .heroInner{
+      position:relative;
+      z-index:1;
+      padding:20px;
+      display:grid;
+      grid-template-columns: 1.05fr .95fr;
+      gap:14px;
+      align-items:start;
+    }
+    @media (max-width: 980px){
+      .heroInner{grid-template-columns:1fr; padding:16px}
+    }
+
+    .heroText{
+      padding:8px 6px 0;
+    }
+
+    .kicker{display:flex; flex-wrap:wrap; gap:8px; margin:0 0 10px}
+    .tag{
+      font-size:12px;
+      padding:7px 10px;
+      border-radius:999px;
+      border:1px solid rgba(232,225,217,.95);
+      background: rgba(255,255,255,.74);
+      color: var(--muted);
+      backdrop-filter: blur(10px);
+    }
+
+    h1{
+      margin:8px 0 10px;
+      font-family: var(--serif);
+      font-weight:900;
+      font-size:52px;
+      line-height:1.02;
+      letter-spacing:-.9px;
+      color:#202020;
+      text-shadow: 0 10px 26px rgba(18,18,18,.08);
+    }
+    @media (max-width: 520px){ h1{font-size:36px} }
+
+    .lead{
+      margin:0 0 12px;
+      color: var(--muted);
+      font-size:16px;
+      line-height:1.65;
+      max-width: 62ch;
+      background: rgba(255,255,255,.45);
+      border:1px solid rgba(232,225,217,.75);
+      border-radius: 18px;
+      padding:12px 12px;
+      backdrop-filter: blur(10px);
+    }
+
+    .actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:10px}
+    .btn{
+      height:48px;
+      display:inline-flex; align-items:center; justify-content:center;
+      padding:0 16px;
+      border-radius: 16px;
+      border:1px solid rgba(232,225,217,.95);
+      background: rgba(255,255,255,.78);
+      font-weight:900;
+      transition: transform .15s ease, background .15s ease;
+      backdrop-filter: blur(10px);
+    }
+    .btn:hover{transform: translateY(-1px); background: rgba(255,255,255,.94)}
+    .btn:active{transform: translateY(1px)}
+    .btnPrimary{
+      border:1px solid rgba(47,58,74,.10);
+      background: linear-gradient(180deg, rgba(183,165,122,.95), rgba(167,150,105,.95));
+      color:#fff;
+      box-shadow: 0 16px 34px rgba(47,58,74,.10);
+    }
+
+    /* Feature strip centered like render */
+    .featureStrip{
+      margin-top:16px;
+      padding:12px;
+      border-radius: 20px;
+      border:1px solid rgba(232,225,217,.95);
+      background: rgba(255,255,255,.70);
+      display:grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap:10px;
+      backdrop-filter: blur(10px);
+    }
+    @media (max-width: 980px){ .featureStrip{grid-template-columns:1fr 1fr} }
+
+    .feat{
+      display:flex; gap:10px; align-items:center;
+      padding:10px;
+      border-radius: 16px;
+      border:1px solid rgba(232,225,217,.9);
+      background: rgba(255,255,255,.76);
+    }
+    .feat img{
+      width:44px; height:44px;
+      border-radius: 12px;
+      object-fit: cover;
+      object-position: 50% 62%;
+      border:1px solid #e6dfd6;
+      flex:0 0 auto;
+      filter:saturate(1.02) contrast(1.02);
+    }
+    .feat b{display:block; font-size:13px}
+    .feat span{display:block; font-size:12px; color:var(--muted2); margin-top:2px}
+
+    /* Form card overlay vibe */
+    .formCard{
+      border-radius: 24px;
+      border:1px solid rgba(232,225,217,.95);
+      background: rgba(255,255,255,.80);
+      box-shadow: 0 18px 50px rgba(18,18,18,.12);
+      backdrop-filter: blur(12px);
+      padding:16px;
+    }
+    .formTitle{
+      margin:2px 0 6px;
+      font-family: var(--serif);
+      font-weight:900;
+      font-size:22px;
+      letter-spacing:-.2px;
+    }
+    .formSub{margin:0 0 12px; color:var(--muted); font-size:13px; line-height:1.5}
+
+    label{display:block; font-size:12px; color:var(--muted); margin:0 0 6px}
+    input, textarea, select{
+      width:100%;
+      padding:12px 12px;
+      border-radius: 14px;
+      border:1px solid rgba(232,225,217,.95);
+      background: rgba(255,255,255,.92);
+      color: var(--ink);
+      outline:none;
+      font-family: var(--sans);
+    }
+    input:focus, textarea:focus, select:focus{
+      border-color: rgba(47,58,74,.30);
+      box-shadow: 0 0 0 4px rgba(47,58,74,.08);
+    }
+    textarea{min-height:92px; resize:vertical}
+    .grid2{display:grid; grid-template-columns:1fr 1fr; gap:10px}
+    @media (max-width: 420px){ .grid2{grid-template-columns:1fr} }
+    .row{margin-bottom:10px}
+    .submit{
+      height:54px;
+      width:100%;
+      border:0;
+      border-radius: 16px;
+      cursor:pointer;
+      font-weight:900;
+      background: linear-gradient(180deg, rgba(183,165,122,.95), rgba(167,150,105,.95));
+      color:#fff;
+      box-shadow: 0 16px 34px rgba(47,58,74,.10);
+      transition: transform .15s ease, filter .15s ease;
+    }
+    .submit:hover{filter:brightness(1.03)}
+    .submit:active{transform: translateY(1px)}
+
+    .trust{display:flex; flex-wrap:wrap; gap:8px; margin-top:10px; font-size:12px; color:var(--muted2)}
+    .chip{padding:8px 10px; border-radius:999px; border:1px solid rgba(232,225,217,.95); background: rgba(255,255,255,.82)}
+
+    /* Reviews like render (two cards below features) */
+    .reviewsRow{
+      margin-top:14px;
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap:12px;
+    }
+    @media (max-width: 760px){ .reviewsRow{grid-template-columns:1fr} }
+
+    .review{
+      padding:14px;
+      border-radius: 20px;
+      border:1px solid rgba(232,225,217,.95);
+      background: rgba(255,255,255,.74);
+      box-shadow: var(--shadow2);
+      backdrop-filter: blur(10px);
+    }
+    .stars{letter-spacing:1px; color: var(--gold); font-weight:900}
+    .review p{margin:8px 0 0; color:var(--muted); line-height:1.55}
+    .who{margin-top:10px; font-size:12px; color:var(--muted2)}
+
+    /* Sections below hero */
+    section{margin-top:16px}
+    .sectionTitle{
+      margin:0 0 10px;
+      font-family: var(--serif);
+      font-weight:900;
+      font-size:26px;
+      letter-spacing:-.2px;
+    }
+    .grid3{display:grid; grid-template-columns:repeat(3, 1fr); gap:12px}
+    @media (max-width: 980px){ .grid3{grid-template-columns:1fr} }
+    .mini{
+      padding:14px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow2);
+    }
+    .mini h3{margin:0 0 6px; font-size:15px; font-weight:900}
+    .mini p{margin:0; color:var(--muted); line-height:1.55}
+
+    details{
+      border-radius: 20px;
+      border:1px solid var(--line);
+      background: rgba(255,255,255,.72);
+      box-shadow: var(--shadow2);
+      padding:12px;
+    }
+    summary{cursor:pointer; font-weight:900; list-style:none}
+    summary::-webkit-details-marker{display:none}
+    details p{margin:8px 0 0; color:var(--muted); line-height:1.55}
+
+    footer{
+      margin-top:18px;
+      padding-top:14px;
+      border-top:1px solid var(--line);
+      color:var(--muted2);
+      font-size:12px;
+      display:flex; gap:10px; flex-wrap:wrap; justify-content:space-between;
+    }
+
+    /* Animations (safe if JS blocked: visible by default) */
+    @media (prefers-reduced-motion:no-preference){
+      .reveal{opacity:1; transform:none; transition: opacity .6s ease, transform .6s ease}
+      html.js .reveal{opacity:0; transform: translateY(10px)}
+      html.js .reveal.in{opacity:1; transform: translateY(0)}
+      .floaty{animation: floaty 6s ease-in-out infinite}
+      @keyframes floaty{ 0%,100%{transform: translateY(0)} 50%{transform: translateY(-4px)} }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="wrap">
+
+    <div class="topbar reveal">
+      <a class="brand" href="#top">
+        <div class="logo" aria-hidden="true">
+          <svg viewBox="0 0 48 48" aria-hidden="true">
+            <path d="M10 22 L24 10 L38 22"></path>
+            <path d="M14 20 V38 H34 V20"></path>
+            <path d="M21 38 V28 H27 V38"></path>
+          </svg>
+        </div>
+        <div class="brandtxt">
+          <div class="brandname">Revive &amp; Shine</div>
+          <div class="brandsub">Upholstery &amp; Auto Cleaning • Boise, Idaho</div>
+        </div>
+      </a>
+
+      <div class="nav">
+        <a class="pill" href="#services">Services</a>
+        <a class="pill" href="#reviews">Reviews</a>
+        <a class="pill" href="#faq">FAQ</a>
+        <a class="ctaTop js-scroll" href="#estimate">Get a Free Quote</a>
+      </div>
+    </div>
+
+    <!-- HERO (render-like) -->
+    <div id="top" class="hero reveal">
+      <div class="heroBg" aria-hidden="true">
+        <!-- Put your render PNG here -->
+        <img src="images/hero-couch.png" alt="">
+        <div class="beforeShade"></div>
+        <div class="haze"></div>
+      </div>
+
+      <div class="heroInner">
+        <div class="heroText">
+          <div class="kicker">
+            <span class="tag">Mobile service — we come to you</span>
+            <span class="tag">Sofas • Mattresses • Car seats</span>
+            <span class="tag">Boise • Meridian • Nampa • Caldwell</span>
+          </div>
+
+          <h1>Make it look like new again</h1>
+
+          <p class="lead">
+            Deep extraction cleaning for upholstery and auto interiors. Remove embedded dirt, odors, and most stains.
+            For the most accurate quote, send a photo.
+          </p>
+
+          <div class="actions">
+            <a class="btn btnPrimary js-scroll" href="#estimate">Get a Free Quote</a>
+            <a class="btn" href="sms:+15043279193?&body=Hi%20Revive%20%26%20Shine!%20I%20want%20a%20free%20quote.%20City:%20____.%20Service:%20____.%20I%20can%20send%20a%20photo.%20">Text us</a>
+            <a class="btn" href="tel:+15043279193">Call</a>
+          </div>
+
+          <div class="featureStrip floaty">
+            <div class="feat">
+              <img src="images/clean-finish.png" alt="">
+              <div><b>Clean & cozy finish</b><span>Premium look for your home</span></div>
+            </div>
+            <div class="feat">
+              <img src="images/fast-scheduling.png" alt="">
+              <div><b>Fast scheduling</b><span>Same-week availability</span></div>
+            </div>
+            <div class="feat">
+              <img src="images/real-extraction.png" alt="">
+              <div><b>Real extraction</b><span>You see the dirt removed</span></div>
+            </div>
+            <div class="feat">
+              <img src="images/odor-solutions.png" alt="">
+              <div><b>Odor solutions</b><span>Pet & organic odors</span></div>
+            </div>
+          </div>
+
+          <div id="reviews" class="reviewsRow">
+            <div class="review">
+              <div class="stars">★★★★★</div>
+              <p>“The sofa looks brand new. Great results and super professional service.”</p>
+              <div class="who">— Boise client</div>
+            </div>
+            <div class="review">
+              <div class="stars">★★★★★</div>
+              <p>“Excellent service — my car seats look amazing now. Thank you!”</p>
+              <div class="who">— Meridian client</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="formCard" id="estimate">
+          <h2 class="formTitle">Get a free quote today</h2>
+          <p class="formSub">Fill this out — it opens an email to us with your details (no backend needed).</p>
+
+          <form id="leadForm">
+            <div class="grid2">
+              <div class="row">
+                <label for="name">Name</label>
+                <input id="name" name="name" placeholder="Your name" required />
+              </div>
+              <div class="row">
+                <label for="phone">Phone</label>
+                <input id="phone" name="phone" placeholder="(208) 555-1234" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="email">Email (optional)</label>
+              <input id="email" name="email" placeholder="you@email.com" />
+            </div>
+
+            <div class="grid2">
+              <div class="row">
+                <label for="city">City</label>
+                <select id="city" name="city" required>
+                  <option value="" selected disabled>Select</option>
+                  <option>Boise</option>
+                  <option>Meridian</option>
+                  <option>Nampa</option>
+                  <option>Caldwell</option>
+                  <option>Eagle</option>
+                  <option>Other</option>
+                </select>
+              </div>
+              <div class="row">
+                <label for="service">Service</label>
+                <select id="service" name="service" required>
+                  <option value="" selected disabled>Select</option>
+                  <option>Upholstery (sofa/sectional)</option>
+                  <option>Mattress cleaning</option>
+                  <option>Auto interior cleaning</option>
+                  <option>Spot / stain treatment</option>
+                  <option>Odor / pet treatment</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="row">
+              <label for="details">Message (optional)</label>
+              <textarea id="details" name="details" placeholder="Size, stains, pets, fabric type…"></textarea>
+            </div>
+
+            <button class="submit" type="submit">Get a Free Quote</button>
+
+            <div class="trust">
+              <span class="chip">Free quote</span>
+              <span class="chip">Send a photo</span>
+              <span class="chip">Boise area</span>
+            </div>
+          </form>
+
+          <div class="trust" style="margin-top:12px">
+            <span class="chip"><a href="tel:+15043279193">Call: +1 (504) 327-9193</a></span>
+            <span class="chip"><a href="sms:+15043279193?&body=Hi%20Revive%20%26%20Shine!%20I%20want%20a%20free%20quote.%20City:%20____.%20Service:%20____.%20I%20can%20send%20a%20photo.%20">Text us</a></span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <section id="services" class="reveal">
+      <h2 class="sectionTitle">Services</h2>
+      <div class="grid3">
+        <div class="mini">
+          <h3>Upholstery</h3>
+          <p>Sofas, sectionals, chairs — deep extraction + spot treatment.</p>
+        </div>
+        <div class="mini">
+          <h3>Mattresses</h3>
+          <p>Refresh feel, remove odors, and treat spots.</p>
+        </div>
+        <div class="mini">
+          <h3>Auto Interiors</h3>
+          <p>Seats, carpets, mats — deep clean and odor solutions.</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="faq" class="reveal">
+      <h2 class="sectionTitle">FAQ</h2>
+      <div style="display:grid; gap:10px;">
+        <details>
+          <summary>How long does it take?</summary>
+          <p>Usually 1–3 hours depending on size, fabric, and stain severity.</p>
+        </details>
+        <details>
+          <summary>How fast does it dry?</summary>
+          <p>Dry time varies by fabric and airflow. We recommend fans + ventilation for faster drying.</p>
+        </details>
+        <details>
+          <summary>Do you remove all stains?</summary>
+          <p>Many improve significantly, but some may be permanent depending on age/type. We set expectations upfront.</p>
+        </details>
+        <details>
+          <summary>Where do you serve?</summary>
+          <p>Boise, Meridian, Nampa, Caldwell, Eagle, and nearby areas.</p>
+        </details>
+      </div>
+    </section>
+
+    <footer class="reveal">
+      <div>© <span id="year"></span> Revive &amp; Shine • Boise, Idaho</div>
+      <div>
+        <a class="js-scroll" href="#estimate">Free Quote</a> •
+        <a href="tel:+15043279193">Call</a> •
+        <a href="sms:+15043279193?&body=Hi%20Revive%20%26%20Shine!%20I%20want%20a%20free%20quote.%20City:%20____.%20Service:%20____.%20I%20can%20send%20a%20photo.%20">Text</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <div class="mobileBar" aria-label="Quick actions">
+    <a class="primary js-scroll" href="#estimate">Free Quote</a>
+    <a href="sms:+15043279193?&body=Hi%20Revive%20%26%20Shine!%20I%20want%20a%20free%20quote.%20City:%20____.%20Service:%20____.%20I%20can%20send%20a%20photo.%20">Text</a>
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Auto-scroll + focus
+    document.querySelectorAll('.js-scroll').forEach(el=>{
+      el.addEventListener('click', (e)=>{
+        const href = el.getAttribute('href') || '';
+        if(!href.startsWith('#')) return;
+        const target = document.querySelector(href);
+        if(!target) return;
+        e.preventDefault();
+        target.scrollIntoView({behavior:'smooth', block:'start'});
+        setTimeout(()=>{ const first = target.querySelector('input,select,textarea'); if(first) first.focus(); }, 520);
+      });
+    });
+
+    // Form -> mailto (no backend)
+    document.getElementById('leadForm').addEventListener('submit', function(e){
+      e.preventDefault();
+      const name = document.getElementById('name').value.trim();
+      const phone = document.getElementById('phone').value.trim();
+      const email = document.getElementById('email').value.trim();
+      const city = document.getElementById('city').value;
+      const service = document.getElementById('service').value;
+      const details = document.getElementById('details').value.trim();
+
+      const to = "bstuashurov@gmail.com";
+      const subject = encodeURIComponent(`Free Quote — ${city}`);
+      const body = encodeURIComponent(
+`Hi Revive & Shine,
+
+I would like a free quote.
+
+Name: ${name}
+Phone: ${phone}
+Email: ${email || "(not provided)"}
+City: ${city}
+Service: ${service}
+
+Message:
+${details || "(no additional details)"}
+
+I can send photos if needed.
+
+Thank you!`
+      );
+      window.location.href = `mailto:${to}?subject=${subject}&body=${body}`;
+    });
+
+    // Reveal animations
+    const io = new IntersectionObserver((entries)=>{
+      entries.forEach(en=>{
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold: 0.12});
+    document.querySelectorAll('.reveal').forEach(el=>io.observe(el));
+  </script>
+</body>
+</html>
