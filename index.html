@@ -827,53 +827,63 @@
   text-decoration:none;
 }
 
-/* ===== FAB button hover / attention animation ===== */
+/* ===== FAB button hover + pulse (NO transform conflict) ===== */
 
-/* Smooth hover + focus */
 .fab-main{
-  transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
+  position: relative;
+  transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
   will-change: transform;
 }
 
-/* On hover (desktop) */
+/* Hover (desktop) */
 @media (hover:hover){
   .fab-main:hover{
-    transform: translateY(-2px) scale(1.04);
-    filter: brightness(1.03);
+    transform: translateY(-2px) scale(1.05);
+    filter: brightness(1.04);
     box-shadow: 0 22px 52px rgba(0,0,0,.22);
   }
 }
 
-/* On tap (mobile) */
+/* Tap feedback (mobile) */
 .fab-main:active{
   transform: scale(.98);
 }
 
-/* Keyboard focus */
+/* Focus (keyboard) */
 .fab-main:focus-visible{
   outline: none;
   box-shadow: 0 0 0 4px rgba(183,165,122,.35), 0 22px 52px rgba(0,0,0,.22);
 }
 
-/* Optional: subtle "wiggle" to attract attention every ~8s */
-@keyframes fabWiggle{
-  0%, 88%, 100% { transform: translateY(0) scale(1); }
-  90% { transform: translateY(-2px) scale(1.05); }
-  92% { transform: translateY(0) scale(1); }
-  94% { transform: translateY(-1px) scale(1.03); }
-  96% { transform: translateY(0) scale(1); }
+/* Pulse ring to attract attention (works on mobile + Safari) */
+.fab-main::after{
+  content:"";
+  position:absolute;
+  inset:-6px;
+  border-radius:999px;
+  border: 2px solid rgba(255,255,255,.45);
+  opacity: 0;
+  transform: scale(1);
+  pointer-events:none;
 }
 
-/* Turn on wiggle (respects reduced motion below) */
-.fab-main{
-  animation: fabWiggle 8s ease-in-out infinite;
+/* Pulse animation (does NOT use transform on the button itself) */
+@keyframes fabPulse{
+  0%   { opacity: 0; transform: scale(1); }
+  15%  { opacity: .55; }
+  60%  { opacity: 0; transform: scale(1.18); }
+  100% { opacity: 0; transform: scale(1.18); }
 }
 
-/* Respect users who prefer reduced motion */
+/* Run pulse periodically */
+.fab-main::after{
+  animation: fabPulse 3.2s ease-out infinite;
+}
+
+/* Respect reduced-motion */
 @media (prefers-reduced-motion: reduce){
-  .fab-main{ animation: none; }
-}
-    
+  .fab-main::after{ animation: none; }
+}    
   </style>
 </head>
 
