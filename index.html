@@ -57,7 +57,6 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    /* Keep inner content centered and padded */
     .wrap{
       width: min(var(--max), 100%);
       padding: 0 var(--pad);
@@ -320,9 +319,7 @@
       line-height: 1.4;
     }
 
-    /* Sticky CTA (mobile)
-       - Visible only on screens with data-show-sticky="1"
-       - Can "dim" while user scrolls inside that screen */
+    /* Sticky CTA (mobile) */
     .sticky{
       position: fixed;
       z-index: 60;
@@ -333,15 +330,11 @@
 
       opacity: 0;
       transform: translateX(-50%) translateY(18px);
-      transition: opacity .25s ease, transform .25s ease, filter .25s ease;
+      transition: opacity .25s ease, transform .25s ease;
     }
     .sticky.is-visible{
       opacity: 1;
       transform: translateX(-50%) translateY(0);
-    }
-    .sticky.is-dim{
-      opacity: .35;
-      transform: translateX(-50%) translateY(10px);
     }
 
     .sticky .dock{
@@ -355,9 +348,27 @@
       backdrop-filter: blur(16px);
       -webkit-backdrop-filter: blur(16px);
       box-shadow: 0 14px 40px rgba(0,0,0,.12);
+      transition: padding .22s ease, gap .22s ease;
     }
+
+    /* Full (3 buttons) */
+    .dock.full .cta{ flex: 1 1 auto; }
+    .dock.full .secondary{ display:inline-flex; }
+
+    /* Collapsed (1 button) */
+    .dock.mini{
+      padding: 8px;
+      gap: 0;
+    }
+    .dock.mini .secondary{ display:none; }
+    .dock.mini .cta{
+      width: 100%;
+    }
+
     .dock a{
-      flex: 1 1 auto;
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
       text-align:center;
       padding: 14px 12px;
       border-radius: 16px;
@@ -366,7 +377,10 @@
       border: 1px solid rgba(0,0,0,.10);
       color: var(--ink);
       background: rgba(255,255,255,.75);
+      transition: transform .18s ease;
     }
+    .dock a:active{ transform: scale(.985); }
+
     .dock a.primary{
       border: none;
       background: linear-gradient(180deg, var(--gold), var(--gold2));
@@ -394,7 +408,7 @@
     @media (prefers-reduced-motion: reduce){
       .snap{ scroll-behavior:auto; }
       .reveal{ transition:none; opacity:1; transform:none; }
-      .btn, .chip, .sticky{ transition:none; }
+      .btn, .chip, .sticky, .dock{ transition:none; }
     }
   </style>
 </head>
@@ -415,11 +429,11 @@
   </div>
 
   <!-- Sticky CTA (mobile) -->
-  <div class="sticky" id="stickyCta">
-    <div class="dock">
-      <a class="primary" href="#quote">Free Quote</a>
-      <a href="sms:+12081234567">Text</a>
-      <a href="tel:+12081234567">Call</a>
+  <div class="sticky" id="stickyCta" aria-label="Quick actions">
+    <div class="dock full" id="stickyDock">
+      <a class="primary cta" href="#quote">Free Quote</a>
+      <a class="secondary" href="sms:+12081234567">Text</a>
+      <a class="secondary" href="tel:+12081234567">Call</a>
     </div>
   </div>
 
@@ -582,10 +596,23 @@
       window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
     });
 
-    // Sticky visibility rules (show only when BENEFITS or REVIEWS visible)
+    // Sticky rules:
+    // - Show only on sections with data-show-sticky="1" (benefits + reviews)
+    // - Collapse to single button when user scrolls down inside that screen
     const sticky = document.getElementById('stickyCta');
+    const dock = document.getElementById('stickyDock');
     const showSections = Array.from(document.querySelectorAll('[data-show-sticky="1"]'));
     const visibleSet = new Set();
+
+    function setDockMode(isMini){
+      if (isMini){
+        dock.classList.remove('full');
+        dock.classList.add('mini');
+      } else {
+        dock.classList.remove('mini');
+        dock.classList.add('full');
+      }
+    }
 
     const stickyObs = new IntersectionObserver((entries) => {
       for (const e of entries) {
@@ -599,31 +626,26 @@
 
     showSections.forEach(sec => stickyObs.observe(sec));
 
-    // Dim sticky while user scrolls down inside the current screen
-    // - If scrollTop > 24px => dim
-    // - If scrollTop <= 24px => normal
-    function updateStickyDimFor(el){
-      if (!sticky.classList.contains('is-visible')) {
-        sticky.classList.remove('is-dim');
-        return;
-      }
-      const y = el.scrollTop || 0;
-      if (y > 24) sticky.classList.add('is-dim');
-      else sticky.classList.remove('is-dim');
+    // Collapse while scrolling inside current screen
+    function updateDockFor(sec){
+      if (!sticky.classList.contains('is-visible')) return;
+      const y = sec.scrollTop || 0;
+      // after small scroll, collapse
+      setDockMode(y > 18);
     }
 
-    // Attach scroll listeners to each "show sticky" screen (benefits, reviews)
     showSections.forEach(sec => {
-      sec.addEventListener('scroll', () => updateStickyDimFor(sec), { passive: true });
+      sec.addEventListener('scroll', () => updateDockFor(sec), { passive: true });
     });
 
-    // Also re-check when switching sections (intersection changes)
-    const dimResetObs = new IntersectionObserver((entries) => {
+    // When a show-section becomes the main visible one, set correct mode immediately
+    const activeObs = new IntersectionObserver((entries) => {
       for (const e of entries) {
-        if (e.isIntersecting) updateStickyDimFor(e.target);
+        if (e.isIntersecting) updateDockFor(e.target);
       }
     }, { threshold: 0.6 });
-    showSections.forEach(sec => dimResetObs.observe(sec));
+
+    showSections.forEach(sec => activeObs.observe(sec));
 
     // Optional: snap-scroll "next screen" (desktop)
     document.addEventListener("keydown", (e) => {
