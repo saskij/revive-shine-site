@@ -526,17 +526,20 @@
 .fab button, .fab a{ -webkit-tap-highlight-color: transparent; }
 
 .fab-main{
-  width: 58px;
-  height: 58px;
+  height: 56px;
+  padding: 0 18px;
   border-radius: 999px;
-  border: 1px solid rgba(0,0,0,.10);
+  border: 1px solid rgba(0,0,0,.12);
   background: linear-gradient(180deg, var(--gold), var(--gold2));
   color:#fff;
-  font-weight: 980;
+  font-weight: 900;
+  font-size: 15px;
   box-shadow: 0 18px 40px rgba(0,0,0,.18);
-  display:grid;
-  place-items:center;
+  display:flex;
+  align-items:center;
+  gap:10px;
   cursor:pointer;
+  white-space: nowrap;
 }
 
 .fab-menu{
@@ -756,8 +759,9 @@
         Tip: for the most accurate quote, text a photo after submitting.
       </div>
     </div>
-    <button class="fab-main" id="fabBtn" aria-label="Open quick actions">≡</button>
-  </div>
+<button id="fabBtn" class="fab-main" aria-label="Contact us">
+  💬 Contact us
+</button>  </div>
 
   <!-- Lightbox -->
   <div class="lightbox" id="lightbox" aria-hidden="true">
