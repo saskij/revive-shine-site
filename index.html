@@ -647,24 +647,78 @@
       .fab-menu{ transition:none; }
     }
     :target{ scroll-margin-top: 92px; }
+
+    /* ===== Brand (logo + text) ===== */
+.brandlink{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  text-decoration:none;
+  color: var(--ink);
+  font-weight: 900;
+}
+
+.logo{
+  width:34px;
+  height:34px;
+  border-radius:12px;
+  background: rgba(183,165,122,.18);
+  border:1px solid rgba(183,165,122,.28);
+  display:grid;
+  place-items:center;
+  overflow:hidden;
+  flex:0 0 auto;
+}
+
+.logo img{
+  width:100%;
+  height:100%;
+  object-fit:contain;
+  display:block;
+}
+
+.brandtext{
+  white-space:nowrap;
+  font-weight:900;
+  letter-spacing:.2px;
+}
+
+.brandtext .full{ display:inline; }
+.brandtext .short{ display:none; }
+
+/* Mobile: show R&S instead of full name */
+@media (max-width:520px){
+  .brandtext .full{ display:none; }
+  .brandtext .short{ display:inline; }
+}
   </style>
 </head>
 
 <body>
   <!-- Floating top bar -->
-  <div class="topbar">
-    <div class="bar">
-      <div class="brand">
-        <div class="mark">⌂</div>
-        <div class="name">Revive & Shine</div>
-      </div>
-      <div class="navchips">
-        <a class="chip" href="#benefits">Value</a>
-        <a class="chip" href="#work">Work</a>
-        <a class="chip primary" href="#quote" data-open-quote="General">Free Quote</a>
-      </div>
+<!-- TOPBAR -->
+<div class="topbar">
+  <div class="bar">
+    <!-- Brand: logo + R&S, always clickable to top -->
+    <a class="brandlink" href="#top" aria-label="Back to top">
+      <span class="logo">
+        <img src="logo.png" alt="Revive & Shine logo"
+             onerror="this.onerror=null; this.style.display='none'; this.parentElement.classList.add('noimg'); this.parentElement.textContent='R';">
+      </span>
+
+      <span class="brandtext">
+        <span class="full">Revive &amp; Shine</span>
+        <span class="short">R&amp;S</span>
+      </span>
+    </a>
+
+    <div class="navchips">
+      <a class="chip" href="#value">Value</a>
+      <a class="chip" href="#work">Work</a>
+      <a class="chip primary" href="#quote" id="navFreeQuote">Free Quote</a>
     </div>
   </div>
+</div>
 
   <!-- Floating circle CTA -->
   <div class="fab" id="fab">
