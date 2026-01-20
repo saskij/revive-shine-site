@@ -826,6 +826,53 @@
   color:#fff !important;
   text-decoration:none;
 }
+
+/* ===== FAB button hover / attention animation ===== */
+
+/* Smooth hover + focus */
+.fab-main{
+  transition: transform .16s ease, filter .16s ease, box-shadow .16s ease;
+  will-change: transform;
+}
+
+/* On hover (desktop) */
+@media (hover:hover){
+  .fab-main:hover{
+    transform: translateY(-2px) scale(1.04);
+    filter: brightness(1.03);
+    box-shadow: 0 22px 52px rgba(0,0,0,.22);
+  }
+}
+
+/* On tap (mobile) */
+.fab-main:active{
+  transform: scale(.98);
+}
+
+/* Keyboard focus */
+.fab-main:focus-visible{
+  outline: none;
+  box-shadow: 0 0 0 4px rgba(183,165,122,.35), 0 22px 52px rgba(0,0,0,.22);
+}
+
+/* Optional: subtle "wiggle" to attract attention every ~8s */
+@keyframes fabWiggle{
+  0%, 88%, 100% { transform: translateY(0) scale(1); }
+  90% { transform: translateY(-2px) scale(1.05); }
+  92% { transform: translateY(0) scale(1); }
+  94% { transform: translateY(-1px) scale(1.03); }
+  96% { transform: translateY(0) scale(1); }
+}
+
+/* Turn on wiggle (respects reduced motion below) */
+.fab-main{
+  animation: fabWiggle 8s ease-in-out infinite;
+}
+
+/* Respect users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce){
+  .fab-main{ animation: none; }
+}
     
   </style>
 </head>
