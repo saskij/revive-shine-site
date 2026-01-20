@@ -1099,6 +1099,20 @@
   </main>
 
   <script>
+
+    <script>
+  if ('scrollRestoration' in history) {
+    history.scrollRestoration = 'manual';
+  }
+  window.addEventListener('load', () => {
+    if (location.hash) {
+      history.replaceState(null, document.title, location.pathname + location.search);
+    }
+    window.scrollTo(0, 0);
+  });
+
+  /* дальше твой JS */
+    
     // 1) Reveal on scroll
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) if (e.isIntersecting) e.target.classList.add('on');
