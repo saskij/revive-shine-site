@@ -788,25 +788,43 @@
   line-height: 1.45;
 }
 
-    /* ===== Fix visited/active link color in top menu ===== */
-.nav a,
-.nav a:link,
-.nav a:visited,
-.nav a:active,
-.nav a:focus {
+/* ===== Fix visited/active link color in top menu (navchips) ===== */
+.navchips a,
+.navchips a:link,
+.navchips a:visited,
+.navchips a:active,
+.navchips a:focus,
+.navchips a:hover{
   color: var(--ink);
   text-decoration: none;
   outline: none;
 }
 
-/* Optional hover style */
-.nav a:hover {
-  opacity: .85;
+/* Safari iOS tap highlight off */
+.navchips a{
+  -webkit-tap-highlight-color: transparent;
 }
 
-/* Remove Safari blue tap highlight */
-.nav a {
-  -webkit-tap-highlight-color: transparent;
+/* IMPORTANT: make Value (pill) not purple/blue after click */
+.navchips a.pill,
+.navchips a.pill:link,
+.navchips a.pill:visited,
+.navchips a.pill:active,
+.navchips a.pill:focus,
+.navchips a.pill:hover{
+  color: var(--ink) !important;
+  text-decoration: none !important;
+}
+
+/* keep primary button white text */
+.navchips a.primary,
+.navchips a.primary:link,
+.navchips a.primary:visited,
+.navchips a.primary:active,
+.navchips a.primary:focus,
+.navchips a.primary:hover{
+  color:#fff !important;
+  text-decoration:none;
 }
     
   </style>
@@ -831,7 +849,7 @@
     </a>
 
     <div class="navchips">
-      <a class="pill" href="#value">Value</a>
+      <a class="chip" href="#value">Value</a>
       <a class="chip" href="#work">Work</a>
       <a class="chip primary" href="#quote" id="navFreeQuote">Free Quote</a>
     </div>
