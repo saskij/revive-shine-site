@@ -44,7 +44,7 @@
       -webkit-overflow-scrolling: touch;
     }
 
-    /* Each "screen" can also scroll internally if content exceeds height */
+    /* Each screen is full viewport height, can scroll internally */
     .screen{
       height: 100vh;
       scroll-snap-align: start;
@@ -90,7 +90,6 @@
       border-radius: 999px;
       box-shadow: 0 10px 30px rgba(0,0,0,.10);
     }
-
     .brand{
       display:flex; align-items:center; gap:10px; min-width: 0;
       font-weight: 700;
@@ -133,14 +132,14 @@
     .hero{
       background: #0b0b0b;
       color:#fff;
-      padding-top: 70px;
+      padding-top: 70px; /* space for topbar */
       overflow: hidden;
     }
     .hero::before{
       content:"";
       position:absolute;
       inset:0;
-      background: url("hero-couch.png") center / cover no-repeat;
+      background: url("hero-couch.png") center / cover no-repeat; /* your couch file */
       transform: scale(1.02);
       filter: saturate(1.02) contrast(1.02);
     }
@@ -219,7 +218,7 @@
     /* Sections */
     .section{
       background: radial-gradient(1000px 700px at 70% 0%, rgba(183,165,122,.18), rgba(255,255,255,0));
-      padding-top: 72px;
+      padding-top: 72px; /* space for topbar */
     }
     .section .wrap{
       padding-top: 12px;
@@ -289,7 +288,7 @@
     blockquote{ margin: 8px 0 0; color: rgba(0,0,0,.78); line-height: 1.45; }
     .who{ margin-top: 10px; font-weight: 750; color: rgba(0,0,0,.70); }
 
-    /* Form */
+    /* Quote inline form (quote screen) */
     form{ display:grid; gap: 10px; margin-top: 12px; }
     label{ font-weight: 750; font-size: 13px; color: rgba(0,0,0,.70); }
     input, textarea{
@@ -319,7 +318,8 @@
       line-height: 1.4;
     }
 
-    /* Sticky CTA (mobile) */
+    /* Sticky CTA (mobile) – show only on screens with data-show-sticky="1"
+       Collapses to a single button when user scrolls down inside the current screen */
     .sticky{
       position: fixed;
       z-index: 60;
@@ -351,19 +351,14 @@
       transition: padding .22s ease, gap .22s ease;
     }
 
-    /* Full (3 buttons) */
+    /* Full (3 actions) */
     .dock.full .cta{ flex: 1 1 auto; }
     .dock.full .secondary{ display:inline-flex; }
 
-    /* Collapsed (1 button) */
-    .dock.mini{
-      padding: 8px;
-      gap: 0;
-    }
+    /* Mini (1 action) */
+    .dock.mini{ padding: 8px; gap: 0; }
     .dock.mini .secondary{ display:none; }
-    .dock.mini .cta{
-      width: 100%;
-    }
+    .dock.mini .cta{ width: 100%; }
 
     .dock a{
       display:inline-flex;
@@ -380,7 +375,6 @@
       transition: transform .18s ease;
     }
     .dock a:active{ transform: scale(.985); }
-
     .dock a.primary{
       border: none;
       background: linear-gradient(180deg, var(--gold), var(--gold2));
@@ -395,6 +389,121 @@
     }
     .reveal.on{ opacity: 1; transform: translateY(0); }
 
+    /* Accordion panels inside WHAT YOU GET */
+    .acc{ width:100%; text-align:left; cursor:pointer; appearance:none; border:none; }
+    .acc:focus{ outline: none; }
+    .acc-panel{ padding: 14px; }
+    .mini{ display:grid; gap: 12px; }
+    .mini-grid{
+      display:grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+    }
+    .mini-img{
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 16px;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+    .mini-hero{
+      width: 100%;
+      height: 180px;
+      object-fit: cover;
+      border-radius: 18px;
+      border: 1px solid rgba(0,0,0,.08);
+    }
+    .mini-text{ margin:0; color: rgba(0,0,0,.78); line-height:1.45; }
+    .mini-list{
+      margin: 0;
+      padding-left: 18px;
+      color: rgba(0,0,0,.78);
+      line-height: 1.6;
+    }
+    .mini-actions{ display:flex; gap:10px; flex-wrap:wrap; }
+    .mini-btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      padding: 12px 14px;
+      border-radius: 16px;
+      text-decoration:none;
+      font-weight: 850;
+      border: 1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.75);
+      color: var(--ink);
+      cursor:pointer;
+    }
+    .mini-btn.primary{
+      border:none;
+      background: linear-gradient(180deg, var(--gold), var(--gold2));
+      color:#fff;
+    }
+
+    /* Modal (Free Quote popup) */
+    .modal{ position:fixed; inset:0; z-index: 120; display:none; }
+    .modal.is-open{ display:block; }
+    .modal-backdrop{
+      position:absolute; inset:0;
+      background: rgba(0,0,0,.45);
+    }
+    .modal-sheet{
+      position:absolute;
+      left: 50%;
+      transform: translateX(-50%);
+      bottom: 0;
+      width: min(720px, calc(100% - 18px));
+      background: rgba(255,255,255,.86);
+      border: 1px solid rgba(255,255,255,.35);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border-radius: 22px 22px 0 0;
+      box-shadow: 0 26px 80px rgba(0,0,0,.25);
+      padding: 14px 14px calc(14px + env(safe-area-inset-bottom));
+      max-height: 88vh;
+      overflow:auto;
+    }
+    .modal-head{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap: 10px;
+      padding-bottom: 10px;
+    }
+    .modal-title{ font-weight: 900; letter-spacing: .2px; }
+    .modal-x{
+      border: 1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.7);
+      border-radius: 12px;
+      width: 40px; height: 40px;
+      font-weight: 900;
+      cursor:pointer;
+    }
+    .modal-form{ display:grid; gap: 10px; }
+    .modal-row label{ font-weight: 800; font-size: 13px; color: rgba(0,0,0,.70); }
+    .modal-row input, .modal-row textarea{
+      width:100%;
+      padding: 14px;
+      border-radius: 14px;
+      border: 1px solid rgba(0,0,0,.12);
+      background: rgba(255,255,255,.92);
+      font: inherit;
+      outline:none;
+    }
+    .modal-row textarea{ min-height: 96px; resize: vertical; }
+    .check{ display:flex; gap:10px; align-items:center; }
+    .check input{ width:18px; height:18px; }
+    .modal-submit{
+      border:none;
+      padding: 15px 18px;
+      border-radius: 999px;
+      font-weight: 900;
+      background: linear-gradient(180deg, var(--gold), var(--gold2));
+      color:#fff;
+      cursor:pointer;
+    }
+    .modal-fine{ color: rgba(0,0,0,.55); font-size: 12px; line-height:1.35; }
+
     /* Desktop */
     @media (min-width: 860px){
       .grid.two{ grid-template-columns: 1fr 1fr; }
@@ -408,7 +517,7 @@
     @media (prefers-reduced-motion: reduce){
       .snap{ scroll-behavior:auto; }
       .reveal{ transition:none; opacity:1; transform:none; }
-      .btn, .chip, .sticky, .dock{ transition:none; }
+      .btn, .chip, .sticky, .dock, .modal-sheet{ transition:none; }
     }
   </style>
 </head>
@@ -438,6 +547,7 @@
   </div>
 
   <main class="snap" id="top">
+    <!-- HERO -->
     <section class="screen hero" id="hero">
       <div class="wrap">
         <div class="pillrow reveal">
@@ -459,60 +569,155 @@
       </div>
     </section>
 
+    <!-- WHAT YOU GET (interactive) -->
     <section class="screen section" id="benefits" data-show-sticky="1">
       <div class="wrap">
         <div class="reveal">
           <div class="kicker">What you get</div>
           <div class="title">Clean, fast, and actually deep</div>
-          <p class="sub">Four simple promises. One screen. No clutter.</p>
+          <p class="sub">Tap a benefit to see details — then request a quote in one click.</p>
         </div>
 
         <div class="grid two">
-          <div class="card row reveal">
+          <!-- 1) Clean & cozy finish -->
+          <button class="card row reveal acc" type="button"
+            data-acc="finish"
+            aria-expanded="false"
+            aria-controls="acc-finish">
             <div class="iconbox"><img alt="" src="clean-finish.png"></div>
             <div>
               <p class="h">Clean & cozy finish</p>
-              <p class="d">Premium look for your home</p>
+              <p class="d">See after photos + request a sofa quote</p>
             </div>
             <div class="arrow">›</div>
+          </button>
+
+          <div class="card acc-panel" id="acc-finish" data-panel="finish" hidden>
+            <div class="mini">
+              <div class="mini-grid">
+                <!-- Replace with your real AFTER photos -->
+                <img class="mini-img" src="after-1.png" alt="After photo 1">
+                <img class="mini-img" src="after-2.png" alt="After photo 2">
+              </div>
+              <p class="mini-text">Your furniture looks refreshed, clean, and feels comfortable again.</p>
+              <div class="mini-actions">
+                <button class="mini-btn primary" type="button"
+                  data-open-quote="1"
+                  data-service="Sofa"
+                  data-topic="Clean & cozy finish"
+                >Get a quote for my sofa</button>
+              </div>
+            </div>
           </div>
 
-          <div class="card row reveal">
+          <!-- 2) Fast scheduling -->
+          <button class="card row reveal acc" type="button"
+            data-acc="schedule"
+            aria-expanded="false"
+            aria-controls="acc-schedule">
             <div class="iconbox"><img alt="" src="fast-scheduling.png"></div>
             <div>
               <p class="h">Fast scheduling</p>
-              <p class="d">Same-week availability</p>
+              <p class="d">Same-week availability + time slots</p>
             </div>
             <div class="arrow">›</div>
+          </button>
+
+          <div class="card acc-panel" id="acc-schedule" data-panel="schedule" hidden>
+            <div class="mini">
+              <ul class="mini-list">
+                <li>Same-week appointments available</li>
+                <li>Evening & weekend slots</li>
+                <li>We respect your time</li>
+              </ul>
+              <div class="mini-actions">
+                <button class="mini-btn primary" type="button"
+                  data-open-quote="1"
+                  data-service="Scheduling"
+                  data-topic="Fast scheduling"
+                >Check availability</button>
+              </div>
+            </div>
           </div>
 
-          <div class="card row reveal">
+          <!-- 3) Real extraction -->
+          <button class="card row reveal acc" type="button"
+            data-acc="extract"
+            aria-expanded="false"
+            aria-controls="acc-extract">
             <div class="iconbox"><img alt="" src="real-extraction.png"></div>
             <div>
               <p class="h">Real extraction</p>
-              <p class="d">We remove dirt you can see</p>
+              <p class="d">Dirty water proof — not surface cleaning</p>
             </div>
             <div class="arrow">›</div>
+          </button>
+
+          <div class="card acc-panel" id="acc-extract" data-panel="extract" hidden>
+            <div class="mini">
+              <!-- Replace with your “dirty water” image -->
+              <img class="mini-hero" src="dirty-water.png" alt="Dirty water extracted">
+              <p class="mini-text">We remove embedded dirt you can actually see — not just surface cleaning.</p>
+              <div class="mini-actions">
+                <a class="mini-btn" href="#gallery">See before / after</a>
+              </div>
+            </div>
           </div>
 
-          <div class="card row reveal">
+          <!-- 4) Odor solutions -->
+          <button class="card row reveal acc" type="button"
+            data-acc="odor"
+            aria-expanded="false"
+            aria-controls="acc-odor">
             <div class="iconbox"><img alt="" src="odor-solutions.png"></div>
             <div>
               <p class="h">Odor solutions</p>
-              <p class="d">Freshness that lasts</p>
+              <p class="d">Pets, smoke, food smells</p>
             </div>
             <div class="arrow">›</div>
+          </button>
+
+          <div class="card acc-panel" id="acc-odor" data-panel="odor" hidden>
+            <div class="mini">
+              <ul class="mini-list">
+                <li>Pet odors</li>
+                <li>Smoke</li>
+                <li>Food smells</li>
+              </ul>
+              <div class="mini-actions">
+                <button class="mini-btn primary" type="button"
+                  data-open-quote="1"
+                  data-service="Odor treatment"
+                  data-topic="Odor solutions"
+                  data-odor="1"
+                >Ask about odor treatment</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card reveal" id="gallery">
+          <div class="kicker">Before / After</div>
+          <div class="title" style="margin-top:6px">Quick gallery</div>
+          <p class="sub" style="margin-top:8px">Drop your 4–6 best before/after images here later (or link to Instagram).</p>
+          <div class="mini-grid" style="margin-top:12px">
+            <!-- Optional placeholders -->
+            <img class="mini-img" src="before-1.png" alt="Before 1">
+            <img class="mini-img" src="after-1.png" alt="After 1">
+            <img class="mini-img" src="before-2.png" alt="Before 2">
+            <img class="mini-img" src="after-2.png" alt="After 2">
           </div>
         </div>
       </div>
     </section>
 
+    <!-- REVIEWS -->
     <section class="screen section" id="reviews" data-show-sticky="1">
       <div class="wrap">
         <div class="reveal">
           <div class="kicker">Social proof</div>
           <div class="title">People love the results</div>
-          <p class="sub">Replace names later with your real reviews.</p>
+          <p class="sub">Replace these with your real Google reviews later.</p>
         </div>
 
         <div class="grid two">
@@ -528,15 +733,26 @@
             <div class="who">— Daniel R.</div>
           </div>
         </div>
+
+        <div class="card reveal">
+          <div class="kicker">Fast contact</div>
+          <div class="title" style="margin-top:6px">Prefer texting?</div>
+          <p class="sub" style="margin-top:8px">Text a photo for the most accurate estimate.</p>
+          <div class="mini-actions" style="margin-top:10px">
+            <a class="mini-btn primary" href="sms:+12081234567">Text us now</a>
+            <a class="mini-btn" href="#quote">Free Quote</a>
+          </div>
+        </div>
       </div>
     </section>
 
+    <!-- QUOTE (inline form) -->
     <section class="screen section" id="quote">
       <div class="wrap">
         <div class="reveal">
           <div class="kicker">Free estimate</div>
           <div class="title">Get a quote today</div>
-          <p class="sub">Send a quick message. For best accuracy, include a photo of the area (text it to us after submitting).</p>
+          <p class="sub">Send a quick message. For best accuracy, text a photo after submitting.</p>
         </div>
 
         <div class="card reveal">
@@ -553,7 +769,7 @@
 
             <div>
               <label for="service">Service</label>
-              <input id="service" name="service" placeholder="Sofa / Mattress / Car seats" />
+              <input id="service" name="service" placeholder="Sofa / Mattress / Car seats / Odor" />
             </div>
 
             <div>
@@ -572,8 +788,61 @@
     </section>
   </main>
 
+  <!-- Quote Popup -->
+  <div class="modal" id="quoteModal" aria-hidden="true">
+    <div class="modal-backdrop" data-close="1"></div>
+    <div class="modal-sheet" role="dialog" aria-modal="true" aria-label="Free Quote">
+      <div class="modal-head">
+        <div class="modal-title">Free Quote</div>
+        <button class="modal-x" type="button" data-close="1">✕</button>
+      </div>
+
+      <form id="quoteModalForm" class="modal-form">
+        <div class="modal-row">
+          <label for="m_name">Name</label>
+          <input id="m_name" name="name" placeholder="Your name" autocomplete="name">
+        </div>
+
+        <div class="modal-row">
+          <label for="m_phone">Phone</label>
+          <input id="m_phone" name="phone" placeholder="(208) 123-4567" autocomplete="tel">
+        </div>
+
+        <div class="modal-row">
+          <label for="m_service">Topic / Service</label>
+          <input id="m_service" name="service" placeholder="Sofa / Scheduling / Odor treatment">
+        </div>
+
+        <div class="modal-row">
+          <label class="check">
+            <input type="checkbox" id="m_odor" name="odor">
+            <span>Odor treatment</span>
+          </label>
+        </div>
+
+        <div class="modal-row">
+          <label for="m_msg">Message</label>
+          <textarea id="m_msg" name="msg" placeholder="Tell us what you need cleaned + city. Add a quick note."></textarea>
+        </div>
+
+        <button class="modal-submit" type="submit">Send request</button>
+        <div class="modal-fine">Tip: for the most accurate quote, text us a photo after sending.</div>
+      </form>
+    </div>
+  </div>
+
   <script>
-    // Reveal animation
+    // ====== CONFIG: replace these with your real phone/email ======
+    const TO_EMAIL = "bstuashurov@gmail.com";
+    const PHONE_SMS = "+12081234567";
+    const PHONE_TEL = "+12081234567";
+    // =============================================================
+
+    // Ensure sticky links use configured numbers
+    document.querySelectorAll('a[href^="sms:+12081234567"]').forEach(a => a.setAttribute('href', 'sms:' + PHONE_SMS));
+    document.querySelectorAll('a[href^="tel:+12081234567"]').forEach(a => a.setAttribute('href', 'tel:' + PHONE_TEL));
+
+    // 1) Reveal animation
     const io = new IntersectionObserver((entries) => {
       for (const e of entries) {
         if (e.isIntersecting) e.target.classList.add('on');
@@ -581,8 +850,7 @@
     }, { threshold: 0.12 });
     document.querySelectorAll('.reveal').forEach(el => io.observe(el));
 
-    // Form: mailto fallback
-    const TO_EMAIL = "bstuashurov@gmail.com";
+    // 2) Inline form (quote screen): mailto fallback
     document.getElementById("quoteForm").addEventListener("submit", (ev) => {
       ev.preventDefault();
       const name = document.getElementById("name").value || "";
@@ -596,7 +864,7 @@
       window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
     });
 
-    // Sticky rules:
+    // 3) Sticky rules:
     // - Show only on sections with data-show-sticky="1" (benefits + reviews)
     // - Collapse to single button when user scrolls down inside that screen
     const sticky = document.getElementById('stickyCta');
@@ -605,6 +873,7 @@
     const visibleSet = new Set();
 
     function setDockMode(isMini){
+      if (!dock) return;
       if (isMini){
         dock.classList.remove('full');
         dock.classList.add('mini');
@@ -626,11 +895,9 @@
 
     showSections.forEach(sec => stickyObs.observe(sec));
 
-    // Collapse while scrolling inside current screen
     function updateDockFor(sec){
       if (!sticky.classList.contains('is-visible')) return;
       const y = sec.scrollTop || 0;
-      // after small scroll, collapse
       setDockMode(y > 18);
     }
 
@@ -638,7 +905,6 @@
       sec.addEventListener('scroll', () => updateDockFor(sec), { passive: true });
     });
 
-    // When a show-section becomes the main visible one, set correct mode immediately
     const activeObs = new IntersectionObserver((entries) => {
       for (const e of entries) {
         if (e.isIntersecting) updateDockFor(e.target);
@@ -647,7 +913,98 @@
 
     showSections.forEach(sec => activeObs.observe(sec));
 
-    // Optional: snap-scroll "next screen" (desktop)
+    // 4) Accordion behavior for WHAT YOU GET
+    const accButtons = Array.from(document.querySelectorAll('.acc[data-acc]'));
+    const accPanels = Array.from(document.querySelectorAll('.acc-panel[data-panel]'));
+
+    function closeAllAcc(){
+      accButtons.forEach(b => b.setAttribute('aria-expanded','false'));
+      accPanels.forEach(p => p.hidden = true);
+    }
+
+    function toggleAcc(key){
+      const btn = accButtons.find(b => b.dataset.acc === key);
+      const panel = accPanels.find(p => p.dataset.panel === key);
+      if (!btn || !panel) return;
+
+      const isOpen = !panel.hidden;
+      closeAllAcc();
+      if (!isOpen){
+        btn.setAttribute('aria-expanded','true');
+        panel.hidden = false;
+        panel.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      }
+    }
+
+    accButtons.forEach(btn => {
+      btn.addEventListener('click', () => toggleAcc(btn.dataset.acc));
+    });
+
+    // 5) Quote modal (universal)
+    const quoteModal = document.getElementById('quoteModal');
+    const mName = document.getElementById('m_name');
+    const mPhone = document.getElementById('m_phone');
+    const mService = document.getElementById('m_service');
+    const mOdor = document.getElementById('m_odor');
+    const mMsg = document.getElementById('m_msg');
+
+    function openQuoteModal(preset = {}){
+      mService.value = preset.service || "";
+      mOdor.checked = !!preset.odor;
+
+      const topic = preset.topic ? `Topic: ${preset.topic}\n` : "";
+      const extra = preset.extra ? `${preset.extra}\n` : "";
+
+      if (!mMsg.value.trim()){
+        mMsg.value = `${topic}${extra}`.trim();
+      }
+
+      quoteModal.classList.add('is-open');
+      quoteModal.setAttribute('aria-hidden','false');
+      setTimeout(() => { try { mName.focus(); } catch(_){} }, 60);
+    }
+
+    function closeQuoteModal(){
+      quoteModal.classList.remove('is-open');
+      quoteModal.setAttribute('aria-hidden','true');
+    }
+
+    // Buttons that open modal with presets
+    document.querySelectorAll('[data-open-quote="1"]').forEach(el => {
+      el.addEventListener('click', () => {
+        openQuoteModal({
+          service: el.dataset.service || "",
+          topic: el.dataset.topic || "",
+          odor: el.dataset.odor === "1",
+          extra: el.dataset.service ? `Requested: ${el.dataset.service}` : ""
+        });
+      });
+    });
+
+    // Close modal
+    quoteModal.addEventListener('click', (e) => {
+      const t = e.target;
+      if (t && t.dataset && t.dataset.close === "1") closeQuoteModal();
+    });
+
+    // Submit modal via mailto
+    document.getElementById("quoteModalForm").addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const name = mName.value || "";
+      const phone = mPhone.value || "";
+      const service = mService.value || "";
+      const odor = mOdor.checked ? "Yes" : "No";
+      const msg = mMsg.value || "";
+      const subject = encodeURIComponent("Free Quote — Revive & Shine");
+      const body = encodeURIComponent(
+        `Name: ${name}\nPhone: ${phone}\nService/Topic: ${service}\nOdor treatment: ${odor}\n\nMessage:\n${msg}\n\n— Sent from landing page`
+      );
+      window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
+      closeQuoteModal();
+      mMsg.value = ""; // reset message for next open
+    });
+
+    // Optional: desktop keyboard next screen
     document.addEventListener("keydown", (e) => {
       if (e.key !== "ArrowDown" && e.key !== "PageDown") return;
       const scroller = document.querySelector(".snap");
