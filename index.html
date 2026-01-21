@@ -523,11 +523,13 @@
       box-shadow: var(--shadow-card);
     }
     .vid video{
-      width:100%;
-      height:auto;
       display:block;
+      width:100%;
+      aspect-ratio: 16 / 9;
+      height:auto;
       background:#000;
-    }
+      object-fit: cover;
+}
     .vidcap{
       padding: 12px 14px;
       display:flex;
@@ -932,21 +934,7 @@
       .footer-brand{ justify-content: center; }
     }
 
-/* Fix video cards: same size, no layout jump */
-.vid video{
-  display:block;
-  width:100%;
-  aspect-ratio: 16 / 9;
-  height:auto;
-  background:#000;
-  object-fit: cover;   /* важное: обрезает вертикальный постер, а не растягивает карточку */
-}
 
-/* если у карточки подпись снизу и нужны скругления только сверху */
-.vid .vidcap{
-  border-bottom-left-radius: 18px;
-  border-bottom-right-radius: 18px;
-}
     
   </style>
 </head>
@@ -1326,17 +1314,28 @@
           <p class="sub">Short clips perform very well: extraction pass, dirty water, final result. Videos are optional — add later.</p>
         </div>
 
-   <div class="vidgrid">
+<div class="vidgrid">
+
   <div class="vid reveal">
     <video controls playsinline preload="metadata" poster="process-01.jpg">
       <source src="process-01.mp4" type="video/mp4">
-      Your browser does not support the video tag.
     </video>
     <div class="vidcap">
       <p class="h">Deep extraction pass</p>
       <p class="d">Real results: removing embedded dirt from fabric.</p>
     </div>
   </div>
+
+  <div class="vid reveal">
+    <video controls playsinline preload="metadata" poster="process-02.jpg">
+      <source src="process-02.mp4" type="video/mp4">
+    </video>
+    <div class="vidcap">
+      <p class="h">Dirty water proof</p>
+      <p class="d">This is what comes out — not surface cleaning.</p>
+    </div>
+  </div>
+
 </div>
 
           <div class="vid reveal">
