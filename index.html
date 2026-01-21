@@ -931,6 +931,23 @@
       .footer-inner{ grid-template-columns: 1fr; text-align: center; }
       .footer-brand{ justify-content: center; }
     }
+
+/* Fix video cards: same size, no layout jump */
+.vid video{
+  display:block;
+  width:100%;
+  aspect-ratio: 16 / 9;
+  height:auto;
+  background:#000;
+  object-fit: cover;   /* важное: обрезает вертикальный постер, а не растягивает карточку */
+}
+
+/* если у карточки подпись снизу и нужны скругления только сверху */
+.vid .vidcap{
+  border-bottom-left-radius: 18px;
+  border-bottom-right-radius: 18px;
+}
+    
   </style>
 </head>
 
