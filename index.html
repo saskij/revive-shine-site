@@ -899,6 +899,94 @@
       .fab{ animation:none; }
     }
     :target{ scroll-margin-top: 92px; }
+
+    .site-footer{
+  margin-top: 80px;
+  background: rgba(255,255,255,.85);
+  border-top: 1px solid var(--stroke);
+  backdrop-filter: blur(8px);
+}
+
+.footer-inner{
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 48px 18px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 32px;
+}
+
+.footer-col h4{
+  margin-bottom: 12px;
+  font-size: 14px;
+  text-transform: uppercase;
+  letter-spacing: .06em;
+  color: var(--muted2);
+}
+
+.footer-col ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer-col li{
+  margin-bottom: 10px;
+  font-size: 14px;
+}
+
+.footer-col a{
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.footer-col a:hover{
+  text-decoration: underline;
+}
+
+.footer-brand{
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 12px;
+}
+
+.footer-logo{
+  width: 36px;
+  height: auto;
+}
+
+.footer-text{
+  font-size: 14px;
+  color: var(--muted);
+  margin-bottom: 8px;
+}
+
+.footer-area{
+  font-size: 13px;
+  color: var(--muted2);
+}
+
+.footer-bottom{
+  border-top: 1px solid var(--stroke);
+  text-align: center;
+  padding: 16px;
+  font-size: 13px;
+  color: var(--muted2);
+}
+
+/* Mobile */
+@media (max-width: 800px){
+  .footer-inner{
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .footer-brand{
+    justify-content: center;
+  }
+}
+    
   </style>
 </head>
 
@@ -1576,5 +1664,65 @@
       if (e.key === "Escape" && lb && lb.classList.contains('open')) closeLightbox();
     });
   </script>
+<footer class="site-footer">
+  <div class="footer-inner">
+
+    <!-- Brand -->
+    <div class="footer-col">
+      <div class="footer-brand">
+        <img src="logo.PNG" alt="Revive & Shine logo" class="footer-logo">
+        <strong>Revive & Shine</strong>
+      </div>
+      <p class="footer-text">
+        Mobile upholstery & auto interior cleaning.<br>
+        We come to you.
+      </p>
+      <p class="footer-area">
+        Boise · Meridian · Nampa · Caldwell
+      </p>
+    </div>
+
+    <!-- Services -->
+    <div class="footer-col">
+      <h4>Services</h4>
+      <ul>
+        <li>Sofas & Sectionals</li>
+        <li>Mattress Cleaning</li>
+        <li>Car Seats & Interior</li>
+        <li>Dining Chairs</li>
+        <li>Odor Removal</li>
+      </ul>
+    </div>
+
+    <!-- Contact -->
+    <div class="footer-col">
+      <h4>Contact</h4>
+      <ul>
+        <li>
+          <a href="tel:+12081234567">📞 Call</a>
+        </li>
+        <li>
+          <a href="sms:+12081234567">💬 Text us</a>
+        </li>
+        <li>
+          <a href="#quote">🧾 Free quote</a>
+        </li>
+        <li>
+          <a href="https://instagram.com/revive.shine.idaho" target="_blank">📸 Instagram</a>
+        </li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div class="footer-bottom">
+    <p>© <span id="year"></span> Revive & Shine. All rights reserved.</p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById('year').textContent = new Date().getFullYear();
+</script>
+  
 </body>
 </html>
