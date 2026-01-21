@@ -4,12 +4,12 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>Revive & Shine — Upholstery & Auto Cleaning (Boise)</title>
-  
-<!-- Favicon -->
+
+  <!-- Favicon -->
   <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
   <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
   <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
-  
+
   <meta name="description" content="Mobile upholstery, mattress, and auto interior cleaning in Boise, Meridian, Nampa, and Caldwell. Free quote. Same-week availability." />
 
   <style>
@@ -58,13 +58,13 @@
       text-rendering: optimizeLegibility;
     }
 
-    /* Focus ring (quality + accessibility) */
+    /* Focus ring */
     a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
       outline: none;
       box-shadow: 0 0 0 4px rgba(183,165,122,.32);
     }
 
-    /* Layout (NO scroll-snap to avoid iOS "stuck") */
+    /* Layout */
     main{ position:relative; }
     section{
       position: relative;
@@ -128,7 +128,7 @@
       border-color: rgba(0,0,0,.06);
     }
 
-    /* ===== Brand (logo + text) ===== */
+    /* Brand */
     .brandlink{
       display:flex;
       align-items:center;
@@ -158,10 +158,10 @@
       transform-origin: center;
     }
     .logo.noimg{
-  font-weight: 950;
-  font-size: 16px;
-  letter-spacing: .5px;
-}
+      font-weight: 950;
+      font-size: 16px;
+      letter-spacing: .5px;
+    }
     .brandtext{
       white-space:nowrap;
       overflow:hidden;
@@ -424,25 +424,14 @@
       object-fit: cover;
       display:block;
       transform: scale(1.01);
+      transition: transform .25s ease;
+      will-change: transform;
     }
+    @media (hover:hover){
+      .shot:hover img{ transform: scale(1.08); }
+    }
+    .shot:active img{ transform: scale(1.04); }
 
-    /* Smooth zoom on hover for before/after images */
-.shot img{
-  transition: transform .25s ease;
-  will-change: transform;
-}
-
-/* Desktop hover */
-@media (hover:hover){
-  .shot:hover img{
-    transform: scale(1.08);
-  }
-}
-
-/* Mobile tap feedback */
-.shot:active img{
-  transform: scale(1.04);
-}
     .badge{
       position:absolute;
       left: 10px;
@@ -662,7 +651,7 @@
       line-height: 1.45;
     }
 
-    /* ===== Fix visited/active link color in top menu ===== */
+    /* Fix visited link color in top menu */
     .navchips a,
     .navchips a:link,
     .navchips a:visited,
@@ -693,13 +682,10 @@
       flex-direction:column;
       align-items:flex-end;
       gap: 10px;
-
       pointer-events:auto;
-
       opacity: 1;
       transform: translateY(0);
       transition: opacity .18s ease, transform .18s ease;
-
       animation: fabNudge 7s ease-in-out infinite;
     }
     @keyframes fabNudge {
@@ -714,7 +700,7 @@
       opacity: 0;
       transform: translateY(14px);
       pointer-events:none;
-      animation: none; /* prevent transform fights */
+      animation: none;
     }
 
     .fab button, .fab a{ -webkit-tap-highlight-color: transparent; }
@@ -738,8 +724,6 @@
       transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
       will-change: transform;
     }
-
-    /* Hover (desktop) */
     @media (hover:hover){
       .fab-main:hover{
         transform: translateY(-2px);
@@ -747,10 +731,8 @@
         box-shadow: 0 22px 52px rgba(0,0,0,.22);
       }
     }
-    /* Tap feedback (mobile) */
     .fab-main:active{ transform: scale(.98); }
 
-    /* Pulse ring (no transform conflict with parent) */
     .fab-main::after{
       content:"";
       position:absolute;
@@ -821,7 +803,7 @@
       line-height: 1.35;
     }
 
-    /* Lightbox (for before/after) */
+    /* Lightbox */
     .lightbox{
       position: fixed;
       inset:0;
@@ -900,93 +882,55 @@
     }
     :target{ scroll-margin-top: 92px; }
 
+    /* Footer */
     .site-footer{
-  margin-top: 80px;
-  background: rgba(255,255,255,.85);
-  border-top: 1px solid var(--stroke);
-  backdrop-filter: blur(8px);
-}
+      margin-top: 80px;
+      background: rgba(255,255,255,.85);
+      border-top: 1px solid var(--stroke);
+      backdrop-filter: blur(8px);
+    }
+    .footer-inner{
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 48px 18px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+    }
+    .footer-col h4{
+      margin-bottom: 12px;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: .06em;
+      color: var(--muted2);
+    }
+    .footer-col ul{ list-style: none; padding: 0; margin: 0; }
+    .footer-col li{ margin-bottom: 10px; font-size: 14px; }
+    .footer-col a{ text-decoration: none; color: var(--ink); }
+    .footer-col a:hover{ text-decoration: underline; }
 
-.footer-inner{
-  max-width: var(--max);
-  margin: 0 auto;
-  padding: 48px 18px;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 32px;
-}
+    .footer-brand{
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 12px;
+    }
+    .footer-logo{ width: 36px; height: auto; }
+    .footer-text{ font-size: 14px; color: var(--muted); margin-bottom: 8px; }
+    .footer-area{ font-size: 13px; color: var(--muted2); }
 
-.footer-col h4{
-  margin-bottom: 12px;
-  font-size: 14px;
-  text-transform: uppercase;
-  letter-spacing: .06em;
-  color: var(--muted2);
-}
+    .footer-bottom{
+      border-top: 1px solid var(--stroke);
+      text-align: center;
+      padding: 16px;
+      font-size: 13px;
+      color: var(--muted2);
+    }
 
-.footer-col ul{
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.footer-col li{
-  margin-bottom: 10px;
-  font-size: 14px;
-}
-
-.footer-col a{
-  text-decoration: none;
-  color: var(--ink);
-}
-
-.footer-col a:hover{
-  text-decoration: underline;
-}
-
-.footer-brand{
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin-bottom: 12px;
-}
-
-.footer-logo{
-  width: 36px;
-  height: auto;
-}
-
-.footer-text{
-  font-size: 14px;
-  color: var(--muted);
-  margin-bottom: 8px;
-}
-
-.footer-area{
-  font-size: 13px;
-  color: var(--muted2);
-}
-
-.footer-bottom{
-  border-top: 1px solid var(--stroke);
-  text-align: center;
-  padding: 16px;
-  font-size: 13px;
-  color: var(--muted2);
-}
-
-/* Mobile */
-@media (max-width: 800px){
-  .footer-inner{
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .footer-brand{
-    justify-content: center;
-  }
-}
-    
+    @media (max-width: 800px){
+      .footer-inner{ grid-template-columns: 1fr; text-align: center; }
+      .footer-brand{ justify-content: center; }
+    }
   </style>
 </head>
 
@@ -1009,7 +953,7 @@
       <div class="navchips">
         <a class="chip" href="#value">Value</a>
         <a class="chip" href="#work">Work</a>
-        <a class="chip primary" href="#quote" id="navFreeQuote">Free Quote</a>
+        <a class="chip primary" href="#quote" data-open-quote="General" id="navFreeQuote">Free Quote</a>
       </div>
     </div>
   </div>
@@ -1154,7 +1098,7 @@
         <div class="grid">
           <div class="benefit reveal" id="b1" aria-expanded="false">
             <button type="button" class="head" data-acc="b1" aria-controls="p1" aria-expanded="false">
-              <div class="iconbox"><img alt="Clean finish" src="fast-scheduling.png"></div>
+              <div class="iconbox"><img alt="Clean finish" src="clean-finish.png"></div>
               <div class="btxt">
                 <p class="h">Clean &amp; cozy finish</p>
                 <p class="d">A refreshed look that feels comfortable again</p>
@@ -1236,142 +1180,126 @@
     </section>
 
     <!-- WORK -->
-<section class="section" id="work">
-  <div class="wrap">
-    <div class="reveal">
-      <div class="kicker">Real results</div>
-      <div class="title">Before / After examples</div>
-      <p class="sub">Tap any photo to zoom. Add your best 3–6 cases here for maximum trust.</p>
-    </div>
-
-    <div class="work-grid">
-
-      <div class="case reveal">
-        <div class="case-head">
-          <p class="case-title">Mattress — refresh &amp; sanitize</p>
-          <div class="case-tag">Mattress</div>
+    <section class="section" id="work">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="kicker">Real results</div>
+          <div class="title">Before / After examples</div>
+          <p class="sub">Tap any photo to zoom. Add your best 3–6 cases here for maximum trust.</p>
         </div>
 
-        <div class="ba">
-          <div class="shot"
-               data-lb-src="price-mattress-01.jpg"
-               data-lb-title="Mattress — BEFORE"
-               data-lb-foot="Tap outside to close.">
-            <span class="badge">Before</span>
-            <img src="price-mattress-01.jpg" alt="Mattress before" loading="lazy">
+        <div class="work-grid">
+          <div class="case reveal">
+            <div class="case-head">
+              <p class="case-title">Mattress — refresh &amp; sanitize</p>
+              <div class="case-tag">Mattress</div>
+            </div>
+
+            <div class="ba">
+              <div class="shot" data-lb-src="price-mattress-01.jpg" data-lb-title="Mattress — BEFORE" data-lb-foot="Tap outside to close.">
+                <span class="badge">Before</span>
+                <img src="price-mattress-01.jpg" alt="Mattress before" loading="lazy">
+              </div>
+              <div class="shot" data-lb-src="price-mattress-02.jpg" data-lb-title="Mattress — AFTER" data-lb-foot="Tap outside to close.">
+                <span class="badge">After</span>
+                <img src="price-mattress-02.jpg" alt="Mattress after" loading="lazy">
+              </div>
+            </div>
+
+            <p class="case-desc">Odors + embedded dirt removal for a cleaner sleeping surface.</p>
+
+            <div class="case-actions">
+              <a class="primary" href="#quote" data-open-quote="General">Get a free quote</a>
+              <a href="#quote" data-open-quote="Odor treatment">Ask about odor treatment</a>
+            </div>
           </div>
 
-          <div class="shot"
-               data-lb-src="price-mattress-02.jpg"
-               data-lb-title="Mattress — AFTER"
-               data-lb-foot="Tap outside to close.">
-            <span class="badge">After</span>
-            <img src="price-mattress-02.jpg" alt="Mattress after" loading="lazy">
+          <div class="case reveal">
+            <div class="case-head">
+              <p class="case-title">Sofa — stain removal</p>
+              <div class="case-tag">Upholstery</div>
+            </div>
+
+            <div class="ba">
+              <div class="shot" data-lb-src="ba-sofa-01-before.jpg" data-lb-title="Sofa — BEFORE" data-lb-foot="Tap outside to close.">
+                <span class="badge">Before</span>
+                <img src="ba-sofa-01-before.jpg" alt="Sofa before" loading="lazy">
+              </div>
+              <div class="shot" data-lb-src="ba-sofa-01-after.jpg" data-lb-title="Sofa — AFTER" data-lb-foot="Tap outside to close.">
+                <span class="badge">After</span>
+                <img src="ba-sofa-01-after.jpg" alt="Sofa after" loading="lazy">
+              </div>
+            </div>
+
+            <p class="case-desc">Deep clean + extraction for a fresh, even finish.</p>
+
+            <div class="case-actions">
+              <a class="primary" href="#quote" data-open-quote="General">Get a free quote</a>
+              <a href="#quote" data-open-quote="Odor treatment">Ask about odor treatment</a>
+            </div>
+          </div>
+
+          <div class="case reveal">
+            <div class="case-head">
+              <p class="case-title">Car seats — interior deep clean</p>
+              <div class="case-tag">Auto</div>
+            </div>
+
+            <div class="ba">
+              <div class="shot" data-lb-src="ba-auto-01-before.jpg" data-lb-title="Car seats — BEFORE" data-lb-foot="Tap outside to close.">
+                <span class="badge">Before</span>
+                <img src="ba-auto-01-before.jpg" alt="Car seats before" loading="lazy">
+              </div>
+              <div class="shot" data-lb-src="ba-auto-01-after.jpg" data-lb-title="Car seats — AFTER" data-lb-foot="Tap outside to close.">
+                <span class="badge">After</span>
+                <img src="ba-auto-01-after.jpg" alt="Car seats after" loading="lazy">
+              </div>
+            </div>
+
+            <p class="case-desc">Extracted grime from fabric/leather, finished with a clean, even look.</p>
+
+            <div class="case-actions">
+              <a class="primary" href="#quote" data-open-quote="General">Get a quote for my car</a>
+              <a href="#process">Watch the process</a>
+            </div>
+          </div>
+
+          <div class="case reveal">
+            <div class="case-head">
+              <p class="case-title">Dining chairs — refresh set</p>
+              <div class="case-tag">Upholstery</div>
+            </div>
+
+            <div class="ba">
+              <div class="shot" data-lb-src="ba-chairs-01-before.jpg" data-lb-title="Chairs — BEFORE" data-lb-foot="Tap outside to close.">
+                <span class="badge">Before</span>
+                <img src="ba-chairs-01-before.jpg" alt="Chairs before" loading="lazy">
+              </div>
+              <div class="shot" data-lb-src="ba-chairs-01-after.jpg" data-lb-title="Chairs — AFTER" data-lb-foot="Tap outside to close.">
+                <span class="badge">After</span>
+                <img src="ba-chairs-01-after.jpg" alt="Chairs after" loading="lazy">
+              </div>
+            </div>
+
+            <p class="case-desc">Quick turnaround, noticeable freshness, great for everyday use.</p>
+
+            <div class="case-actions">
+              <a class="primary" href="#quote" data-open-quote="General">Get a free quote</a>
+              <a href="#quote" data-open-quote="Scheduling">Check availability</a>
+            </div>
           </div>
         </div>
 
-        <p class="case-desc">Odors + embedded dirt removal for a cleaner sleeping surface.</p>
-
-        <div class="case-actions">
-          <a class="primary" href="#quote" data-open-quote="General">Get a free quote</a>
-          <a href="#quote" data-open-quote="Odor treatment">Ask about odor treatment</a>
+        <div class="igcard reveal">
+          <div class="left">
+            <div class="t">More results on Instagram</div>
+            <div class="s">@revive.shine.idaho — before/after reels &amp; weekly jobs</div>
+          </div>
+          <a href="https://www.instagram.com/revive.shine.idaho?igsh=YWRhZjNtY292M3Vx&utm_source=qr" target="_blank" rel="noopener">Open Instagram</a>
         </div>
       </div>
+    </section>
 
-      <div class="case reveal">
-        <div class="case-head">
-          <p class="case-title">Sofa — stain removal</p>
-          <div class="case-tag">Upholstery</div>
-        </div>
-
-        <div class="ba">
-          <div class="shot"
-               data-lb-src="ba-sofa-01-before.jpg"
-               data-lb-title="Sofa — BEFORE"
-               data-lb-foot="Tap outside to close.">
-            <span class="badge">Before</span>
-            <img src="ba-sofa-01-before.jpg" alt="Sofa before" loading="lazy">
-          </div>
-
-          <div class="shot"
-               data-lb-src="ba-sofa-01-after.jpg"
-               data-lb-title="Sofa — AFTER"
-               data-lb-foot="Tap outside to close.">
-            <span class="badge">After</span>
-            <img src="ba-sofa-01-after.jpg" alt="Sofa after" loading="lazy">
-          </div>
-        </div>
-
-        <p class="case-desc">Deep clean + extraction for a fresh, even finish.</p>
-
-        <div class="case-actions">
-          <a class="primary" href="#quote" data-open-quote="General">Get a free quote</a>
-          <a href="#quote" data-open-quote="Odor treatment">Ask about odor treatment</a>
-        </div>
-      </div>
-
-      <div class="case reveal">
-        <div class="case-head">
-          <p class="case-title">Car seats — interior deep clean</p>
-          <div class="case-tag">Auto</div>
-        </div>
-
-        <div class="ba">
-          <div class="shot" data-lb-src="ba-auto-01-before.jpg" data-lb-title="Car seats — BEFORE" data-lb-foot="Tap outside to close.">
-            <span class="badge">Before</span>
-            <img src="ba-auto-01-before.jpg" alt="Car seats before" loading="lazy">
-          </div>
-          <div class="shot" data-lb-src="ba-auto-01-after.jpg" data-lb-title="Car seats — AFTER" data-lb-foot="Tap outside to close.">
-            <span class="badge">After</span>
-            <img src="ba-auto-01-after.jpg" alt="Car seats after" loading="lazy">
-          </div>
-        </div>
-
-        <p class="case-desc">Extracted grime from fabric/leather, finished with a clean, even look.</p>
-
-        <div class="case-actions">
-          <a class="primary" href="#quote" data-open-quote="General">Get a quote for my car</a>
-          <a href="#process">Watch the process</a>
-        </div>
-      </div>
-
-      <div class="case reveal">
-        <div class="case-head">
-          <p class="case-title">Dining chairs — refresh set</p>
-          <div class="case-tag">Upholstery</div>
-        </div>
-
-        <div class="ba">
-          <div class="shot" data-lb-src="ba-chairs-01-before.jpg" data-lb-title="Chairs — BEFORE" data-lb-foot="Tap outside to close.">
-            <span class="badge">Before</span>
-            <img src="ba-chairs-01-before.jpg" alt="Chairs before" loading="lazy">
-          </div>
-          <div class="shot" data-lb-src="ba-chairs-01-after.jpg" data-lb-title="Chairs — AFTER" data-lb-foot="Tap outside to close.">
-            <span class="badge">After</span>
-            <img src="ba-chairs-01-after.jpg" alt="Chairs after" loading="lazy">
-          </div>
-        </div>
-
-        <p class="case-desc">Quick turnaround, noticeable freshness, great for everyday use.</p>
-
-        <div class="case-actions">
-          <a class="primary" href="#quote" data-open-quote="General">Get a free quote</a>
-          <a href="#quote" data-open-quote="Scheduling">Check availability</a>
-        </div>
-      </div>
-
-    </div><!-- /.work-grid -->
-
-    <div class="igcard reveal">
-      <div class="left">
-        <div class="t">More results on Instagram</div>
-        <div class="s">@revive.shine.idaho — before/after reels &amp; weekly jobs</div>
-      </div>
-      <a href="https://www.instagram.com/revive.shine.idaho?igsh=YWRhZjNtY292M3Vx&utm_source=qr" target="_blank" rel="noopener">Open Instagram</a>
-    </div>
-
-  </div>
-</section>
     <!-- PROCESS -->
     <section class="section" id="process">
       <div class="wrap">
@@ -1485,26 +1413,81 @@
         </div>
       </div>
     </section>
+
+    <!-- FOOTER inside MAIN (stable layout) -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+
+        <!-- Brand -->
+        <div class="footer-col">
+          <div class="footer-brand">
+            <img src="logo.PNG" alt="Revive & Shine logo" class="footer-logo">
+            <strong>Revive & Shine</strong>
+          </div>
+          <p class="footer-text">
+            Mobile upholstery & auto interior cleaning.<br>
+            We come to you.
+          </p>
+          <p class="footer-area">
+            Boise · Meridian · Nampa · Caldwell
+          </p>
+        </div>
+
+        <!-- Services -->
+        <div class="footer-col">
+          <h4>Services</h4>
+          <ul>
+            <li>Sofas & Sectionals</li>
+            <li>Mattress Cleaning</li>
+            <li>Car Seats & Interior</li>
+            <li>Dining Chairs</li>
+            <li>Odor Removal</li>
+          </ul>
+        </div>
+
+        <!-- Contact -->
+        <div class="footer-col">
+          <h4>Contact</h4>
+          <ul>
+            <li><a href="tel:+12081234567">📞 Call</a></li>
+            <li><a href="sms:+12081234567">💬 Text us</a></li>
+            <li><a href="#quote" data-open-quote="General">🧾 Free quote</a></li>
+            <li><a href="https://instagram.com/revive.shine.idaho" target="_blank" rel="noopener">📸 Instagram</a></li>
+          </ul>
+        </div>
+
+      </div>
+
+      <div class="footer-bottom">
+        <p>© <span id="year"></span> Revive & Shine. All rights reserved.</p>
+      </div>
+    </footer>
   </main>
 
+  <!-- ALL SCRIPTS at the very bottom -->
   <script>
-    // Fix: stop iOS/Safari from restoring scroll position to the middle on refresh
-    if ('scrollRestoration' in history) {
-      history.scrollRestoration = 'manual';
-    }
+    // iOS/Safari: prevent restoring scroll position mid-page after refresh
+    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
 
-    // Force top ONLY when opening page without a hash (so your menu anchors still work)
     window.addEventListener('pageshow', () => {
-      if (!location.hash) {
-        setTimeout(() => window.scrollTo(0, 0), 0);
-      }
+      if (!location.hash) window.scrollTo(0, 0);
     });
 
-    // 1) Reveal on scroll
-    const io = new IntersectionObserver((entries) => {
-      for (const e of entries) if (e.isIntersecting) e.target.classList.add('on');
-    }, { threshold: 0.12 });
-    document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+    // 1) Reveal on scroll (safe fallback)
+    (function(){
+      const els = document.querySelectorAll('.reveal');
+      if (!els.length) return;
+
+      if ('IntersectionObserver' in window) {
+        const io = new IntersectionObserver((entries) => {
+          for (const e of entries) if (e.isIntersecting) e.target.classList.add('on');
+        }, { threshold: 0.12 });
+
+        els.forEach(el => io.observe(el));
+      } else {
+        els.forEach(el => el.classList.add('on'));
+      }
+    })();
 
     // 2) Benefits accordion
     function setPanelHeight(panel, open){
@@ -1579,13 +1562,13 @@
       window.addEventListener('scroll', updateFabVisibility, { passive: true });
     }
 
-    // 4) Prefill quote topic
+    // 4) Prefill quote topic (no double-scroll)
     function openQuoteWithTopic(topic){
       const select = document.getElementById('topic');
-      if (!select) return;
-
-      const options = Array.from(select.options).map(o => o.text);
-      select.value = options.includes(topic) ? topic : "General";
+      if (select) {
+        const options = Array.from(select.options).map(o => o.text);
+        select.value = options.includes(topic) ? topic : "General";
+      }
 
       const quote = document.getElementById('quote');
       if (quote) quote.scrollIntoView({ behavior: "smooth", block: "start" });
@@ -1599,9 +1582,10 @@
     }
 
     document.querySelectorAll('[data-open-quote]').forEach(a => {
-      a.addEventListener('click', () => {
+      a.addEventListener('click', (e) => {
+        e.preventDefault();
         const topic = a.getAttribute('data-open-quote') || "General";
-        setTimeout(() => openQuoteWithTopic(topic), 50);
+        openQuoteWithTopic(topic);
       });
     });
 
@@ -1663,67 +1647,10 @@
     document.addEventListener('keydown', (e) => {
       if (e.key === "Escape" && lb && lb.classList.contains('open')) closeLightbox();
     });
+
+    // Footer year
+    const y = document.getElementById('year');
+    if (y) y.textContent = new Date().getFullYear();
   </script>
-<footer class="site-footer">
-  <div class="footer-inner">
-
-    <!-- Brand -->
-    <div class="footer-col">
-      <div class="footer-brand">
-        <img src="logo.PNG" alt="Revive & Shine logo" class="footer-logo">
-        <strong>Revive & Shine</strong>
-      </div>
-      <p class="footer-text">
-        Mobile upholstery & auto interior cleaning.<br>
-        We come to you.
-      </p>
-      <p class="footer-area">
-        Boise · Meridian · Nampa · Caldwell
-      </p>
-    </div>
-
-    <!-- Services -->
-    <div class="footer-col">
-      <h4>Services</h4>
-      <ul>
-        <li>Sofas & Sectionals</li>
-        <li>Mattress Cleaning</li>
-        <li>Car Seats & Interior</li>
-        <li>Dining Chairs</li>
-        <li>Odor Removal</li>
-      </ul>
-    </div>
-
-    <!-- Contact -->
-    <div class="footer-col">
-      <h4>Contact</h4>
-      <ul>
-        <li>
-          <a href="tel:+12081234567">📞 Call</a>
-        </li>
-        <li>
-          <a href="sms:+12081234567">💬 Text us</a>
-        </li>
-        <li>
-          <a href="#quote">🧾 Free quote</a>
-        </li>
-        <li>
-          <a href="https://instagram.com/revive.shine.idaho" target="_blank" rel="noopener">📸 Instagram</a>
-        </li>
-      </ul>
-    </div>
-
-  </div>
-
-  <div class="footer-bottom">
-    <p>© <span id="year"></span> Revive & Shine. All rights reserved.</p>
-  </div>
-</footer>
-
-<script>
-  const y = document.getElementById('year');
-  if (y) y.textContent = new Date().getFullYear();
-</script>
-  
 </body>
 </html>
