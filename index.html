@@ -1708,7 +1708,7 @@
           <a href="#quote">🧾 Free quote</a>
         </li>
         <li>
-          <a href="https://instagram.com/revive.shine.idaho" target="_blank">📸 Instagram</a>
+          <a href="https://instagram.com/revive.shine.idaho" target="_blank" rel="noopener">📸 Instagram</a>
         </li>
       </ul>
     </div>
@@ -1721,7 +1721,8 @@
 </footer>
 
 <script>
-  document.getElementById('year').textContent = new Date().getFullYear();
+  const y = document.getElementById('year');
+  if (y) y.textContent = new Date().getFullYear();
 </script>
   
 </body>
