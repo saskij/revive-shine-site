@@ -665,13 +665,22 @@
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 }
-
 .price-card img{
   width: 100%;
   height: 320px;
-  object-fit: cover;
-  object-position: center;
   display: block;
+
+  /* НЕ режем картинку */
+  object-fit: contain;
+  object-position: center 56%;
+
+  /* Увеличиваем, но управляемо */
+  transform: scale(1.22);
+  transform-origin: center;
+
+  /* чтобы “пустые” зоны не были серыми */
+  background: rgba(255,255,255,.75);
+}
 
   /* “съедаем” белую рамку внутри PNG */
   transform: scale(1.10);
@@ -681,7 +690,8 @@
 @media (max-width: 520px){
   .price-card img{
     height: 62vw;
-    transform: scale(1.12);
+    object-position: center 58%;
+    transform: scale(1.28);
   }
 }
 
