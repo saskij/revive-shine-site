@@ -635,6 +635,28 @@
       transition: transform .22s ease, opacity .35s ease, box-shadow .22s ease, filter .22s ease;
       will-change: transform;
     }
+
+    /* Price cards: image opens zoom, bottom cap goes to quote */
+.price-card{
+  position: relative;
+  overflow: hidden;
+}
+
+.price-media{
+  appearance: none;
+  border: 0;
+  padding: 0;
+  margin: 0;
+  width: 100%;
+  display: block;
+  background: transparent;
+  cursor: pointer;
+}
+
+.price-media:active{ transform: scale(.995); }
+
+/* Keep your existing .price-card img settings (do not duplicate)
+   If you don't have object-fit/height yet, add them here. */
     .reveal.on .price-card{
       transform: translateY(0);
       opacity: 1;
@@ -891,12 +913,13 @@
       font-weight: 980;
       cursor:pointer;
     }
-    .lb-img{
-      width:100%;
-      height: auto;
-      display:block;
-      background:#000;
-    }
+.lb-img{
+  width: 100%;
+  height: 60vh;        /* ~60% высоты экрана */
+  object-fit: contain; /* всё видно, без обрезки */
+  display: block;
+  background: #000;
+}
     .lb-foot{
       padding: 12px;
       color: rgba(0,0,0,.70);
@@ -1069,63 +1092,121 @@
           </p>
         </div>
 
-        <div class="price-grid reveal">
-          <a class="price-card" href="#quote" data-open-quote="Price guide — Couch">
-            <img src="price-couch.PNG" alt="Couch cleaning price guide" loading="lazy">
-            <div class="price-cap">
-              <div class="price-h">Couches</div>
-              <div class="price-d">Tap to request a quote</div>
-            </div>
-          </a>
+      <div class="price-grid reveal">
 
-          <a class="price-card" href="#quote" data-open-quote="Price guide — Mattress">
-            <img src="price-mattress.PNG" alt="Mattress and bed cleaning price guide" loading="lazy">
-            <div class="price-cap">
-              <div class="price-h">Mattresses &amp; beds</div>
-              <div class="price-d">Tap to request a quote</div>
-            </div>
-          </a>
+  <!-- COUCH -->
+  <div class="price-card"
+       data-lb-src="price-couch.PNG"
+       data-lb-title="Couches — price guide"
+       data-lb-foot="Tap outside to close.">
 
-          <a class="price-card" href="#quote" data-open-quote="Price guide — Chairs">
-            <img src="price-chairs.PNG" alt="Chair cleaning price guide" loading="lazy">
-            <div class="price-cap">
-              <div class="price-h">Chairs</div>
-              <div class="price-d">Tap to request a quote</div>
-            </div>
-          </a>
+    <button class="price-media" type="button" aria-label="Open price guide">
+      <img src="price-couch.PNG" alt="Couch cleaning price guide" loading="lazy">
+    </button>
 
-          <a class="price-card" href="#quote" data-open-quote="Price guide — Carpet">
-            <img src="price-carpet.PNG" alt="Carpet and rug cleaning price guide" loading="lazy">
-            <div class="price-cap">
-              <div class="price-h">Carpets &amp; rugs</div>
-              <div class="price-d">Rooms, stairs, per sq ft</div>
-            </div>
-          </a>
+    <a class="price-cap" href="#quote" data-open-quote="Price guide — Couch">
+      <div class="price-h">Couches</div>
+      <div class="price-d">Tap to request a quote</div>
+    </a>
+  </div>
 
-          <a class="price-card" href="#quote" data-open-quote="Price guide — Car interior">
-            <img src="price-car.PNG" alt="Car interior cleaning price guide" loading="lazy">
-            <div class="price-cap">
-              <div class="price-h">Car interiors</div>
-              <div class="price-d">Seats, carpets, panels</div>
-            </div>
-          </a>
+  <!-- MATTRESS -->
+  <div class="price-card"
+       data-lb-src="price-mattress.PNG"
+       data-lb-title="Mattresses & beds — price guide"
+       data-lb-foot="Tap outside to close.">
 
-          <a class="price-card" href="#quote" data-open-quote="Price guide — Add-ons">
-            <img src="price-addons.PNG" alt="Add-ons price guide" loading="lazy">
-            <div class="price-cap">
-              <div class="price-h">Add-ons</div>
-              <div class="price-d">Pet hair, odors, fast drying</div>
-            </div>
-          </a>
+    <button class="price-media" type="button">
+      <img src="price-mattress.PNG" alt="Mattress and bed cleaning price guide" loading="lazy">
+    </button>
 
-          <a class="price-card" href="#quote" data-open-quote="Price guide — Discounts">
-            <img src="price-discounts.PNG" alt="Discounts price guide" loading="lazy">
-            <div class="price-cap">
-              <div class="price-h">Discounts</div>
-              <div class="price-d">Ask to apply it</div>
-            </div>
-          </a>
-        </div>
+    <a class="price-cap" href="#quote" data-open-quote="Price guide — Mattress">
+      <div class="price-h">Mattresses &amp; beds</div>
+      <div class="price-d">Tap to request a quote</div>
+    </a>
+  </div>
+
+  <!-- CHAIRS -->
+  <div class="price-card"
+       data-lb-src="price-chairs.PNG"
+       data-lb-title="Chairs — price guide"
+       data-lb-foot="Tap outside to close.">
+
+    <button class="price-media" type="button">
+      <img src="price-chairs.PNG" alt="Chair cleaning price guide" loading="lazy">
+    </button>
+
+    <a class="price-cap" href="#quote" data-open-quote="Price guide — Chairs">
+      <div class="price-h">Chairs</div>
+      <div class="price-d">Tap to request a quote</div>
+    </a>
+  </div>
+
+  <!-- CARPET -->
+  <div class="price-card"
+       data-lb-src="price-carpet.PNG"
+       data-lb-title="Carpets & rugs — price guide"
+       data-lb-foot="Tap outside to close.">
+
+    <button class="price-media" type="button">
+      <img src="price-carpet.PNG" alt="Carpet and rug cleaning price guide" loading="lazy">
+    </button>
+
+    <a class="price-cap" href="#quote" data-open-quote="Price guide — Carpet">
+      <div class="price-h">Carpets &amp; rugs</div>
+      <div class="price-d">Rooms, stairs, per sq ft</div>
+    </a>
+  </div>
+
+  <!-- CAR INTERIOR -->
+  <div class="price-card"
+       data-lb-src="price-car.PNG"
+       data-lb-title="Car interiors — price guide"
+       data-lb-foot="Tap outside to close.">
+
+    <button class="price-media" type="button">
+      <img src="price-car.PNG" alt="Car interior cleaning price guide" loading="lazy">
+    </button>
+
+    <a class="price-cap" href="#quote" data-open-quote="Price guide — Car interior">
+      <div class="price-h">Car interiors</div>
+      <div class="price-d">Seats, carpets, panels</div>
+    </a>
+  </div>
+
+  <!-- ADD-ONS -->
+  <div class="price-card"
+       data-lb-src="price-addons.PNG"
+       data-lb-title="Add-ons — price guide"
+       data-lb-foot="Tap outside to close.">
+
+    <button class="price-media" type="button">
+      <img src="price-addons.PNG" alt="Add-ons price guide" loading="lazy">
+    </button>
+
+    <a class="price-cap" href="#quote" data-open-quote="Price guide — Add-ons">
+      <div class="price-h">Add-ons</div>
+      <div class="price-d">Pet hair, odors, fast drying</div>
+    </a>
+  </div>
+
+  <!-- DISCOUNTS -->
+  <div class="price-card"
+       data-lb-src="price-discounts.PNG"
+       data-lb-title="Discounts — price guide"
+       data-lb-foot="Tap outside to close.">
+
+    <button class="price-media" type="button">
+      <img src="price-discounts.PNG" alt="Discounts price guide" loading="lazy">
+    </button>
+
+    <a class="price-cap" href="#quote" data-open-quote="Price guide — Discounts">
+      <div class="price-h">Discounts</div>
+      <div class="price-d">Ask to apply it</div>
+    </a>
+  </div>
+
+</div>
 
         <div class="price-note reveal">
           <strong>Note:</strong> These are typical ranges. Heavy stains, pet hair, strong odors, or large-sectionals may change the price.
@@ -1657,47 +1738,86 @@
       });
     }
 
-    // 6) Lightbox
-    const lb = document.getElementById('lightbox');
-    const lbImg = document.getElementById('lbImg');
-    const lbTitle = document.getElementById('lbTitle');
-    const lbFoot = document.getElementById('lbFoot');
+   // 6) Lightbox
+const lb = document.getElementById('lightbox');
+const lbImg = document.getElementById('lbImg');
+const lbTitle = document.getElementById('lbTitle');
+const lbFoot = document.getElementById('lbFoot');
 
-    function openLightbox(src, title, foot){
-      if (!lb || !lbImg || !lbTitle || !lbFoot) return;
-      lb.classList.add('open');
-      lb.setAttribute('aria-hidden', 'false');
-      lbImg.src = src;
-      lbTitle.textContent = title || "Preview";
-      lbFoot.textContent = foot || "Tap outside to close.";
-    }
+function openLightbox(src, title, foot){
+  if (!lb || !lbImg || !lbTitle || !lbFoot) return;
+  lb.classList.add('open');
+  lb.setAttribute('aria-hidden', 'false');
+  lbImg.src = src;
+  lbTitle.textContent = title || "Preview";
+  lbFoot.textContent = foot || "Tap outside to close.";
+}
 
-    function closeLightbox(){
-      if (!lb || !lbImg) return;
-      lb.classList.remove('open');
-      lb.setAttribute('aria-hidden', 'true');
-      lbImg.src = "";
-    }
+function closeLightbox(){
+  if (!lb || !lbImg) return;
+  lb.classList.remove('open');
+  lb.setAttribute('aria-hidden', 'true');
+  lbImg.src = "";
+}
 
-    document.querySelectorAll('.shot[data-lb-src]').forEach(el => {
-      el.addEventListener('click', () => {
-        openLightbox(el.dataset.lbSrc, el.dataset.lbTitle, el.dataset.lbFoot);
-      });
-    });
+function isInPriceCap(target){
+  return !!(target && target.closest && target.closest('.price-cap'));
+}
 
-    if (lb){
-      lb.addEventListener('click', (e) => {
-        if (e.target && e.target.dataset && e.target.dataset.lbClose === "1") closeLightbox();
-      });
-    }
+// Work gallery (before/after)
+document.querySelectorAll('.shot[data-lb-src]').forEach(el => {
+  el.addEventListener('click', () => {
+    openLightbox(el.dataset.lbSrc, el.dataset.lbTitle, el.dataset.lbFoot);
+  });
+});
 
-    document.addEventListener('keydown', (e) => {
-      if (e.key === "Escape" && lb && lb.classList.contains('open')) closeLightbox();
-    });
+// Price cards: zoom ONLY when tapping the image area
+document.querySelectorAll('.price-card .price-media').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-    // Footer year
-    const y = document.getElementById('year');
-    if (y) y.textContent = new Date().getFullYear();
+    const card = btn.closest('.price-card');
+    if (!card) return;
+
+    openLightbox(
+      card.dataset.lbSrc,
+      card.dataset.lbTitle,
+      card.dataset.lbFoot || "Tap outside to close."
+    );
+  });
+});
+
+// Safety: if someone taps the price card container itself (not image, not cap), open zoom.
+// If they tap the bottom cap, let it navigate to the quote section.
+document.querySelectorAll('.price-card[data-lb-src]').forEach(card => {
+  card.addEventListener('click', (e) => {
+    if (isInPriceCap(e.target)) return; // allow quote click
+    // If user clicked the image button, it is already handled above.
+    if (e.target && e.target.closest && e.target.closest('.price-media')) return;
+
+    e.preventDefault();
+    openLightbox(
+      card.dataset.lbSrc,
+      card.dataset.lbTitle,
+      card.dataset.lbFoot || "Tap outside to close."
+    );
+  });
+});
+
+if (lb){
+  lb.addEventListener('click', (e) => {
+    if (e.target && e.target.dataset && e.target.dataset.lbClose === "1") closeLightbox();
+  });
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === "Escape" && lb && lb.classList.contains('open')) closeLightbox();
+});
+
+// Footer year
+const y = document.getElementById('year');
+if (y) y.textContent = new Date().getFullYear();
   </script>
 </body>
 </html>
