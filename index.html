@@ -883,8 +883,14 @@
   background: rgba(0,0,0,.62);
 }
 
-/* prevent page scroll while lightbox is open */
-body.lb-open{ overflow:hidden; }
+/* prevent page scroll while lightbox is open (iOS safe) */
+body.lb-open{
+  overflow: hidden;
+  position: fixed;
+  width: 100%;
+  left: 0;
+  right: 0;
+}
 
 .lb-card{
   position:absolute;
@@ -1756,19 +1762,29 @@ body.lb-open{ overflow:hidden; }
       });
     }
 
- // 6) Lightbox (stable iOS)
+// 6) Lightbox (iOS-stable: no page jump + clean click logic)
 const lb = document.getElementById('lightbox');
 const lbImg = document.getElementById('lbImg');
 const lbTitle = document.getElementById('lbTitle');
 const lbFoot = document.getElementById('lbFoot');
 
+let __lbScrollY = 0;
+
 function openLightbox(src, title, foot){
   if (!lb || !lbImg || !lbTitle || !lbFoot) return;
 
+  // save scroll position (iOS safe)
+  __lbScrollY = window.scrollY || document.documentElement.scrollTop || 0;
+
+  // lock page without jump
   document.body.classList.add('lb-open');
+  document.body.style.top = `-${__lbScrollY}px`;
+
+  // open UI
   lb.classList.add('open');
   lb.setAttribute('aria-hidden', 'false');
 
+  // content
   lbImg.src = src;
   lbTitle.textContent = title || "Preview";
   lbFoot.textContent = foot || "Tap outside to close.";
@@ -1781,21 +1797,28 @@ function closeLightbox(){
   lb.setAttribute('aria-hidden', 'true');
 
   lbImg.src = "";
+
+  // restore scroll safely
+  const top = document.body.style.top;
+  document.body.style.top = "";
   document.body.classList.remove('lb-open');
+
+  const y = top ? Math.abs(parseInt(top, 10)) : __lbScrollY;
+  window.scrollTo(0, y);
 }
 
-function isInPriceCap(target){
-  return !!(target && target.closest && target.closest('.price-cap'));
+function clickedInside(el, selector){
+  return !!(el && el.closest && el.closest(selector));
 }
 
-// Work gallery (before/after)
+// WORK gallery (before/after) — tap image => zoom
 document.querySelectorAll('.shot[data-lb-src]').forEach(el => {
   el.addEventListener('click', () => {
     openLightbox(el.dataset.lbSrc, el.dataset.lbTitle, el.dataset.lbFoot);
   });
 });
 
-// Price cards: zoom ONLY when tapping the image area
+// PRICE guide — zoom ONLY when tapping the image button
 document.querySelectorAll('.price-card .price-media').forEach(btn => {
   btn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -1812,32 +1835,19 @@ document.querySelectorAll('.price-card .price-media').forEach(btn => {
   });
 });
 
-// Safety: tap card (not image, not cap) => open zoom
-document.querySelectorAll('.price-card[data-lb-src]').forEach(card => {
-  card.addEventListener('click', (e) => {
-    if (isInPriceCap(e.target)) return; // allow quote click
-    if (e.target && e.target.closest && e.target.closest('.price-media')) return;
-
-    e.preventDefault();
-    openLightbox(
-      card.dataset.lbSrc,
-      card.dataset.lbTitle,
-      card.dataset.lbFoot || "Tap outside to close."
-    );
-  });
-});
-
-// Close handlers
+// Close: background click or X button (data-lb-close="1")
 if (lb){
   lb.addEventListener('click', (e) => {
-    if (e.target && e.target.dataset && e.target.dataset.lbClose === "1") closeLightbox();
+    if (clickedInside(e.target, '[data-lb-close="1"]')) closeLightbox();
   });
 }
 
+// Close: Escape
 document.addEventListener('keydown', (e) => {
   if (e.key === "Escape" && lb && lb.classList.contains('open')) closeLightbox();
 });
-// Footer year
+    
+    // Footer year
 const y = document.getElementById('year');
 if (y) y.textContent = new Date().getFullYear();
   </script>
