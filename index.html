@@ -607,41 +607,53 @@
       line-height: 1.4;
     }
 
-    /* Value / Price guide */
+/* =========================
+   VALUE / PRICE GUIDE
+   ========================= */
+
 .price-grid{
   margin-top: 18px;
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
   gap: 28px;
 }
-
 @media (max-width: 560px){
   .price-grid{ grid-template-columns: 1fr; }
 }
 
-    .price-card{
-      position: relative;
-      border-radius: 22px;
-      overflow: hidden;
-      border: 0;                                  /* убираем лишнюю рамку */
-      background: transparent;                     /* не добавляем второй белый слой */
-      box-shadow: 0 18px 46px rgba(0,0,0,.10);     /* тень оставляем мягкую */
-      text-decoration: none;
-      color: inherit;
-      
-
-      transform: translateY(10px);
-      opacity: 0;
-      transition: transform .22s ease, opacity .35s ease, box-shadow .22s ease, filter .22s ease;
-      will-change: transform;
-    }
-
-    /* Price cards: image opens zoom, bottom cap goes to quote */
+/* Card container (single source of truth) */
 .price-card{
   position: relative;
+  border-radius: 22px;
   overflow: hidden;
+  border: 0;
+  background: transparent;
+  text-decoration: none;
+  color: inherit;
+
+  box-shadow: 0 18px 46px rgba(0,0,0,.10);
+
+  transform: translateY(10px);
+  opacity: 0;
+  transition: transform .22s ease, opacity .35s ease, box-shadow .22s ease;
+  will-change: transform;
 }
 
+.reveal.on .price-card{
+  transform: translateY(0);
+  opacity: 1;
+}
+
+@media (hover:hover){
+  .price-card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 22px 56px rgba(0,0,0,.14);
+  }
+}
+
+.price-card:active{ transform: scale(.99); }
+
+/* Image button (opens lightbox) */
 .price-media{
   appearance: none;
   border: 0;
@@ -651,72 +663,58 @@
   display: block;
   background: transparent;
   cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
 }
-
-.price-media:active{ transform: scale(.995); }
-
-/* Keep your existing .price-card img settings (do not duplicate)
-   If you don't have object-fit/height yet, add them here. */
-    .reveal.on .price-card{
-      transform: translateY(0);
-      opacity: 1;
-    }
-    @media (hover:hover){
-      .price-card:hover{
-        transform: translateY(-2px);
-        box-shadow: 0 22px 56px rgba(0,0,0,.14);
-      }
-    }
-    .price-card:active{ transform: scale(.99); }
 
 .price-card img{
   width: 100%;
-  height: 320px;              /* делает карточки визуально “крупнее” */
-  object-fit: cover;          /* кадрируем лишние поля */
-  object-position: center;    /* центр */
+  height: 320px;
+  object-fit: cover;
+  object-position: center;
   display: block;
-  transform: scale(1.10);     /* “съедаем” белую рамку внутри PNG */
+
+  /* “съедаем” белую рамку внутри PNG */
+  transform: scale(1.10);
   transform-origin: center;
 }
-.price-card img{
-  width: 100%;
-  height: auto;
-  display: block;
-}
 
-/* MOBILE price cards */
 @media (max-width: 520px){
   .price-card img{
     height: 62vw;
     transform: scale(1.12);
   }
 }
-    
-.price-card{ position: relative; }
 
+/* Bottom caption (goes to quote) */
 .price-cap{
   position: absolute;
   left: 14px;
   right: 14px;
   bottom: 14px;
+
   padding: 14px;
   border-radius: 18px;
+
   background: rgba(255,255,255,.78);
   border: 1px solid rgba(0,0,0,.08);
   backdrop-filter: blur(12px);
   -webkit-backdrop-filter: blur(12px);
-}
-.price-h{ font-size: 16px; }
-.price-d{ font-size: 13px; }
 
-    .price-note{
-      margin-top: 16px;
-      padding: 14px 16px;
-      border-radius: 18px;
-      border: 1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.55);
-      line-height: 1.45;
-    }
+  text-decoration: none;
+  color: var(--ink);
+}
+
+.price-h{ font-size: 16px; font-weight: 950; }
+.price-d{ font-size: 13px; color: var(--muted); }
+
+.price-note{
+  margin-top: 16px;
+  padding: 14px 16px;
+  border-radius: 18px;
+  border: 1px solid rgba(0,0,0,.10);
+  background: rgba(255,255,255,.55);
+  line-height: 1.45;
+}
 
     /* Fix visited link color in top menu */
     .navchips a,
