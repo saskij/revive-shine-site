@@ -1,1049 +1,156 @@
 <!doctype html>
 <html lang="en">
+
 <head>
   <meta name="format-detection" content="telephone=no,email=no,address=no,date=no">
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>Revive & Shine — Upholstery & Auto Cleaning (Boise)</title>
+  <title>Revive & Shine — Upholstery, Mattress & Car Interior Cleaning Boise</title>
 
   <!-- Favicon -->
-  <link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
-  <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
-  <link rel="apple-touch-icon" sizes="180x180" href="favicon-180x180.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="favicon/favicon-32x32.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="favicon/favicon-16x16.png">
+  <link rel="apple-touch-icon" sizes="180x180" href="favicon/favicon-180x180.png">
 
-  <meta name="description" content="Mobile upholstery, mattress, and auto interior cleaning in Boise, Meridian, Nampa, and Caldwell. Free quote. Same-week availability." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&family=Playfair+Display:wght@700;900&display=swap"
+    rel="stylesheet">
 
-  <style>
-    :root{
-      /* Base */
-      --bg:#f7f4f0;
-      --ink:#161616;
-      --muted:#555555;
-      --muted2:#6f6f6f;
-      --stroke:rgba(0,0,0,.10);
+  <meta name="description"
+    content="Mobile upholstery, mattress, and auto interior cleaning in Boise, Meridian, Nampa, and Caldwell. Professional deep extraction. Free quote. Same-week availability." />
 
-      /* Surfaces */
-      --surface: rgba(255,255,255,.78);
-      --surface2: rgba(255,255,255,.62);
+  <!-- Open Graph / Facebook -->
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://revive-shine-site.vercel.app/">
+  <meta property="og:title" content="Revive & Shine — Upholstery & Auto Cleaning Boise">
+  <meta property="og:description"
+    content="Professional mobile deep extraction cleaning for sofas, mattresses, and car interiors in Boise, Meridian, and Nampa.">
+  <meta property="og:image" content="https://revive-shine-site.vercel.app/assets/images/hero-couch.png">
 
-      /* Brand */
-      --gold:#b7a57a;
-      --gold2:#9b8b64;
+  <!-- Twitter -->
+  <meta property="twitter:card" content="summary_large_image">
+  <meta property="twitter:url" content="https://revive-shine-site.vercel.app/">
+  <meta property="twitter:title" content="Revive & Shine — Upholstery & Auto Cleaning Boise">
+  <meta property="twitter:description"
+    content="Professional mobile deep extraction cleaning for sofas, mattresses, and car interiors in Boise, Meridian, and Nampa.">
+  <meta property="twitter:image" content="https://revive-shine-site.vercel.app/assets/images/hero-couch.png">
 
-      /* Effects */
-      --radius: 22px;
-      --shadow-soft: 0 10px 30px rgba(0,0,0,.10);
-      --shadow-card: 0 18px 46px rgba(0,0,0,.12);
-      --shadow-hero: 0 22px 60px rgba(0,0,0,.20);
-
-      /* Layout */
-      --max: 1080px;
-      --pad: 18px;
-
-      /* Type */
-      --lh: 1.55;
+  <!-- JSON-LD Structured Data -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Revive & Shine",
+    "image": "https://revive-shine-site.vercel.app/assets/images/logo-new.png",
+    "@id": "https://revive-shine-site.vercel.app/",
+    "url": "https://revive-shine-site.vercel.app/",
+    "telephone": "+15043279193",
+    "priceRange": "$$",
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Boise",
+      "addressRegion": "ID",
+      "postalCode": "83701",
+      "addressCountry": "US"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 43.6150,
+      "longitude": -116.2023
+    },
+    "servesCrawl": true,
+    "areaServed": ["Boise", "Meridian", "Nampa", "Caldwell", "Eagle"],
+    "openingHoursSpecification": {
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": [
+        "Monday",
+        "Tuesday",
+        "Wednesday",
+        "Thursday",
+        "Friday",
+        "Saturday",
+        "Sunday"
+      ],
+      "opens": "08:00",
+      "closes": "20:00"
     }
-
-    *{ box-sizing:border-box }
-    html,body{ height:100% }
-    body{
-      margin:0;
-      font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-      color:var(--ink);
-      background:var(--bg);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-      overflow-x:hidden;
-
-      line-height: var(--lh);
-      text-rendering: optimizeLegibility;
-    }
-
-    /* Focus ring */
-    a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible{
-      outline: none;
-      box-shadow: 0 0 0 4px rgba(183,165,122,.32);
-    }
-
-    /* Layout */
-    main{ position:relative; }
-    section{
-      position: relative;
-      display:flex;
-      justify-content:center;
-      padding: calc(78px + env(safe-area-inset-top)) env(safe-area-inset-right) 64px env(safe-area-inset-left);
-    }
-    .wrap{
-      width: min(var(--max), 100%);
-      padding: 0 var(--pad);
-      display:flex;
-      flex-direction:column;
-      gap: 16px;
-    }
-
-    /* Top bar */
-    .topbar{
-      position: fixed;
-      z-index: 50;
-      top: 10px;
-      left: 50%;
-      transform: translateX(-50%);
-      width: min(var(--max), calc(100% - 18px));
-    }
-    .topbar .bar{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:10px;
-      padding: 10px 12px;
-      border: 1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.72);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border-radius: 999px;
-      box-shadow: var(--shadow-soft);
-    }
-
-    .navchips{ display:flex; gap:8px; align-items:center; }
-
-    .chip{
-      appearance:none;
-      border:1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.70);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      border-radius: 999px;
-      padding: 9px 12px;
-      font-weight: 800;
-      font-size: 13px;
-      color: var(--ink);
-      text-decoration:none;
-      transition: transform .18s ease, filter .18s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
-    .chip:active{ transform: scale(.98); }
-
-    .chip.primary{
-      background: linear-gradient(180deg, var(--gold), var(--gold2));
-      color:#fff;
-      border-color: rgba(0,0,0,.06);
-    }
-
-    /* Brand */
-    .brandlink{
-      display:flex;
-      align-items:center;
-      gap:10px;
-      text-decoration:none;
-      color: var(--ink);
-      font-weight: 900;
-      min-width:0;
-    }
-    .logo{
-      width: 54px;
-      height: 40px;
-      border-radius: 999px;
-      background: rgba(255,255,255,.70);
-      border: 1px solid rgba(0,0,0,.10);
-      display: grid;
-      place-items: center;
-      overflow: hidden;
-      flex: 0 0 auto;
-      box-shadow: 0 10px 24px rgba(0,0,0,.10);
-    }
-    .logo img{
-      width: 100%;
-      height: 100%;
-      object-fit: contain;
-      transform: scale(2.2);
-      transform-origin: center;
-    }
-    .logo.noimg{
-      font-weight: 950;
-      font-size: 16px;
-      letter-spacing: .5px;
-    }
-    .brandtext{
-      white-space:nowrap;
-      overflow:hidden;
-      text-overflow:ellipsis;
-      font-weight:900;
-      letter-spacing:.2px;
-    }
-    .brandtext .full{ display:inline; }
-    .brandtext .short{ display:none; }
-    @media (max-width:520px){
-      .brandtext .full{ display:none; }
-      .brandtext .short{ display:inline; }
-    }
-
-    /* Hero */
-    .hero{
-      min-height: 100svh;
-      color:#fff;
-      padding-top: calc(78px + env(safe-area-inset-top));
-      padding-bottom: 22px;
-      align-items:flex-end;
-      background:#0b0b0b;
-    }
-    .hero::before{
-      content:"";
-      position:absolute;
-      inset:0;
-      background: url("hero-couch.png") center / cover no-repeat;
-      transform: scale(1.02);
-      filter: saturate(1.02) contrast(1.02);
-    }
-    .hero::after{
-      content:"";
-      position:absolute;
-      inset:0;
-      background:
-        radial-gradient(900px 520px at 70% 30%, rgba(0,0,0,.08), rgba(0,0,0,.42)),
-        linear-gradient(to bottom, rgba(0,0,0,.44), rgba(0,0,0,.18), rgba(0,0,0,.68));
-    }
-    .hero .wrap{ position: relative; z-index: 2; padding-bottom: 16px; }
-    .pillrow{ display:flex; flex-wrap:wrap; gap:10px; }
-    .pill{
-      border: 1px solid rgba(255,255,255,.18);
-      background: rgba(255,255,255,.10);
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-      padding: 9px 12px;
-      border-radius: 999px;
-      font-weight: 750;
-      font-size: 13px;
-    }
-    .hero h1{
-      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
-      font-size: clamp(38px, 9vw, 60px);
-      line-height: 1.02;
-      margin: 10px 0 0;
-      letter-spacing: -.7px;
-      text-shadow: 0 18px 40px rgba(0,0,0,.35);
-    }
-    .hero p{
-      margin: 8px 0 0;
-      font-size: 16px;
-      opacity: .92;
-      max-width: 58ch;
-      text-shadow: 0 14px 30px rgba(0,0,0,.35);
-    }
-    .hero-actions{
-      display:flex;
-      gap: 10px;
-      margin-top: 16px;
-      flex-wrap:wrap;
-    }
-    .btn{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      font-weight: 900;
-      border-radius: 999px;
-      padding: 14px 18px;
-      border: 1px solid rgba(255,255,255,.18);
-      color:#fff;
-      background: rgba(255,255,255,.10);
-      backdrop-filter: blur(12px);
-      -webkit-backdrop-filter: blur(12px);
-      transition: transform .18s ease, filter .18s ease;
-    }
-    .btn:active{ transform: scale(.985); }
-    .btn.primary{
-      border: none;
-      background: linear-gradient(180deg, var(--gold), var(--gold2));
-      box-shadow: 0 16px 34px rgba(0,0,0,.25);
-    }
-    .btn.light{ background: rgba(255,255,255,.18); }
-
-    /* Generic sections */
-    .section{
-      background: radial-gradient(1000px 700px at 70% 0%, rgba(183,165,122,.18), rgba(255,255,255,0));
-      padding-top: calc(78px + env(safe-area-inset-top));
-      padding-bottom: 70px;
-    }
-    .kicker{
-      font-weight: 950;
-      text-transform: uppercase;
-      letter-spacing: .16em;
-      font-size: 12px;
-      color: rgba(0,0,0,.55);
-    }
-    .title{
-      font-size: clamp(28px, 6.2vw, 44px);
-      line-height: 1.06;
-      margin: 6px 0 0;
-      font-family: ui-serif, Georgia, "Times New Roman", Times, serif;
-      letter-spacing: -.4px;
-    }
-    .sub{
-      margin: 10px 0 0;
-      color: var(--muted);
-      max-width: 68ch;
-      font-size: 16px;
-    }
-
-    .grid{ margin-top: 18px; display:grid; gap: 12px; grid-template-columns: 1fr; }
-
-    .card{
-      border: 1px solid rgba(0,0,0,.10);
-      background: var(--surface);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-card);
-      padding: 16px;
-      overflow:hidden;
-      position:relative;
-    }
-    
-
-   /* ===== Fix blue text in benefits (Safari / iOS) ===== */
-/* Interactive benefits (accordion) */
-.benefit{
-  width:100%;
-  border: 1px solid rgba(0,0,0,.10);
-  background: var(--surface);
-  backdrop-filter: blur(14px);
-  -webkit-backdrop-filter: blur(14px);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow-card);
-  overflow:hidden;
-}
-
-/* ===== Fix blue text in benefits (Safari / iOS) ===== */
-.benefit,
-.benefit *{
-  color: var(--ink) !important;
-  -webkit-text-fill-color: var(--ink) !important; /* iOS hard-fix */
-}
-
-/* Button */
-.benefit button{
-  width:100%;
-  display:flex;
-  align-items:center;
-  gap: 12px;
-  padding: 14px 14px;
-  border: none;
-  background: transparent;
-  text-align:left;
-  cursor:pointer;
-  font: inherit;
-
-  -webkit-tap-highlight-color: transparent;
-  appearance: none;
-  touch-action: manipulation;
-}
-
-/* Text */
-.benefit .btxt{ min-width:0; }
-.benefit .btxt .h{ font-weight: 950; margin:0; text-decoration: none !important; }
-.benefit .btxt .d{ margin: 2px 0 0; color: var(--muted) !important; font-size: 13px; }
-
-/* Icon + chevron */
-.iconbox{
-  width: 44px; height: 44px;
-  border-radius: 16px;
-  display:grid; place-items:center;
-  background: rgba(183,165,122,.16);
-  border: 1px solid rgba(183,165,122,.22);
-  flex: 0 0 auto;
-  overflow:hidden;
-}
-.iconbox img{ width:100%; height:100%; object-fit: cover; }
-
-.chev{
-  margin-left:auto;
-  opacity:.55;
-  font-weight: 950;
-  transition: transform .18s ease;
-}
-.benefit[aria-expanded="true"] .chev{ transform: rotate(90deg); }
-
-/* Panel */
-.benefit .panel{
-  max-height: 0;
-  overflow:hidden;
-  transition: max-height .28s ease;
-  border-top: 1px solid rgba(0,0,0,.08);
-  background: var(--surface2);
-}
-.benefit .panel .inner{
-  padding: 14px;
-  display:grid;
-  gap: 10px;
-}
-.benefit .panel p{
-  margin:0;
-  color: rgba(0,0,0,.78);
-  line-height: 1.45;
-}
-
-.benefit .panel .panel-actions{
-  display:flex; gap:10px; flex-wrap:wrap; margin-top: 4px;
-}
-.benefit .panel .panel-actions a{
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  padding: 12px 14px;
-  border-radius: 999px;
-  text-decoration:none;
-  font-weight: 950;
-  border: 1px solid rgba(0,0,0,.10);
-  color: var(--ink) !important;
-  background: rgba(255,255,255,.90);
-}
-.benefit .panel .panel-actions a.primary{
-  border:none;
-  color:#fff !important;
-  background: linear-gradient(180deg, var(--gold), var(--gold2));
-}    /* Before/After gallery */
-    .work-grid{
-      margin-top: 14px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .case{
-      border: 1px solid rgba(0,0,0,.10);
-      background: var(--surface);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow-card);
-      padding: 14px;
-      overflow:hidden;
-    }
-    .case-head{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      margin-bottom: 10px;
-    }
-    .case-title{
-      font-weight: 950;
-      margin:0;
-    }
-    .case-tag{
-      font-size:12px;
-      font-weight: 900;
-      color: rgba(0,0,0,.55);
-      text-transform: uppercase;
-      letter-spacing: .12em;
-    }
-    .ba{
-      display:grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 10px;
-    }
-    .shot{
-      position: relative;
-      border-radius: 18px;
-      overflow:hidden;
-      border: 1px solid rgba(0,0,0,.10);
-      background:#fff;
-      aspect-ratio: 4/3;
-      cursor: pointer;
-    }
-    .shot img{
-      width:100%;
-      height:100%;
-      object-fit: cover;
-      display:block;
-      transform: scale(1.01);
-      transition: transform .25s ease;
-      will-change: transform;
-    }
-    @media (hover:hover){
-      .shot:hover img{ transform: scale(1.08); }
-    }
-    .shot:active img{ transform: scale(1.04); }
-
-    .badge{
-      position:absolute;
-      left: 10px;
-      top: 10px;
-      background: rgba(0,0,0,.52);
-      color:#fff;
-      padding: 6px 10px;
-      border-radius: 999px;
-      font-weight: 900;
-      font-size: 12px;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      backdrop-filter: blur(10px);
-      -webkit-backdrop-filter: blur(10px);
-    }
-    .case-desc{
-      margin: 10px 0 0;
-      color: rgba(0,0,0,.72);
-      line-height: 1.45;
-    }
-    .case-actions{
-      display:flex;
-      gap:10px;
-      flex-wrap:wrap;
-      margin-top: 12px;
-    }
-    .case-actions a{
-      display:inline-flex;
-      align-items:center;
-      justify-content:center;
-      padding: 12px 14px;
-      border-radius: 999px;
-      text-decoration:none;
-      font-weight: 950;
-      border: 1px solid rgba(0,0,0,.10);
-      color: var(--ink);
-      background: rgba(255,255,255,.90);
-    }
-    .case-actions a.primary{
-      border:none;
-      color:#fff;
-      background: linear-gradient(180deg, var(--gold), var(--gold2));
-    }
-
-    .igcard{
-      margin-top: 12px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap: 10px;
-      padding: 14px;
-      border-radius: var(--radius);
-      border: 1px solid rgba(0,0,0,.10);
-      background: var(--surface2);
-      backdrop-filter: blur(14px);
-      -webkit-backdrop-filter: blur(14px);
-      box-shadow: var(--shadow-soft);
-    }
-    .igcard .left{
-      display:flex;
-      flex-direction:column;
-      gap: 2px;
-      min-width:0;
-    }
-    .igcard .left .t{ font-weight: 950; }
-    .igcard .left .s{ color: var(--muted); font-size: 13px; }
-    .igcard a{
-      white-space:nowrap;
-      text-decoration:none;
-      font-weight: 950;
-      padding: 12px 14px;
-      border-radius: 999px;
-      color:#fff;
-      background: linear-gradient(180deg, var(--gold), var(--gold2));
-    }
-
-    /* Video block */
-    .vidgrid{
-      margin-top: 14px;
-      display:grid;
-      grid-template-columns: 1fr;
-      gap: 12px;
-    }
-    .vid{
-      border-radius: var(--radius);
-      overflow:hidden;
-      border: 1px solid rgba(0,0,0,.10);
-      background: var(--surface2);
-      box-shadow: var(--shadow-card);
-    }
-    .vid video{
-      display:block;
-      width:100%;
-      aspect-ratio: 16 / 9;
-      height:auto;
-      background:#000;
-      object-fit: cover;
-}
-    .vidcap{
-      padding: 12px 14px;
-      display:flex;
-      flex-direction:column;
-      gap: 4px;
-    }
-    .vidcap .h{ font-weight: 950; margin:0; }
-    .vidcap .d{ margin:0; color: var(--muted); font-size: 13px; line-height:1.35; }
-
-    /* Reviews */
-    .stars{ letter-spacing: 2px; color: #b7a57a; font-size: 14px; }
-    blockquote{ margin: 8px 0 0; color: rgba(0,0,0,.78); line-height: 1.45; }
-    .who{ margin-top: 10px; font-weight: 950; color: rgba(0,0,0,.70); }
-
-    /* Quote form */
-    form{ display:grid; gap: 10px; margin-top: 12px; }
-    label{ font-weight: 950; font-size: 13px; color: rgba(0,0,0,.70); }
-    input, textarea, select{
-      width:100%;
-      padding: 14px 14px;
-      border-radius: 14px;
-      border: 1px solid rgba(0,0,0,.14);
-      background: rgba(255,255,255,.94);
-      font: inherit;
-      outline: none;
-    }
-    input::placeholder, textarea::placeholder{ color: rgba(0,0,0,.40); }
-    textarea{ min-height: 92px; resize: vertical; }
-    .submit{
-      border: none;
-      padding: 15px 18px;
-      border-radius: 999px;
-      font-weight: 980;
-      background: linear-gradient(180deg, var(--gold), var(--gold2));
-      color:#fff;
-      cursor: pointer;
-      box-shadow: 0 18px 40px rgba(0,0,0,.12);
-    }
-    .fine{
-      margin-top: 10px;
-      color: rgba(0,0,0,.55);
-      font-size: 12px;
-      line-height: 1.4;
-    }
-
-/* =========================
-   VALUE / PRICE GUIDE
-   ========================= */
-
-.price-grid{
-  margin-top: 18px;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
-  gap: 28px;
-}
-@media (max-width: 560px){
-  .price-grid{ grid-template-columns: 1fr; }
-}
-
-/* Card container (single source of truth) */
-.price-card{
-  position: relative;
-  border-radius: 22px;
-  overflow: hidden;
-  border: 0;
-  background: transparent;
-  text-decoration: none;
-  color: inherit;
-
-  box-shadow: 0 18px 46px rgba(0,0,0,.10);
-
-  transform: translateY(10px);
-  opacity: 0;
-  transition: transform .22s ease, opacity .35s ease, box-shadow .22s ease;
-  will-change: transform;
-}
-
-.reveal.on .price-card{
-  transform: translateY(0);
-  opacity: 1;
-}
-
-@media (hover:hover){
-  .price-card:hover{
-    transform: translateY(-2px);
-    box-shadow: 0 22px 56px rgba(0,0,0,.14);
   }
-}
-
-.price-card:active{ transform: scale(.99); }
-
-/* Image button (opens lightbox) */
-.price-media{
-  appearance: none;
-  border: 0;
-  padding: 0;
-  margin: 0;
-  width: 100%;
-  display: block;
-  background: transparent;
-  cursor: pointer;
-  -webkit-tap-highlight-color: transparent;
-}
-.price-card img{
-  width: 100%;
-  height: 320px;
-  display: block;
-
-  /* НЕ режем картинку */
-  object-fit: contain;
-  object-position: center 56%;
-
-  /* Увеличиваем, но управляемо */
-  transform: scale(1.22);
-  transform-origin: center;
-
-  /* чтобы “пустые” зоны не были серыми */
-  background: rgba(255,255,255,.75);
-}
-
-
-@media (max-width: 520px){
-  .price-card img{
-    height: 62vw;
-    object-position: center 58%;
-    transform: scale(1.28);
+  </script>
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Service",
+    "serviceType": "Upholstery Cleaning",
+    "provider": {
+      "@type": "LocalBusiness",
+      "name": "Revive & Shine"
+    },
+    "areaServed": ["Boise", "Meridian", "Nampa"],
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Cleaning Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Couch & Sofa Cleaning"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Mattress Sanitizing"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Auto Interior Deep Clean"
+          }
+        }
+      ]
+    }
   }
-}
+  </script>
 
-/* Bottom caption (goes to quote) */
-.price-cap{
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 14px;
+  <!-- Google Tag Manager -->
+  <script>
+    (function (w, d, s, l, i) {
+      w[l] = w[l] || []; w[l].push({
+        'gtm.start':
+          new Date().getTime(), event: 'gtm.js'
+      }); var f = d.getElementsByTagName(s)[0],
+        j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+          'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+    })(window, document, 'script', 'dataLayer', 'GTM-K38SD292');
+  </script>
+  <!-- End Google Tag Manager -->
 
-  padding: 14px;
-  border-radius: 18px;
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
-  background: rgba(255,255,255,.78);
-  border: 1px solid rgba(0,0,0,.08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
-
-  text-decoration: none;
-  color: var(--ink);
-}
-
-.price-h{ font-size: 16px; font-weight: 950; }
-.price-d{ font-size: 13px; color: var(--muted); }
-
-.price-note{
-  margin-top: 16px;
-  padding: 14px 16px;
-  border-radius: 18px;
-  border: 1px solid rgba(0,0,0,.10);
-  background: rgba(255,255,255,.55);
-  line-height: 1.45;
-}
-
-    /* Fix visited link color in top menu */
-    .navchips a,
-    .navchips a:link,
-    .navchips a:visited,
-    .navchips a:active,
-    .navchips a:focus,
-    .navchips a:hover{
-      color: var(--ink);
-      text-decoration: none;
-      outline: none;
-    }
-    .navchips a.primary,
-    .navchips a.primary:link,
-    .navchips a.primary:visited,
-    .navchips a.primary:active,
-    .navchips a.primary:focus,
-    .navchips a.primary:hover{
-      color:#fff !important;
-      text-decoration:none;
-    }
-
-    /* Floating CTA (FAB) */
-    .fab{
-      position: fixed;
-      z-index: 80;
-      right: calc(14px + env(safe-area-inset-right));
-      bottom: calc(14px + env(safe-area-inset-bottom));
-      display:flex;
-      flex-direction:column;
-      align-items:flex-end;
-      gap: 10px;
-      pointer-events:auto;
-      opacity: 1;
-      transform: translateY(0);
-      transition: opacity .18s ease, transform .18s ease;
-      animation: fabNudge 7s ease-in-out infinite;
-    }
-    @keyframes fabNudge {
-      0%   { transform: translateY(0); }
-      85%  { transform: translateY(0); }
-      90%  { transform: translateY(-3px); }
-      95%  { transform: translateY(0); }
-      100% { transform: translateY(0); }
-    }
-
-    .fab.fab-hidden{
-      opacity: 0;
-      transform: translateY(14px);
-      pointer-events:none;
-      animation: none;
-    }
-
-    .fab button, .fab a{ -webkit-tap-highlight-color: transparent; }
-
-    .fab-main{
-      height: 56px;
-      padding: 0 18px;
-      border-radius: 999px;
-      border: 1px solid rgba(0,0,0,.12);
-      background: linear-gradient(180deg, var(--gold), var(--gold2));
-      color:#fff;
-      font-weight: 900;
-      font-size: 15px;
-      box-shadow: 0 18px 40px rgba(0,0,0,.18);
-      display:flex;
-      align-items:center;
-      gap:10px;
-      cursor:pointer;
-      white-space: nowrap;
-      position: relative;
-      transition: transform .18s ease, filter .18s ease, box-shadow .18s ease;
-      will-change: transform;
-    }
-    @media (hover:hover){
-      .fab-main:hover{
-        transform: translateY(-2px);
-        filter: brightness(1.04);
-        box-shadow: 0 22px 52px rgba(0,0,0,.22);
-      }
-    }
-    .fab-main:active{ transform: scale(.98); }
-
-    .fab-main::after{
-      content:"";
-      position:absolute;
-      inset:-6px;
-      border-radius:999px;
-      border: 2px solid rgba(255,255,255,.45);
-      opacity: 0;
-      transform: scale(1);
-      pointer-events:none;
-      animation: fabPulse 3.2s ease-out infinite;
-    }
-    @keyframes fabPulse{
-      0%   { opacity: 0; transform: scale(1); }
-      15%  { opacity: .55; }
-      60%  { opacity: 0; transform: scale(1.18); }
-      100% { opacity: 0; transform: scale(1.18); }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .fab-main::after{ animation: none; }
-    }
-
-    .fab-menu{
-      width: min(360px, calc(100vw - 28px));
-      border-radius: 22px;
-      border: 1px solid rgba(0,0,0,.10);
-      background: rgba(255,255,255,.70);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      box-shadow: 0 14px 40px rgba(0,0,0,.14);
-      overflow:hidden;
-
-      transform-origin: bottom right;
-      transform: scale(.96) translateY(6px);
-      opacity: 0;
-      pointer-events:none;
-      transition: opacity .18s ease, transform .18s ease;
-    }
-    .fab.open .fab-menu{
-      opacity:1;
-      transform: scale(1) translateY(0);
-      pointer-events:auto;
-    }
-    .fab-menu .row{
-      display:flex;
-      gap:10px;
-      padding: 10px;
-    }
-    .fab-menu a{
-      flex:1 1 auto;
-      text-align:center;
-      padding: 14px 12px;
-      border-radius: 16px;
-      text-decoration:none;
-      font-weight: 980;
-      border: 1px solid rgba(0,0,0,.10);
-      color: var(--ink);
-      background: rgba(255,255,255,.78);
-    }
-    .fab-menu a.primary{
-      border:none;
-      color:#fff;
-      background: linear-gradient(180deg, var(--gold), var(--gold2));
-    }
-    .fab-hint{
-      font-size: 12px;
-      color: rgba(0,0,0,.62);
-      padding: 0 12px 12px;
-      line-height: 1.35;
-    }
-
-   /* Lightbox */
-.lightbox{
-  position: fixed;
-  inset:0;
-  z-index: 120;
-  display:none;
-}
-.lightbox.open{ display:block; }
-
-.lb-bg{
-  position:absolute;
-  inset:0;
-  background: rgba(0,0,0,.62);
-}
-
-/* prevent page scroll while lightbox is open (iOS safe) */
-body.lb-open{
-  overflow: hidden;
-  position: fixed;
-  width: 100%;
-  left: 0;
-  right: 0;
-  top: 0;
-}
-
-.lb-card{
-  position:absolute;
-  left:50%;
-  top:50%;
-  transform: translate(-50%,-50%);
-  width: min(980px, calc(100% - 18px));
-  background: rgba(255,255,255,.88);
-  border: 1px solid rgba(255,255,255,.35);
-  border-radius: 22px;
-  box-shadow: 0 26px 90px rgba(0,0,0,.35);
-  backdrop-filter: blur(18px);
-  -webkit-backdrop-filter: blur(18px);
-  overflow:hidden;
-
-  /* iOS/Safari stable sizing */
-  height: calc(100dvh - 24px);
-  max-height: min(760px, calc(100dvh - 24px));
-
-  display:flex;
-  flex-direction:column;
-}
-
-.lb-head{
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-  gap:10px;
-  padding: 10px 12px;
-  border-bottom: 1px solid rgba(0,0,0,.06);
-  flex: 0 0 auto;
-}
-.lb-title{ font-weight: 950; }
-
-.lb-x{
-  width:40px;height:40px;
-  border-radius: 14px;
-  border: 1px solid rgba(0,0,0,.10);
-  background: rgba(255,255,255,.7);
-  font-weight: 980;
-  cursor:pointer;
-}
-
-.lb-img{
-  width: 100%;
-  flex: 1 1 auto;
-  min-height: 240px;
-  max-height: calc(100dvh - 160px); /* safety */
-  object-fit: contain;
-  display: block;
-  background: #000;
-}
-
-.lb-foot{
-  padding: 12px;
-  color: rgba(0,0,0,.70);
-  font-size: 13px;
-  line-height:1.35;
-  flex: 0 0 auto;
-}
-    /* Reveal */
-    .reveal{
-      opacity: 0;
-      transform: translateY(10px);
-      transition: opacity .5s ease, transform .5s ease;
-    }
-    .reveal.on{ opacity: 1; transform: translateY(0); }
-
-    @media (min-width: 860px){
-      .grid.two{ grid-template-columns: 1fr 1fr; }
-      .work-grid{ grid-template-columns: 1fr 1fr; }
-      .vidgrid{ grid-template-columns: 1fr 1fr; }
-      .chip{ font-size: 14px; padding: 10px 14px; }
-    }
-    @media (prefers-reduced-motion: reduce){
-      .reveal{ transition:none; opacity:1; transform:none; }
-      .benefit .panel{ transition:none; }
-      .chev{ transition:none; }
-      .fab-menu{ transition:none; }
-      .fab{ animation:none; }
-    }
-    :target{ scroll-margin-top: 92px; }
-
-    /* Footer */
-    .site-footer{
-      margin-top: 80px;
-      background: rgba(255,255,255,.85);
-      border-top: 1px solid var(--stroke);
-      backdrop-filter: blur(8px);
-    }
-    .footer-inner{
-      max-width: var(--max);
-      margin: 0 auto;
-      padding: 48px 18px;
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 32px;
-    }
-    .footer-col h4{
-      margin-bottom: 12px;
-      font-size: 14px;
-      text-transform: uppercase;
-      letter-spacing: .06em;
-      color: var(--muted2);
-    }
-    .footer-col ul{ list-style: none; padding: 0; margin: 0; }
-    .footer-col li{ margin-bottom: 10px; font-size: 14px; }
-    .footer-col a{ text-decoration: none; color: var(--ink); }
-    .footer-col a:hover{ text-decoration: underline; }
-
-    .footer-brand{
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      margin-bottom: 12px;
-    }
-    .footer-logo{ width: 36px; height: auto; }
-    .footer-text{ font-size: 14px; color: var(--muted); margin-bottom: 8px; }
-    .footer-area{ font-size: 13px; color: var(--muted2); }
-
-    .footer-bottom{
-      border-top: 1px solid var(--stroke);
-      text-align: center;
-      padding: 16px;
-      font-size: 13px;
-      color: var(--muted2);
-    }
-
-    @media (max-width: 800px){
-      .footer-inner{ grid-template-columns: 1fr; text-align: center; }
-      .footer-brand{ justify-content: center; }
-    }
-
-
-    
-  </style>
+  <link rel="stylesheet" href="css/style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.9.3/dist/confetti.browser.min.js"></script>
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-K38SD292" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
+
   <!-- TOPBAR -->
-  <div class="topbar">
+  <header class="topbar">
     <div class="bar">
       <a class="brandlink" href="#top" aria-label="Back to top">
         <span class="logo">
-          <img src="logo.PNG" alt="Revive & Shine logo"
-               onerror="this.onerror=null; this.style.display='none'; this.parentElement.classList.add('noimg'); this.parentElement.textContent='R';">
+          <img src="assets/images/logo-new.png" alt="Revive & Shine logo"
+            onerror="this.onerror=null; this.style.display='none'; this.parentElement.classList.add('noimg'); this.parentElement.textContent='R';">
         </span>
 
         <span class="brandtext">
@@ -1058,15 +165,15 @@ body.lb-open{
         <a class="chip primary" href="#quote" data-open-quote="General" id="navFreeQuote">Free Quote</a>
       </div>
     </div>
-  </div>
+  </header>
 
   <!-- Floating CTA -->
-<div class="fab fab-hidden" id="fab">
-  <div class="fab-menu" id="fabMenu" aria-hidden="true">
+  <div class="fab fab-hidden" id="fab">
+    <div class="fab-menu" id="fabMenu" aria-hidden="true">
       <div class="row">
         <a class="primary" href="#quote" data-open-quote="General">Free Quote</a>
-        <a href="sms:+12081234567">Text</a>
-        <a href="tel:+12081234567">Call</a>
+        <a href="sms:+15043279193">Text</a>
+        <a href="tel:+15043279193">Call</a>
       </div>
       <div class="fab-hint">
         Tip: for the most accurate quote, text a photo after submitting.
@@ -1099,13 +206,14 @@ body.lb-open{
         </div>
 
         <div class="reveal">
-          <h1>Make it look<br/>like new again</h1>
-          <p>Deep extraction cleaning for upholstery and auto interiors. Remove embedded dirt, odors, and most stains. For the most accurate quote, send a photo.</p>
+          <h1>Make it look<br />like new again</h1>
+          <p>Deep extraction cleaning for upholstery and auto interiors. Remove embedded dirt, odors, and most stains.
+            For the most accurate quote, send a photo.</p>
 
           <div class="hero-actions">
             <a class="btn primary" href="#quote" data-open-quote="Sofa quote">Get a free quote</a>
-            <a class="btn light" href="sms:+12081234567">Text us</a>
-            <a class="btn" href="tel:+12081234567">Call</a>
+            <a class="btn light" href="sms:+15043279193">Text us</a>
+            <a class="btn" href="tel:+15043279193">Call</a>
           </div>
         </div>
       </div>
@@ -1123,124 +231,116 @@ body.lb-open{
           </p>
         </div>
 
-      <div class="price-grid reveal">
+        <div class="price-grid reveal">
 
-  <!-- COUCH -->
-  <div class="price-card"
-       data-lb-src="price-couch.PNG"
-       data-lb-title="Couches — price guide"
-       data-lb-foot="Tap outside to close.">
+          <!-- COUCH -->
+          <div class="price-card reveal stagger-1" data-lb-src="assets/images/price-couch.PNG"
+            data-lb-title="Couches — price guide" data-lb-foot="Tap outside to close.">
 
-    <button class="price-media" type="button" aria-label="Open price guide">
-      <img src="price-couch.PNG" alt="Couch cleaning price guide" loading="lazy">
-    </button>
+            <button class="price-media" type="button" aria-label="Open price guide for couch cleaning">
+              <img src="assets/images/price-couch.PNG"
+                alt="Transparent price guide for couch and sofa cleaning in Boise" loading="lazy">
+            </button>
 
-    <a class="price-cap" href="#quote" data-open-quote="Price guide — Couch">
-      <div class="price-h">Couches</div>
-      <div class="price-d">Tap to request a quote</div>
-    </a>
-  </div>
+            <a class="price-cap" href="#quote" data-open-quote="Price guide — Couch">
+              <div class="price-h">Couches</div>
+              <div class="price-d">Tap to request a quote</div>
+            </a>
+          </div>
 
-  <!-- MATTRESS -->
-  <div class="price-card"
-       data-lb-src="price-mattress.PNG"
-       data-lb-title="Mattresses & beds — price guide"
-       data-lb-foot="Tap outside to close.">
+          <!-- MATTRESS -->
+          <div class="price-card reveal stagger-2" data-lb-src="assets/images/price-mattress.PNG"
+            data-lb-title="Mattresses & beds — price guide" data-lb-foot="Tap outside to close.">
 
-    <button class="price-media" type="button">
-      <img src="price-mattress.PNG" alt="Mattress and bed cleaning price guide" loading="lazy">
-    </button>
+            <button class="price-media" type="button" aria-label="Open price guide for mattress cleaning">
+              <img src="assets/images/price-mattress.PNG"
+                alt="Professional mattress and bed cleaning price guide in Meridian" loading="lazy">
+            </button>
 
-    <a class="price-cap" href="#quote" data-open-quote="Price guide — Mattress">
-      <div class="price-h">Mattresses &amp; beds</div>
-      <div class="price-d">Tap to request a quote</div>
-    </a>
-  </div>
+            <a class="price-cap" href="#quote" data-open-quote="Price guide — Mattress">
+              <div class="price-h">Mattresses &amp; beds</div>
+              <div class="price-d">Tap to request a quote</div>
+            </a>
+          </div>
 
-  <!-- CHAIRS -->
-  <div class="price-card"
-       data-lb-src="price-chairs.PNG"
-       data-lb-title="Chairs — price guide"
-       data-lb-foot="Tap outside to close.">
+          <!-- CHAIRS -->
+          <div class="price-card reveal stagger-3" data-lb-src="assets/images/price-chairs.PNG"
+            data-lb-title="Chairs — price guide" data-lb-foot="Tap outside to close.">
 
-    <button class="price-media" type="button">
-      <img src="price-chairs.PNG" alt="Chair cleaning price guide" loading="lazy">
-    </button>
+            <button class="price-media" type="button" aria-label="Open price guide for chair cleaning">
+              <img src="assets/images/price-chairs.PNG"
+                alt="Expert upholstery cleaning for chairs and armchairs in Nampa" loading="lazy">
+            </button>
 
-    <a class="price-cap" href="#quote" data-open-quote="Price guide — Chairs">
-      <div class="price-h">Chairs</div>
-      <div class="price-d">Tap to request a quote</div>
-    </a>
-  </div>
+            <a class="price-cap" href="#quote" data-open-quote="Price guide — Chairs">
+              <div class="price-h">Chairs</div>
+              <div class="price-d">Tap to request a quote</div>
+            </a>
+          </div>
 
-  <!-- CARPET -->
-  <div class="price-card"
-       data-lb-src="price-carpet.PNG"
-       data-lb-title="Carpets & rugs — price guide"
-       data-lb-foot="Tap outside to close.">
+          <!-- CARPET -->
+          <div class="price-card" data-lb-src="assets/images/price-carpet.PNG"
+            data-lb-title="Carpets & rugs — price guide" data-lb-foot="Tap outside to close.">
 
-    <button class="price-media" type="button">
-      <img src="price-carpet.PNG" alt="Carpet and rug cleaning price guide" loading="lazy">
-    </button>
+            <button class="price-media" type="button" aria-label="Open price guide for carpet cleaning">
+              <img src="assets/images/price-carpet.PNG" alt="Affordable carpet and rug cleaning prices in Boise area"
+                loading="lazy">
+            </button>
 
-    <a class="price-cap" href="#quote" data-open-quote="Price guide — Carpet">
-      <div class="price-h">Carpets &amp; rugs</div>
-      <div class="price-d">Rooms, stairs, per sq ft</div>
-    </a>
-  </div>
+            <a class="price-cap" href="#quote" data-open-quote="Price guide — Carpet">
+              <div class="price-h">Carpets &amp; rugs</div>
+              <div class="price-d">Rooms, stairs, per sq ft</div>
+            </a>
+          </div>
 
-  <!-- CAR INTERIOR -->
-  <div class="price-card"
-       data-lb-src="price-car.PNG"
-       data-lb-title="Car interiors — price guide"
-       data-lb-foot="Tap outside to close.">
+          <!-- CAR INTERIOR -->
+          <div class="price-card" data-lb-src="assets/images/price-car.PNG" data-lb-title="Car interiors — price guide"
+            data-lb-foot="Tap outside to close.">
 
-    <button class="price-media" type="button">
-      <img src="price-car.PNG" alt="Car interior cleaning price guide" loading="lazy">
-    </button>
+            <button class="price-media" type="button" aria-label="Open price guide for car interior cleaning">
+              <img src="assets/images/price-car.PNG" alt="Auto interior and car seat deep cleaning price guide"
+                loading="lazy">
+            </button>
 
-    <a class="price-cap" href="#quote" data-open-quote="Price guide — Car interior">
-      <div class="price-h">Car interiors</div>
-      <div class="price-d">Seats, carpets, panels</div>
-    </a>
-  </div>
+            <a class="price-cap" href="#quote" data-open-quote="Price guide — Car interior">
+              <div class="price-h">Car interiors</div>
+              <div class="price-d">Seats, carpets, panels</div>
+            </a>
+          </div>
 
-  <!-- ADD-ONS -->
-  <div class="price-card"
-       data-lb-src="price-addons.PNG"
-       data-lb-title="Add-ons — price guide"
-       data-lb-foot="Tap outside to close.">
+          <!-- ADD-ONS -->
+          <div class="price-card" data-lb-src="assets/images/price-addons.PNG" data-lb-title="Add-ons — price guide"
+            data-lb-foot="Tap outside to close.">
 
-    <button class="price-media" type="button">
-      <img src="price-addons.PNG" alt="Add-ons price guide" loading="lazy">
-    </button>
+            <button class="price-media" type="button">
+              <img src="assets/images/price-addons.PNG" alt="Add-ons price guide" loading="lazy">
+            </button>
 
-    <a class="price-cap" href="#quote" data-open-quote="Price guide — Add-ons">
-      <div class="price-h">Add-ons</div>
-      <div class="price-d">Pet hair, odors, fast drying</div>
-    </a>
-  </div>
+            <a class="price-cap" href="#quote" data-open-quote="Price guide — Add-ons">
+              <div class="price-h">Add-ons</div>
+              <div class="price-d">Pet hair, odors, fast drying</div>
+            </a>
+          </div>
 
-  <!-- DISCOUNTS -->
-  <div class="price-card"
-       data-lb-src="price-discounts.PNG"
-       data-lb-title="Discounts — price guide"
-       data-lb-foot="Tap outside to close.">
+          <!-- DISCOUNTS -->
+          <div class="price-card" data-lb-src="assets/images/price-discounts.PNG"
+            data-lb-title="Discounts — price guide" data-lb-foot="Tap outside to close.">
 
-    <button class="price-media" type="button">
-      <img src="price-discounts.PNG" alt="Discounts price guide" loading="lazy">
-    </button>
+            <button class="price-media" type="button">
+              <img src="assets/images/price-discounts.PNG" alt="Discounts price guide" loading="lazy">
+            </button>
 
-    <a class="price-cap" href="#quote" data-open-quote="Price guide — Discounts">
-      <div class="price-h">Discounts</div>
-      <div class="price-d">Ask to apply it</div>
-    </a>
-  </div>
+            <a class="price-cap" href="#quote" data-open-quote="Price guide — Discounts">
+              <div class="price-h">Discounts</div>
+              <div class="price-d">Ask to apply it</div>
+            </a>
+          </div>
 
-</div>
+        </div>
 
         <div class="price-note reveal">
-          <strong>Note:</strong> These are typical ranges. Heavy stains, pet hair, strong odors, or large-sectionals may change the price.
+          <strong>Note:</strong> These are typical ranges. Heavy stains, pet hair, strong odors, or large-sectionals may
+          change the price.
           We’ll confirm after a photo and a few questions.
         </div>
       </div>
@@ -1256,9 +356,9 @@ body.lb-open{
         </div>
 
         <div class="grid">
-          <div class="benefit reveal" id="b1" aria-expanded="false">
+          <div class="benefit reveal stagger-1" id="b1" aria-expanded="false">
             <button type="button" class="head" data-acc="b1" aria-controls="p1" aria-expanded="false">
-              <div class="iconbox"><img alt="Clean finish" src="clean-finish.png"></div>
+              <div class="iconbox"><img alt="Clean finish" src="assets/images/clean-finish.png"></div>
               <div class="btxt">
                 <p class="h">Clean &amp; cozy finish</p>
                 <p class="d">A refreshed look that feels comfortable again</p>
@@ -1276,9 +376,9 @@ body.lb-open{
             </div>
           </div>
 
-          <div class="benefit reveal" id="b2" aria-expanded="false">
+          <div class="benefit reveal stagger-2" id="b2" aria-expanded="false">
             <button type="button" class="head" data-acc="b2" aria-controls="p2" aria-expanded="false">
-              <div class="iconbox"><img alt="Fast scheduling" src="fast-scheduling.png"></div>
+              <div class="iconbox"><img alt="Fast scheduling" src="assets/images/fast-scheduling.png"></div>
               <div class="btxt">
                 <p class="h">Fast scheduling</p>
                 <p class="d">Same-week availability + respectful timing</p>
@@ -1297,9 +397,9 @@ body.lb-open{
             </div>
           </div>
 
-          <div class="benefit reveal" id="b3" aria-expanded="false">
+          <div class="benefit reveal stagger-3" id="b3" aria-expanded="false">
             <button type="button" class="head" data-acc="b3" aria-controls="p3" aria-expanded="false">
-              <div class="iconbox"><img alt="Real extraction" src="real-extraction.png"></div>
+              <div class="iconbox"><img alt="Real extraction" src="assets/images/real-extraction.png"></div>
               <div class="btxt">
                 <p class="h">Real extraction</p>
                 <p class="d">Embedded dirt you can actually see</p>
@@ -1317,9 +417,9 @@ body.lb-open{
             </div>
           </div>
 
-          <div class="benefit reveal" id="b4" aria-expanded="false">
+          <div class="benefit reveal stagger-4" id="b4" aria-expanded="false">
             <button type="button" class="head" data-acc="b4" aria-controls="p4" aria-expanded="false">
-              <div class="iconbox"><img alt="Odor solutions" src="odor-solutions.png"></div>
+              <div class="iconbox"><img alt="Odor solutions" src="assets/images/odor-solutions.png"></div>
               <div class="btxt">
                 <p class="h">Odor solutions</p>
                 <p class="d">Pets, smoke, food smells</p>
@@ -1330,7 +430,8 @@ body.lb-open{
               <div class="inner">
                 <p>Pet odors • Smoke • Food smells</p>
                 <div class="panel-actions">
-                  <a class="primary" href="#quote" data-open-quote="Odor treatment">Ask about odor treatment</a>
+                  <a class="primary" href="#quote" data-open-quote="Odor treatment">Ask about odor
+                    treatment</a>
                 </div>
               </div>
             </div>
@@ -1349,20 +450,24 @@ body.lb-open{
         </div>
 
         <div class="work-grid">
-          <div class="case reveal">
+          <div class="case reveal stagger-1">
             <div class="case-head">
               <p class="case-title">Mattress — refresh &amp; sanitize</p>
               <div class="case-tag">Mattress</div>
             </div>
 
             <div class="ba">
-              <div class="shot" data-lb-src="price-mattress-01.jpg" data-lb-title="Mattress — BEFORE" data-lb-foot="Tap outside to close.">
+              <div class="shot" data-lb-src="assets/images/price-mattress-01.jpg" data-lb-title="Mattress — BEFORE"
+                data-lb-foot="Tap outside to close.">
                 <span class="badge">Before</span>
-                <img src="price-mattress-01.jpg" alt="Mattress before" loading="lazy">
+                <img src="assets/images/price-mattress-01.jpg" alt="Dirty mattress before cleaning process"
+                  loading="lazy">
               </div>
-              <div class="shot" data-lb-src="price-mattress-02.jpg" data-lb-title="Mattress — AFTER" data-lb-foot="Tap outside to close.">
+              <div class="shot" data-lb-src="assets/images/price-mattress-02.jpg" data-lb-title="Mattress — AFTER"
+                data-lb-foot="Tap outside to close.">
                 <span class="badge">After</span>
-                <img src="price-mattress-02.jpg" alt="Mattress after" loading="lazy">
+                <img src="assets/images/price-mattress-02.jpg" alt="Clean sanitized mattress after deep extraction"
+                  loading="lazy">
               </div>
             </div>
 
@@ -1374,20 +479,22 @@ body.lb-open{
             </div>
           </div>
 
-          <div class="case reveal">
+          <div class="case reveal stagger-2">
             <div class="case-head">
               <p class="case-title">Sofa — stain removal</p>
               <div class="case-tag">Upholstery</div>
             </div>
 
             <div class="ba">
-              <div class="shot" data-lb-src="ba-sofa-01-before.jpg" data-lb-title="Sofa — BEFORE" data-lb-foot="Tap outside to close.">
+              <div class="shot" data-lb-src="assets/images/ba-sofa-01-before.jpg" data-lb-title="Sofa — BEFORE"
+                data-lb-foot="Tap outside to close.">
                 <span class="badge">Before</span>
-                <img src="ba-sofa-01-before.jpg" alt="Sofa before" loading="lazy">
+                <img src="assets/images/ba-sofa-01-before.jpg" alt="Sofa before" loading="lazy">
               </div>
-              <div class="shot" data-lb-src="ba-sofa-01-after.jpg" data-lb-title="Sofa — AFTER" data-lb-foot="Tap outside to close.">
+              <div class="shot" data-lb-src="assets/images/ba-sofa-01-after.jpg" data-lb-title="Sofa — AFTER"
+                data-lb-foot="Tap outside to close.">
                 <span class="badge">After</span>
-                <img src="ba-sofa-01-after.jpg" alt="Sofa after" loading="lazy">
+                <img src="assets/images/ba-sofa-01-after.jpg" alt="Sofa after" loading="lazy">
               </div>
             </div>
 
@@ -1399,20 +506,24 @@ body.lb-open{
             </div>
           </div>
 
-          <div class="case reveal">
+          <div class="case reveal stagger-3">
             <div class="case-head">
               <p class="case-title">Car seats — interior deep clean</p>
               <div class="case-tag">Auto</div>
             </div>
 
             <div class="ba">
-              <div class="shot" data-lb-src="ba-auto-01-before.jpg" data-lb-title="Car seats — BEFORE" data-lb-foot="Tap outside to close.">
+              <div class="shot" data-lb-src="assets/images/ba-auto-01-before.jpg" data-lb-title="Car seats — BEFORE"
+                data-lb-foot="Tap outside to close.">
                 <span class="badge">Before</span>
-                <img src="ba-auto-01-before.jpg" alt="Car seats before" loading="lazy">
+                <img src="assets/images/ba-auto-01-before.jpg"
+                  alt="Dirty car seats before professional extraction cleaning" loading="lazy">
               </div>
-              <div class="shot" data-lb-src="ba-auto-01-after.jpg" data-lb-title="Car seats — AFTER" data-lb-foot="Tap outside to close.">
+              <div class="shot" data-lb-src="assets/images/ba-auto-01-after.jpg" data-lb-title="Car seats — AFTER"
+                data-lb-foot="Tap outside to close.">
                 <span class="badge">After</span>
-                <img src="ba-auto-01-after.jpg" alt="Car seats after" loading="lazy">
+                <img src="assets/images/ba-auto-01-after.jpg" alt="Clean car seats after deep interior detailing"
+                  loading="lazy">
               </div>
             </div>
 
@@ -1424,20 +535,24 @@ body.lb-open{
             </div>
           </div>
 
-          <div class="case reveal">
+          <div class="case reveal stagger-4">
             <div class="case-head">
               <p class="case-title">Dining chairs — refresh set</p>
               <div class="case-tag">Upholstery</div>
             </div>
 
             <div class="ba">
-              <div class="shot" data-lb-src="ba-chairs-01-before.jpg" data-lb-title="Chairs — BEFORE" data-lb-foot="Tap outside to close.">
+              <div class="shot" data-lb-src="assets/images/ba-chairs-01-before.jpg" data-lb-title="Chairs — BEFORE"
+                data-lb-foot="Tap outside to close.">
                 <span class="badge">Before</span>
-                <img src="ba-chairs-01-before.jpg" alt="Chairs before" loading="lazy">
+                <img src="assets/images/ba-chairs-01-before.jpg" alt="Dining chairs with stains before cleaning service"
+                  loading="lazy">
               </div>
-              <div class="shot" data-lb-src="ba-chairs-01-after.jpg" data-lb-title="Chairs — AFTER" data-lb-foot="Tap outside to close.">
+              <div class="shot" data-lb-src="assets/images/ba-chairs-01-after.jpg" data-lb-title="Chairs — AFTER"
+                data-lb-foot="Tap outside to close.">
                 <span class="badge">After</span>
-                <img src="ba-chairs-01-after.jpg" alt="Chairs after" loading="lazy">
+                <img src="assets/images/ba-chairs-01-after.jpg" alt="Refreshed dining chairs after upholstery cleaning"
+                  loading="lazy">
               </div>
             </div>
 
@@ -1455,7 +570,8 @@ body.lb-open{
             <div class="t">More results on Instagram</div>
             <div class="s">@revive.shine.idaho — before/after reels &amp; weekly jobs</div>
           </div>
-          <a href="https://www.instagram.com/revive.shine.idaho?igsh=YWRhZjNtY292M3Vx&utm_source=qr" target="_blank" rel="noopener">Open Instagram</a>
+          <a href="https://www.instagram.com/revive.shine.idaho?igsh=YWRhZjNtY292M3Vx&utm_source=qr" target="_blank"
+            rel="noopener">Open Instagram</a>
         </div>
       </div>
     </section>
@@ -1466,33 +582,68 @@ body.lb-open{
         <div class="reveal">
           <div class="kicker">Process</div>
           <div class="title">Proof it’s real work</div>
-          <p class="sub">Short clips perform very well: extraction pass, dirty water, final result. Videos are optional — add later.</p>
+          <p class="sub">Short clips perform very well: extraction pass, dirty water, final result. Videos are optional
+            — add later.</p>
         </div>
 
-<div class="vidgrid">
+        <div class="vidgrid">
 
-  <div class="vid reveal">
-    <video controls playsinline preload="metadata" poster="process-01.jpg">
-      <source src="process-01.mp4" type="video/mp4">
-    </video>
-    <div class="vidcap">
-      <p class="h">Deep extraction pass</p>
-      <p class="d">Real results: removing embedded dirt from fabric.</p>
-    </div>
-  </div>
+          <div class="vid reveal">
+            <video controls playsinline preload="metadata" poster="assets/images/process-01.jpg">
+              <source src="assets/images/process-01.mp4" type="video/mp4">
+            </video>
+            <div class="vidcap">
+              <p class="h">Deep extraction pass</p>
+              <p class="d">Real results: removing embedded dirt from fabric.</p>
+            </div>
+          </div>
 
-<div class="vid reveal">
-  <video controls playsinline preload="metadata" poster="process-02.jpg">
-    <source src="process-02.mp4" type="video/mp4">
-  </video>
-  <div class="vidcap">
-    <p class="h">From dirty to fresh</p>
-    <p class="d">Deep extraction that brings fabric back to life.</p>
-  </div>
-</div>
+          <div class="vid reveal">
+            <video controls playsinline preload="metadata" poster="assets/images/process-02.jpg">
+              <source src="assets/images/process-02.mp4" type="video/mp4">
+            </video>
+            <div class="vidcap">
+              <p class="h">From dirty to fresh</p>
+              <p class="d">Deep extraction that brings fabric back to life.</p>
+            </div>
+          </div>
 
-</div>
+        </div>
 
+      </div>
+    </section>
+
+    <!-- OUR PROCESS -->
+    <section class="section" id="how-it-works">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="kicker">How it works</div>
+          <div class="title">Our 3-step deep clean</div>
+          <p class="sub">We follow a proven method to ensure your furniture looks and feels its best.</p>
+        </div>
+
+        <div class="grid three-cols">
+          <div class="card reveal stagger-1">
+            <div class="iconbox"><img src="assets/images/step-assessment.jpg" alt="Assessment"></div>
+            <p class="h" style="font-weight:950; margin:12px 0 6px;">1. Assessment</p>
+            <p class="d" style="font-size:14px; color:var(--muted);">We inspect the fabric, identify stains, and choose
+              the safest, most effective cleaning agent.</p>
+          </div>
+
+          <div class="card reveal stagger-2">
+            <div class="iconbox"><img src="assets/images/step-extraction.jpg" alt="Deep Extraction"></div>
+            <p class="h" style="font-weight:950; margin:12px 0 6px;">2. Deep Extraction</p>
+            <p class="d" style="font-size:14px; color:var(--muted);">Professional-grade hot water extraction pulls
+              embedded dirt and allergens from deep within the fibers.</p>
+          </div>
+
+          <div class="card reveal stagger-3">
+            <div class="iconbox"><img src="assets/images/step-final.jpg" alt="Final Touch"></div>
+            <p class="h" style="font-weight:950; margin:12px 0 6px;">3. Final Touch</p>
+            <p class="d" style="font-size:14px; color:var(--muted);">We groom the fabric, treat any stubborn spots, and
+              ensure everything is set for quick drying.</p>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1502,7 +653,8 @@ body.lb-open{
         <div class="reveal">
           <div class="kicker">Social proof</div>
           <div class="title">People love the results</div>
-          <p class="sub">New business — first reviews are coming soon. Meanwhile, see real before/after results above.</p>
+          <p class="sub">New business — first reviews are coming soon. Meanwhile, see real before/after results above.
+          </p>
         </div>
 
         <div class="grid two">
@@ -1527,336 +679,245 @@ body.lb-open{
         <div class="reveal">
           <div class="kicker">Free estimate</div>
           <div class="title">Get a quote today</div>
-          <p class="sub">Send a quick message. For best accuracy, include a photo of the area (text it to us after submitting).</p>
+          <p class="sub">Send a quick message. For best accuracy, include a photo of the area.</p>
         </div>
 
         <div class="card reveal">
-          <form id="quoteForm">
-            <div>
-              <label for="topic">What do you need?</label>
-              <select id="topic" name="topic">
-                <option>General</option>
-                <option>Sofa quote</option>
-                <option>Scheduling</option>
-                <option>Extraction cleaning</option>
-                <option>Odor treatment</option>
-              </select>
+          <form id="contact-form">
+            <!-- Honeypot anti-spam -->
+            <div style="display:none;" aria-hidden="true">
+              <input type="text" name="fi-honeypot" tabindex="-1" autocomplete="off" />
+            </div>
+            <div class="field">
+              <label for="firstName">Name</label>
+              <div class="input-wrap">
+                <input id="firstName" name="fi-sender-firstName" placeholder="Your name" autocomplete="name" required />
+                <span class="validator"><i class="fa-solid fa-circle-check"></i></span>
+              </div>
             </div>
 
-            <div>
-              <label for="name">Name</label>
-              <input id="name" name="name" placeholder="Your name" autocomplete="name" />
-            </div>
-
-            <div>
+            <div class="field">
               <label for="phone">Phone</label>
-              <input id="phone" name="phone" placeholder="(208) 123-4567" autocomplete="tel" />
+              <div class="input-wrap">
+                <input id="phone" name="fi-sender-phone" placeholder="(504) 327-9193" autocomplete="tel" required />
+                <span class="validator"><i class="fa-solid fa-circle-check"></i></span>
+              </div>
             </div>
 
             <div>
-              <label for="service">Service details</label>
-              <input id="service" name="service" placeholder="Sofa / Mattress / Car seats + city" />
+              <label for="message">Message</label>
+              <textarea id="message" name="fi-text-message"
+                placeholder="Tell us what you need cleaned + any stains/odors + timing." required></textarea>
+            </div>
+            <div class="upload">
+              <label class="upload-btn" for="attachment">
+                <span class="icon" aria-hidden="true">📎</span>
+                Attach photos (optional)
+              </label>
+              <input id="attachment" type="file" name="file" accept="image/*" multiple>
+              <div class="upload-note">Optional: add photos here, or use WhatsApp/text below.</div>
             </div>
 
-            <div>
-              <label for="msg">Message</label>
-              <textarea id="msg" name="msg" placeholder="Tell us what you need cleaned + any stains/odors + timing."></textarea>
-            </div>
+            <div class="thumbs" id="photoThumbs" aria-live="polite"></div>
 
+            <div class="upload">
+              <a class="upload-btn" href="https://wa.me/15043279193" target="_blank" rel="noopener">
+                <span class="icon" aria-hidden="true">💬</span>
+                Send photos via WhatsApp
+              </a>
+              <div class="upload-note">Or text photos to: +1 (504) 327-9193</div>
+            </div>
             <button class="submit" type="submit">Send request</button>
-
-            <div class="fine">
-              By submitting you agree to be contacted by call/text. Replace the phone/email inside the code with your real contacts.
-            </div>
           </form>
         </div>
       </div>
     </section>
 
-    <!-- FOOTER inside MAIN (stable layout) -->
-    <footer class="site-footer">
-      <div class="footer-inner">
-
-        <!-- Brand -->
-        <div class="footer-col">
-          <div class="footer-brand">
-            <img src="logo.PNG" alt="Revive & Shine logo" class="footer-logo">
-            <strong>Revive & Shine</strong>
-          </div>
-          <p class="footer-text">
-            Mobile upholstery & auto interior cleaning.<br>
-            We come to you.
-          </p>
-          <p class="footer-area">
-            Boise · Meridian · Nampa · Caldwell
-          </p>
+    <!-- FAQ -->
+    <section class="section" id="faq">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="kicker">FAQ</div>
+          <div class="title">Frequently Asked Questions</div>
+          <p class="sub">Quick answers to common questions about our service.</p>
         </div>
 
-        <!-- Services -->
+        <div class="grid">
+          <div class="benefit reveal stagger-1" id="faq1" aria-expanded="false">
+            <button type="button" class="head" data-acc="faq1" aria-controls="faqp1" aria-expanded="false">
+              <div class="iconbox"><img src="assets/images/faq-drying.png" alt="Drying time"
+                  style="width: 100%; height: 100%; object-fit: cover;"></div>
+              <div class="btxt">
+                <p class="h">How long does the drying process take?</p>
+                <p class="d">Usually 4–8 hours depending on ventilation</p>
+              </div>
+              <div class="chev">›</div>
+            </button>
+            <div class="panel" id="faqp1" role="region" aria-label="Drying time details">
+              <div class="inner">
+                <p>Usually 4–8 hours depending on ventilation.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefit reveal stagger-2" id="faq2" aria-expanded="false">
+            <button type="button" class="head" data-acc="faq2" aria-controls="faqp2" aria-expanded="false">
+              <div class="iconbox"><img src="assets/images/faq-safe.png" alt="Pet & kid safe"
+                  style="width: 100%; height: 100%; object-fit: cover;"></div>
+              <div class="btxt">
+                <p class="h">Are your cleaning products pet and kid-safe?</p>
+                <p class="d">Eco-friendly, non-toxic professional solutions</p>
+              </div>
+              <div class="chev">›</div>
+            </button>
+            <div class="panel" id="faqp2" role="region" aria-label="Products safety details">
+              <div class="inner">
+                <p>Yes, we use eco-friendly, non-toxic professional solutions.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefit reveal stagger-3" id="faq3" aria-expanded="false">
+            <button type="button" class="head" data-acc="faq3" aria-controls="faqp3" aria-expanded="false">
+              <div class="iconbox"><img src="assets/images/faq-vacuum.png" alt="Vacuuming"
+                  style="width: 100%; height: 100%; object-fit: cover;"></div>
+              <div class="btxt">
+                <p class="h">Do I need to vacuum before you arrive?</p>
+                <p class="d">Helpful but not required</p>
+              </div>
+              <div class="chev">›</div>
+            </button>
+            <div class="panel" id="faqp3" role="region" aria-label="Vacuuming details">
+              <div class="inner">
+                <p>It’s helpful but not required; we do a professional extraction.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefit reveal stagger-4" id="faq4" aria-expanded="false">
+            <button type="button" class="head" data-acc="faq4" aria-controls="faqp4" aria-expanded="false">
+              <div class="iconbox"><img src="assets/images/faq-location.png" alt="Service area"
+                  style="width: 100%; height: 100%; object-fit: cover;"></div>
+              <div class="btxt">
+                <p class="h">Do you provide services in my city?</p>
+                <p class="d">We are a mobile service and we come to you</p>
+              </div>
+              <div class="chev">›</div>
+            </button>
+            <div class="panel" id="faqp4" role="region" aria-label="Service areas details">
+              <div class="inner">
+                <p>We are a mobile service and we come to you! We proudly serve Meridian, Boise, Eagle, Star, Kuna,
+                  Nampa, and Caldwell.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="benefit reveal" id="faq5" aria-expanded="false">
+            <button type="button" class="head" data-acc="faq5" aria-controls="faqp5" aria-expanded="false">
+              <div class="iconbox"><img src="assets/images/faq-estimate.png" alt="Price estimate"
+                  style="width: 100%; height: 100%; object-fit: cover;"></div>
+              <div class="btxt">
+                <p class="h">How do I get an accurate price estimate?</p>
+                <p class="d">Use our Free Quote form and upload photos</p>
+              </div>
+              <div class="chev">›</div>
+            </button>
+            <div class="panel" id="faqp5" role="region" aria-label="Price estimate details">
+              <div class="inner">
+                <p>The easiest way is to use our Free Quote form. Just upload a few photos of your furniture or car
+                  interior, and we will send you a text with a precise estimate within 30 minutes.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- GUARANTEE -->
+    <section class="section"
+      style="background: linear-gradient(135deg, #161616 0%, #2a2a2a 100%); color:#fff; text-align:center;">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="kicker" style="color:var(--gold);">Our Promise</div>
+          <div class="title" style="color:#fff;">100% Satisfaction Guaranteed</div>
+          <p class="sub" style="color:rgba(255,255,255,0.7); margin-bottom:20px;">
+            If you're not completely happy with the results, we'll come back and make it right—at no extra cost to you.
+          </p>
+          <div style="font-size: 60px; margin-bottom: 20px;">🛡️</div>
+          <a class="btn primary" href="#quote" data-open-quote="General">Book with Confidence</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- MAP / SERVICE AREA -->
+    <section class="section" id="service-area" style="padding-bottom: 0;">
+      <div class="wrap">
+        <div class="reveal">
+          <div class="kicker">Locations</div>
+          <div class="title">Our Service Area</div>
+          <p class="sub">We bring our mobile deep cleaning service to you across the Treasure Valley.</p>
+        </div>
+
+        <div class="reveal"
+          style="margin-top: 24px; border-radius: 22px; overflow: hidden; border: 1px solid rgba(0,0,0,.1); line-height: 0;">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d184512.0!2d-116.39!3d43.61!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e0!3m2!1sen!2sus!4v1706606000000!5m2!1sen!2sus"
+            width="100%" height="400" style="border:0; filter: contrast(1.1) brightness(1.05);" allowfullscreen=""
+            loading="lazy" referrerpolicy="no-referrer-when-downgrade">
+          </iframe>
+        </div>
+
+        <div class="pillrow reveal" style="margin-top: 20px; justify-content: center;">
+          <div class="pill">Boise</div>
+          <div class="pill">Meridian</div>
+          <div class="pill">Nampa</div>
+          <div class="pill">Caldwell</div>
+          <div class="pill">Eagle</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="site-footer">
+      <div class="footer-inner">
+        <div class="footer-col">
+          <div class="footer-brand">
+            <img src="assets/images/logo-new.png" alt="Revive & Shine" class="footer-logo">
+            <span style="font-weight:900;">Revive & Shine</span>
+          </div>
+          <p class="footer-text">Professional upholstery and interior cleaning in Idaho.</p>
+          <p class="footer-area">Boise • Meridian • Nampa • Caldwell • Eagle</p>
+        </div>
         <div class="footer-col">
           <h4>Services</h4>
           <ul>
-            <li>Sofas & Sectionals</li>
-            <li>Mattress Cleaning</li>
-            <li>Car Seats & Interior</li>
-            <li>Dining Chairs</li>
-            <li>Odor Removal</li>
+            <li><a href="#quote" data-open-quote="Sofa quote">Couch & Sofa</a></li>
+            <li><a href="#quote" data-open-quote="Price guide — Mattress">Mattress Sanitizing</a></li>
+            <li><a href="#quote" data-open-quote="Price guide — Car interior">Auto Interior</a></li>
+            <li><a href="#quote" data-open-quote="Price guide — Carpet">Carpets & Rugs</a></li>
           </ul>
         </div>
-
-        <!-- Contact -->
         <div class="footer-col">
-          <h4>Contact</h4>
+          <h4>Connect</h4>
           <ul>
-            <li><a href="tel:+12081234567">📞 Call</a></li>
-            <li><a href="sms:+12081234567">💬 Text us</a></li>
-            <li><a href="#quote" data-open-quote="General">🧾 Free quote</a></li>
-            <li><a href="https://instagram.com/revive.shine.idaho" target="_blank" rel="noopener">📸 Instagram</a></li>
+            <li><a href="tel:+15043279193" class="icon-link"><i class="fa-solid fa-phone"></i> (504) 327-9193</a></li>
+            <li><a href="sms:+15043279193" class="icon-link"><i class="fa-solid fa-comment-sms"></i> Text us</a></li>
+            <li><a href="https://www.instagram.com/revive.shine.idaho" target="_blank" class="icon-link"><i
+                  class="fa-brands fa-instagram"></i> Instagram</a></li>
           </ul>
         </div>
-
       </div>
-
       <div class="footer-bottom">
-        <p>© <span id="year"></span> Revive & Shine. All rights reserved.</p>
+        <p>© <span id="year"></span> Revive & Shine. All rights reserved.
+          <a href="privacy.html" class="privacy-link">Privacy</a> •
+          <a href="terms.html" class="privacy-link">Terms</a>
+        </p>
       </div>
     </footer>
   </main>
 
   <!-- ALL SCRIPTS at the very bottom -->
-  <script>
-    // iOS/Safari: prevent restoring scroll position mid-page after refresh
-    if ('scrollRestoration' in history) history.scrollRestoration = 'manual';
-
-    window.addEventListener('pageshow', () => {
-      if (!location.hash) window.scrollTo(0, 0);
-    });
-
-    // 1) Reveal on scroll (safe fallback)
-    (function(){
-      const els = document.querySelectorAll('.reveal');
-      if (!els.length) return;
-
-      if ('IntersectionObserver' in window) {
-        const io = new IntersectionObserver((entries) => {
-          for (const e of entries) if (e.isIntersecting) e.target.classList.add('on');
-        }, { threshold: 0.12 });
-
-        els.forEach(el => io.observe(el));
-      } else {
-        els.forEach(el => el.classList.add('on'));
-      }
-    })();
-
-    // 2) Benefits accordion
-    function setPanelHeight(panel, open){
-      if (!panel) return;
-      panel.style.maxHeight = open ? (panel.scrollHeight + "px") : "0px";
-    }
-
-    document.querySelectorAll('[data-acc]').forEach(btn => {
-      btn.addEventListener('click', () => {
-        const id = btn.getAttribute('data-acc');
-        const wrap = document.getElementById(id);
-        const panel = wrap ? wrap.querySelector('.panel') : null;
-        if (!wrap || !panel) return;
-
-        const isOpen = wrap.getAttribute('aria-expanded') === 'true';
-
-        // close others
-        document.querySelectorAll('.benefit').forEach(b => {
-          if (b.id !== id) {
-            b.setAttribute('aria-expanded', 'false');
-            const bbtn = b.querySelector('button.head');
-            if (bbtn) bbtn.setAttribute('aria-expanded', 'false');
-            setPanelHeight(b.querySelector('.panel'), false);
-          }
-        });
-
-        wrap.setAttribute('aria-expanded', String(!isOpen));
-        btn.setAttribute('aria-expanded', String(!isOpen));
-        setPanelHeight(panel, !isOpen);
-      });
-    });
-
-    window.addEventListener('resize', () => {
-      document.querySelectorAll('.benefit[aria-expanded="true"]').forEach(b => {
-        setPanelHeight(b.querySelector('.panel'), true);
-      });
-    });
-
-    // 3) Floating CTA
-    const fab = document.getElementById('fab');
-    const fabBtn = document.getElementById('fabBtn');
-    const fabMenu = document.getElementById('fabMenu');
-
-    if (fab && fabBtn && fabMenu) {
-      fabBtn.addEventListener('click', (e) => {
-        e.stopPropagation();
-        const open = fab.classList.toggle('open');
-        fabMenu.setAttribute('aria-hidden', String(!open));
-      });
-
-      document.addEventListener('click', (e) => {
-        if (!fab.contains(e.target)) {
-          fab.classList.remove('open');
-          fabMenu.setAttribute('aria-hidden', 'true');
-        }
-      });
-
-      function updateFabVisibility() {
-        const trigger = Math.max(200, window.innerHeight * 0.55);
-        const y = window.scrollY || document.documentElement.scrollTop || 0;
-
-        if (y > trigger) {
-          fab.classList.remove('fab-hidden');
-        } else {
-          fab.classList.add('fab-hidden');
-          fab.classList.remove('open');
-          fabMenu.setAttribute('aria-hidden', 'true');
-        }
-      }
-
-      updateFabVisibility();
-      window.addEventListener('scroll', updateFabVisibility, { passive: true });
-    }
-
-    // 4) Prefill quote topic (no double-scroll)
-    function openQuoteWithTopic(topic){
-      const select = document.getElementById('topic');
-      if (select) {
-        const options = Array.from(select.options).map(o => o.text);
-        select.value = options.includes(topic) ? topic : "General";
-      }
-
-      const quote = document.getElementById('quote');
-      if (quote) quote.scrollIntoView({ behavior: "smooth", block: "start" });
-
-      if (fab && fabMenu){
-        fab.classList.remove('open');
-        fabMenu.setAttribute('aria-hidden', 'true');
-      }
-
-      setTimeout(() => document.getElementById('name')?.focus(), 450);
-    }
-
-    document.querySelectorAll('[data-open-quote]').forEach(a => {
-      a.addEventListener('click', (e) => {
-        e.preventDefault();
-        const topic = a.getAttribute('data-open-quote') || "General";
-        openQuoteWithTopic(topic);
-      });
-    });
-
-    // 5) Form submit via mailto
-    const quoteForm = document.getElementById("quoteForm");
-    const TO_EMAIL = "bstuashurov@gmail.com";
-
-    if (quoteForm){
-      quoteForm.addEventListener("submit", (ev) => {
-        ev.preventDefault();
-        const topic = document.getElementById("topic")?.value || "";
-        const name = document.getElementById("name")?.value || "";
-        const phone = document.getElementById("phone")?.value || "";
-        const service = document.getElementById("service")?.value || "";
-        const msg = document.getElementById("msg")?.value || "";
-
-        const subject = encodeURIComponent(`Free Quote — ${topic}`);
-        const body = encodeURIComponent(
-          `Topic: ${topic}\nName: ${name}\nPhone: ${phone}\nService: ${service}\n\nMessage:\n${msg}\n\n— Sent from landing page`
-        );
-        window.location.href = `mailto:${TO_EMAIL}?subject=${subject}&body=${body}`;
-      });
-    }
-
-// 6) Lightbox (iOS-stable: no page jump + clean click logic)
-const lb = document.getElementById('lightbox');
-const lbImg = document.getElementById('lbImg');
-const lbTitle = document.getElementById('lbTitle');
-const lbFoot = document.getElementById('lbFoot');
-
-let __lbScrollY = 0;
-
-function openLightbox(src, title, foot){
-  if (!lb || !lbImg || !lbTitle || !lbFoot) return;
-
-  // save scroll position (iOS safe)
-  __lbScrollY = window.scrollY || document.documentElement.scrollTop || 0;
-
-  // lock page without jump
-  document.body.classList.add('lb-open');
-  document.body.style.top = `-${__lbScrollY}px`;
-
-  // open UI
-  lb.classList.add('open');
-  lb.setAttribute('aria-hidden', 'false');
-
-  // content
-  lbImg.src = src;
-  lbTitle.textContent = title || "Preview";
-  lbFoot.textContent = foot || "Tap outside to close.";
-}
-
-function closeLightbox(){
-  if (!lb || !lbImg) return;
-
-  lb.classList.remove('open');
-  lb.setAttribute('aria-hidden', 'true');
-
-  lbImg.src = "";
-
-  // restore scroll safely
-  const top = document.body.style.top;
-  document.body.style.top = "";
-  document.body.classList.remove('lb-open');
-
-  const y = top ? Math.abs(parseInt(top, 10)) : __lbScrollY;
-  window.scrollTo(0, y);
-}
-
-function clickedInside(el, selector){
-  return !!(el && el.closest && el.closest(selector));
-}
-
-// WORK gallery (before/after) — tap image => zoom
-document.querySelectorAll('.shot[data-lb-src]').forEach(el => {
-  el.addEventListener('click', () => {
-    openLightbox(el.dataset.lbSrc, el.dataset.lbTitle, el.dataset.lbFoot);
-  });
-});
-
-// PRICE guide — zoom ONLY when tapping the image button
-document.querySelectorAll('.price-card .price-media').forEach(btn => {
-  btn.addEventListener('click', (e) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    const card = btn.closest('.price-card');
-    if (!card) return;
-
-    openLightbox(
-      card.dataset.lbSrc,
-      card.dataset.lbTitle,
-      card.dataset.lbFoot || "Tap outside to close."
-    );
-  });
-});
-
-// Close: background click or X button (data-lb-close="1")
-if (lb){
-  lb.addEventListener('click', (e) => {
-    if (clickedInside(e.target, '[data-lb-close="1"]')) closeLightbox();
-  });
-}
-
-// Close: Escape
-document.addEventListener('keydown', (e) => {
-  if (e.key === "Escape" && lb && lb.classList.contains('open')) closeLightbox();
-});
-    
-    // Footer year
-const y = document.getElementById('year');
-if (y) y.textContent = new Date().getFullYear();
-  </script>
+  <script src="js/script.js"></script>
 </body>
+
 </html>
