@@ -430,3 +430,27 @@ document.addEventListener('keydown', (e) => {
 // Footer year
 const y = document.getElementById('year');
 if (y) y.textContent = new Date().getFullYear();
+
+// 7) Strapi Integration
+async function initStrapi() {
+  try {
+    const response = await fetch('http://localhost:1337/api/homepage');
+    const { data } = await response.json();
+
+    console.log('Данные из Strapi:', data);
+
+    if (data) {
+      // Заменяем текст h1
+      const h1 = document.querySelector('h1');
+      if (h1 && data.Title) h1.textContent = data.Title;
+
+      // Заменяем текст описания (по id или классу)
+      const desc = document.getElementById('hero-description') || document.querySelector('.hero p');
+      if (desc && data.Description) desc.textContent = data.Description;
+    }
+  } catch (error) {
+    console.error('Ошибка загрузки Strapi:', error);
+  }
+}
+
+initStrapi();

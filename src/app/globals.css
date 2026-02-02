@@ -225,7 +225,7 @@ section {
   content: "";
   position: absolute;
   inset: 0;
-  background: url("../assets/images/hero-couch.webp") center / cover no-repeat;
+  background: url("/assets/images/hero-couch.webp") center / cover no-repeat;
   transform: scale(1.02);
   filter: saturate(1.02) contrast(1.02);
 }
@@ -919,19 +919,25 @@ textarea {
 /* Card container (single source of truth) */
 .price-card {
   position: relative;
-  border-radius: 22px;
-  overflow: hidden;
+  /* removed border-radius & overflow here to allow normal flow content expansion */
   border: 0;
   background: transparent;
   text-decoration: none;
   color: inherit;
 
-  box-shadow: 0 12px 36px rgba(0, 0, 0, .06);
+  /* We remove shadow from the container because the pieces (img/cap) will have their own or need adjustment */
+  /* box-shadow: 0 12px 36px rgba(0, 0, 0, .06); -> Moved or removed to avoid double shadows */
 
   transform: translateY(15px);
   opacity: 0;
   transition: all .4s cubic-bezier(0.23, 1, 0.32, 1);
   will-change: transform, opacity;
+
+  /* Layout */
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  /* Space between image and caption */
 }
 
 .reveal.on .price-card {
@@ -961,6 +967,13 @@ textarea {
   background: transparent;
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
+
+  /* Move clipping here */
+  border-radius: 22px;
+  overflow: hidden;
+  box-shadow: 0 12px 36px rgba(0, 0, 0, .06);
+  transform: translateZ(0);
+  /* Fix for safari clipping */
 }
 
 .price-card img {
@@ -991,21 +1004,34 @@ textarea {
 
 /* Bottom caption (goes to quote) */
 .price-cap {
-  position: absolute;
-  left: 14px;
-  right: 14px;
-  bottom: 14px;
+  position: relative;
+  /* Normal flow */
+  left: auto;
+  right: auto;
+  bottom: auto;
+  width: 100%;
 
-  padding: 14px;
+  padding: 16px;
   border-radius: 18px;
 
   background: rgba(255, 255, 255, .78);
   border: 1px solid rgba(0, 0, 0, .08);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  /* Keep backdrop filter if key elements are behind, but now it's separate */
+  /* backdrop-filter: blur(12px); */
 
   text-decoration: none;
   color: var(--ink);
+
+  display: block;
+  margin-bottom: 0;
+}
+
+@media (max-width: 560px) {
+
+  /* Prevent FAB overlap on the last item or all items if stacked */
+  .price-card:last-child {
+    padding-bottom: calc(80px + env(safe-area-inset-bottom));
+  }
 }
 
 .price-h {

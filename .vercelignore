@@ -1,0 +1,8 @@
+node_modules
+.next
+_legacy_static
+.git
+*.zip
+temp_next_app
+my-admin
+.DS_Store
