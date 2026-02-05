@@ -31,8 +31,12 @@ export default function Navbar() {
                 </Link>
 
                 <div className="navchips">
-                    <Link className="chip" href="#value">Value</Link>
-                    <Link className="chip" href="#work">Work</Link>
+                    <Link className="chip" href="#benefits">Benefits</Link>
+                    <Link className="chip" href="#value">Pricing</Link>
+                    <Link className="chip" href="#work">Results</Link>
+                    <Link className="chip" href="#process">Process</Link>
+                    <Link className="chip" href="#reviews">Reviews</Link>
+                    <Link className="chip" href="#faq">FAQ</Link>
                     <Link
                         className="chip primary"
                         href="#quote"

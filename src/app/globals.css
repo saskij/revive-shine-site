@@ -337,6 +337,8 @@ section {
   background: radial-gradient(1000px 700px at 70% 0%, rgba(183, 165, 122, .18), rgba(255, 255, 255, 0));
   padding-top: calc(78px + env(safe-area-inset-top));
   padding-bottom: 70px;
+  scroll-margin-top: 90px;
+  /* Offset for sticky topbar */
 }
 
 .kicker {
@@ -1075,6 +1077,42 @@ textarea {
 .navchips a.primary:hover {
   color: #fff !important;
   text-decoration: none;
+}
+
+/* Mobile responsive navigation */
+@media (max-width: 900px) {
+
+  .navchips .chip:nth-child(4),
+  .navchips .chip:nth-child(5),
+  .navchips .chip:nth-child(6) {
+    display: none;
+    /* Hide Process, Reviews, FAQ on tablets */
+  }
+}
+
+@media (max-width: 640px) {
+  .navchips .chip:nth-child(3) {
+    display: none;
+    /* Hide Results on mobile */
+  }
+
+  .navchips {
+    gap: 6px;
+    /* Tighter spacing on mobile */
+  }
+
+  .chip {
+    padding: 8px 12px;
+    /* Smaller padding */
+    font-size: 12px;
+  }
+}
+
+@media (max-width: 480px) {
+  .navchips .chip:nth-child(2) {
+    display: none;
+    /* Hide Pricing on very small screens, keep only Benefits + Free Quote */
+  }
 }
 
 /* Floating CTA (FAB) */
