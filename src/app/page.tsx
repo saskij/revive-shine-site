@@ -1,5 +1,3 @@
-"use client";
-
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero"; // Actually Hero is async/server, but we can't import server component into client component directly if we use "use client" here.
 // Wait, to use Context Provider, we likely need a Client Component wrapper.

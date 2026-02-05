@@ -919,14 +919,17 @@ textarea {
 /* Card container (single source of truth) */
 .price-card {
   position: relative;
-  /* removed border-radius & overflow here to allow normal flow content expansion */
-  border: 0;
-  background: transparent;
+  /* Fused card - border/shadow/background on container */
+  border: 1px solid rgba(0, 0, 0, .10);
+  background: var(--surface);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+
   text-decoration: none;
   color: inherit;
-
-  /* We remove shadow from the container because the pieces (img/cap) will have their own or need adjustment */
-  /* box-shadow: 0 12px 36px rgba(0, 0, 0, .06); -> Moved or removed to avoid double shadows */
 
   transform: translateY(15px);
   opacity: 0;
@@ -936,8 +939,8 @@ textarea {
   /* Layout */
   display: flex;
   flex-direction: column;
-  gap: 12px;
-  /* Space between image and caption */
+  gap: 0;
+  /* Remove gap to fuse image + caption */
 }
 
 .reveal.on .price-card {
@@ -968,12 +971,10 @@ textarea {
   cursor: pointer;
   -webkit-tap-highlight-color: transparent;
 
-  /* Move clipping here */
-  border-radius: 22px;
-  overflow: hidden;
-  box-shadow: 0 12px 36px rgba(0, 0, 0, .06);
+  /* Remove individual styling to blend into card */
+  border-radius: 0;
+  box-shadow: none;
   transform: translateZ(0);
-  /* Fix for safari clipping */
 }
 
 .price-card img {
@@ -1005,19 +1006,14 @@ textarea {
 /* Bottom caption (goes to quote) */
 .price-cap {
   position: relative;
-  /* Normal flow */
-  left: auto;
-  right: auto;
-  bottom: auto;
   width: 100%;
+  padding: 12px;
+  /* Reduced and standardized */
 
-  padding: 16px;
-  border-radius: 18px;
-
-  background: rgba(255, 255, 255, .78);
-  border: 1px solid rgba(0, 0, 0, .08);
-  /* Keep backdrop filter if key elements are behind, but now it's separate */
-  /* backdrop-filter: blur(12px); */
+  /* Remove individual styling to blend into card */
+  border-radius: 0;
+  background: transparent;
+  border: none;
 
   text-decoration: none;
   color: var(--ink);
@@ -1035,13 +1031,19 @@ textarea {
 }
 
 .price-h {
-  font-size: 16px;
+  font-size: 14px;
+  /* Reduced from 16px */
   font-weight: 950;
+  margin: 0 0 2px 0;
+  /* Added margin for consistency */
 }
 
 .price-d {
-  font-size: 13px;
+  font-size: 12px;
+  /* Reduced from 13px */
   color: var(--muted);
+  margin: 0;
+  /* Consistent margins */
 }
 
 .price-note {

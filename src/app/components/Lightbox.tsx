@@ -1,16 +1,27 @@
 "use client";
 
 import { useLightbox } from "../context/LightboxContext";
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 export default function Lightbox() {
     const { isOpen, src, title, footer, closeLightbox } = useLightbox();
 
+    const scrollYRef = useRef(0);
+
     useEffect(() => {
         if (isOpen) {
+            // Save current scroll position
+            scrollYRef.current = window.scrollY;
+            // Fix body position at negative scroll offset
+            document.body.style.top = `-${scrollYRef.current}px`;
             document.body.classList.add("lb-open");
-        } else {
-            document.body.classList.remove("lb-open");
+
+            return () => {
+                // Cleanup: remove class and restore scroll
+                document.body.classList.remove("lb-open");
+                document.body.style.top = "";
+                window.scrollTo(0, scrollYRef.current);
+            };
         }
     }, [isOpen]);
 
