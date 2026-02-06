@@ -10,11 +10,17 @@ export default function Navbar() {
 
     const closeMenu = () => setMenuOpen(false);
 
+    const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+        e.preventDefault();
+        closeMenu();
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    };
+
     return (
         <>
             <header className="topbar">
                 <div className="bar">
-                    <Link className="brandlink" href="#top" aria-label="Back to top" onClick={closeMenu}>
+                    <Link className="brandlink" href="#top" aria-label="Back to top" onClick={handleLogoClick}>
                         <span className="logo">
                             <img
                                 src="/assets/images/logo-new.webp"
