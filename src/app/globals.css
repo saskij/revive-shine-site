@@ -167,6 +167,14 @@ section {
   /* Slight negative margin to pull it to edge */
 }
 
+/* Fix logo cutoff on mobile */
+@media (max-width: 768px) {
+  .logo {
+    margin-left: 4px;
+    /* Shift logo right on mobile to prevent cutoff */
+  }
+}
+
 .logo img {
   width: 280%;
   height: 280%;
