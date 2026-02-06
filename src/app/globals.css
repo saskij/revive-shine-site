@@ -1084,19 +1084,27 @@ textarea {
   display: none;
   flex-direction: column;
   justify-content: space-between;
-  width: 32px;
-  height: 24px;
-  background: transparent;
-  border: none;
+  align-items: center;
+  width: 44px;
+  height: 44px;
+  padding: 10px;
+  background: rgba(183, 165, 122, 0.15);
+  border: 1px solid rgba(183, 165, 122, 0.3);
+  border-radius: 12px;
   cursor: pointer;
-  padding: 0;
   z-index: 100;
+  transition: all 0.2s ease;
+}
+
+.burger-btn:hover {
+  background: rgba(183, 165, 122, 0.25);
+  border-color: rgba(183, 165, 122, 0.5);
 }
 
 .burger-btn span {
   display: block;
   height: 3px;
-  width: 100%;
+  width: 24px;
   background: var(--ink);
   border-radius: 2px;
   transition: all 0.3s ease;
@@ -1159,7 +1167,7 @@ textarea {
 }
 
 .mobile-menu-inner {
-  padding: 100px 24px 24px;
+  padding: 80px 24px 24px;
   display: flex;
   flex-direction: column;
   gap: 4px;
