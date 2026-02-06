@@ -1595,7 +1595,7 @@ body.lb-open {
   margin: 0 auto;
   padding: 48px 18px;
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 32px;
 }
 
